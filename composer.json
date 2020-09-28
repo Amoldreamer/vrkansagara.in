@@ -1,13 +1,13 @@
 {
-    "name": "laminas/laminas-mvc-skeleton",
-    "description": "Laminas MVC Skeleton Application",
+    "name": "vrkansagara/vrkansagara.in",
+    "description": "Personal blog of Vallabh Kansagara (VRKANSAGARA)",
     "type": "project",
     "license": "BSD-3-Clause",
     "keywords": [
-        "laminas",
-        "mvc",
-        "skeleton",
-        "framework"
+        "vrkansagara",
+        "Vallabh",
+        "Kansagara",
+        "Personal"
     ],
     "require": {
         "php": "^7.3",
