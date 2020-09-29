@@ -1,17 +1,12 @@
-
 <!doctype html>
 <html lang="en" class="h-100">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.72.0">
 
-    <?= $this->headTitle('VRKANSAGARA')->setSeparator(' - ')->setAutoEscape(false) ?>
+    <?= $this->headTitle('Laminas MVC Skeleton')->setSeparator(' - ')->setAutoEscape(false) ?>
 
     <?= $this->headMeta()
-        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendName('viewport', 'width=device-width, initial-scale=1')
         ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
     ?>
 
@@ -23,36 +18,65 @@
 
     <!-- Scripts -->
     <?= $this->headScript() ?>
-    <meta name="theme-color" content="#7952b3">
+
+    <link rel="canonical" href="<?=$this->url()?>">
 </head>
 <body class="d-flex flex-column h-100">
 
+<header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="<?=$this->url('home')?>">Vallabh Kansagara (VRKANSAGARA)</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto mb-2 mb-md-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" aria-current="page" href="<?=$this->url('home')?>">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="projects" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Projects</a>
+                        <div class="dropdown-menu" aria-labelledby="projects">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" aria-current="page" href="<?=$this->url('home')?>">Blog</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" aria-current="page" href="<?=$this->url('home')?>">Resume</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" aria-current="page" href="<?=$this->url('home')?>">Contact</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" aria-current="page" href="<?=$this->url('home')?>">About</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+
 <?= $this->content ?>
+
 <footer class="footer mt-auto py-3 bg-light">
     <div class="container">
-        <span class="text-muted">&copy; <?= date('Y') ?> Vallabh Kansagara ( VRKANSAGARA) || Time and Tide Wait For None ||</span>
+        <span class="text-muted">Unless otherwise noted, © Copyright 2015 - <?= date('Y') ?>, Vallabh Kansagara ( 56 52 4B 41 4E 53 41 47 41 52 41  ) || Time And Tide Wait For None||</span>
     </div>
 </footer>
 
-<!-- Google Analytics -->
-<script type="text/javascript">
-
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-
-</script>
-<?= $this->inlineScript()->prependFile($this->basePath('assets/js/bootstrap.min.js'))?>
-
+<?= $this->inlineScript()
+//    ->prependFile($this->basePath('assets/js/bootstrap.min.js'))
+    ->prependFile($this->basePath('assets/js/bootstrap.bundle.min.js'))
+?>
 </body>
 </html>
-
-
-
-
