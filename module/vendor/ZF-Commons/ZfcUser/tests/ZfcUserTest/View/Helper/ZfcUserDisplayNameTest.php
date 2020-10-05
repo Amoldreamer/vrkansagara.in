@@ -14,7 +14,7 @@ class ZfcUserDisplayNameTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $helper = new ViewHelper;
+        $helper = new ViewHelper();
         $this->helper = $helper;
 
         $authService = $this->getMock('Laminas\Authentication\AuthenticationService');
@@ -51,7 +51,7 @@ class ZfcUserDisplayNameTest extends \PHPUnit_Framework_TestCase
                           ->will($this->returnValue(true));
         $this->authService->expects($this->once())
                           ->method('getIdentity')
-                          ->will($this->returnValue(new \StdClass));
+                          ->will($this->returnValue(new \StdClass()));
 
         $this->helper->__invoke(null);
     }

@@ -20,44 +20,43 @@ class Module implements
 
     public function getControllerPluginConfig()
     {
-        return array(
-            'factories' => array(
+        return [
+            'factories' => [
                 'zfcUserAuthentication' => \ZfcUser\Factory\Controller\Plugin\ZfcUserAuthentication::class,
-            ),
-        );
+            ],
+        ];
     }
 
     public function getControllerConfig()
     {
-        return array(
-            'factories' => array(
+        return [
+            'factories' => [
                 'zfcuser' => \ZfcUser\Factory\Controller\UserControllerFactory::class,
-            ),
-        );
+            ],
+        ];
     }
 
     public function getViewHelperConfig()
     {
-        return array(
-            'factories' => array(
+        return [
+            'factories' => [
                 'zfcUserDisplayName' => \ZfcUser\Factory\View\Helper\ZfcUserDisplayName::class,
                 'zfcUserIdentity' => \ZfcUser\Factory\View\Helper\ZfcUserIdentity::class,
                 'zfcUserLoginWidget' => \ZfcUser\Factory\View\Helper\ZfcUserLoginWidget::class,
-            ),
-        );
-
+            ],
+        ];
     }
 
     public function getServiceConfig()
     {
-        return array(
-            'aliases' => array(
+        return [
+            'aliases' => [
                 'zfcuser_zend_db_adapter' => \Laminas\Db\Adapter\Adapter::class,
-            ),
-            'invokables' => array(
+            ],
+            'invokables' => [
                 'zfcuser_register_form_hydrator' => \Laminas\Hydrator\ClassMethods::class,
-            ),
-            'factories' => array(
+            ],
+            'factories' => [
                 'zfcuser_redirect_callback' => \ZfcUser\Factory\Controller\RedirectCallbackFactory::class,
                 'zfcuser_module_options' => \ZfcUser\Factory\Options\ModuleOptions::class,
                 'ZfcUser\Authentication\Adapter\AdapterChain' => \ZfcUser\Authentication\Adapter\AdapterChainServiceFactory::class,
@@ -79,7 +78,7 @@ class Module implements
                 'ZfcUser\Authentication\Storage\Db' => \ZfcUser\Factory\Authentication\Storage\DbFactory::class,
 
                 'zfcuser_user_service' => \ZfcUser\Factory\Service\UserFactory::class,
-            ),
-        );
+            ],
+        ];
     }
 }

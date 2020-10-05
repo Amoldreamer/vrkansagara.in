@@ -17,55 +17,55 @@ class ChangePassword extends ProvidesEventsForm
 
         parent::__construct($name);
 
-        $this->add(array(
+        $this->add([
             'name' => 'identity',
-            'options' => array(
+            'options' => [
                 'label' => '',
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'type' => 'hidden'
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'credential',
             'type' => 'password',
-            'options' => array(
+            'options' => [
                 'label' => 'Current Password',
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'type' => 'password',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'newCredential',
-            'options' => array(
+            'options' => [
                 'label' => 'New Password',
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'type' => 'password',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'newCredentialVerify',
             'type' => 'password',
-            'options' => array(
+            'options' => [
                 'label' => 'Verify New Password',
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'type' => 'password',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'submit',
-            'attributes' => array(
+            'attributes' => [
                 'value' => 'Submit',
                 'type'  => 'submit'
-            ),
-        ));
+            ],
+        ]);
     }
 
     /**

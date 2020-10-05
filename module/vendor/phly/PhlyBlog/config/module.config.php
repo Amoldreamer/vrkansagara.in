@@ -1,7 +1,8 @@
 <?php
-return array(
-    'blog' => array(
-        'options' => array(
+
+return [
+    'blog' => [
+        'options' => [
             'author_feed_filename_template' => 'public/blog/author/%s-%s.xml',
             'author_feed_title_template'    => 'Author: %s',
             'by_author_filename_template'   => 'public/blog/author/%s-p%d.html',
@@ -22,185 +23,185 @@ return array(
             'feed_title'                    => 'Blog Entries',
             'tag_feed_filename_template'    => 'public/blog/tag/%s-%s.xml',
             'tag_feed_title_template'       => 'Tag: %s',
-            'tag_cloud_options'             => array('tagDecorator'              => array(
+            'tag_cloud_options'             => ['tagDecorator'              => [
                 'decorator' => 'html_tag',
-                'options'   => array(
+                'options'   => [
                     'fontSizeUnit' => '%',
                     'minFontSize'  => 80,
                     'maxFontSize'  => 300,
-                ),
-            )),
-        ),
+                ],
+            ]],
+        ],
         'posts_path'     => 'data/blog/',
         'view_callback'  => 'PhlyBlog\Module::prepareCompilerView',
         'cloud_callback' => false,
-    ),
+    ],
 
-    'view_manager' => array(
-        'template_map' => array(
+    'view_manager' => [
+        'template_map' => [
             'phly-blog/entry-short'  => __DIR__ . '/../view/phly-blog/entry-short.phtml',
             'phly-blog/entry'        => __DIR__ . '/../view/phly-blog/entry.phtml',
             'phly-blog/list'         => __DIR__ . '/../view/phly-blog/list.phtml',
             'phly-blog/paginator'    => __DIR__ . '/../view/phly-blog/paginator.phtml',
             'phly-blog/tags'         => __DIR__ . '/../view/phly-blog/tags.phtml',
-        ),
-        'template_path_stack' => array(
+        ],
+        'template_path_stack' => [
             'phly-blog' => __DIR__ . '/../view',
-        ),
-    ),
+        ],
+    ],
 
-    'router' => array(
-        'routes' => array(
-            'phly-blog' => array(
+    'router' => [
+        'routes' => [
+            'phly-blog' => [
                 'type' => 'Literal',
-                'options' => array(
+                'options' => [
                     'route' => '/blog',
-                ),
+                ],
                 'may_terminate' => false,
-                'child_routes'  => array(
-                    'index' => array(
+                'child_routes'  => [
+                    'index' => [
                         'type' => 'Literal',
-                        'options' => array(
+                        'options' => [
                             'route' => '.html',
-                        ),
-                    ),
-                    'feed-atom' => array(
+                        ],
+                    ],
+                    'feed-atom' => [
                         'type' => 'Literal',
-                        'options' => array(
+                        'options' => [
                             'route' => '-atom.xml',
-                        ),
-                    ),
-                    'feed-rss' => array(
+                        ],
+                    ],
+                    'feed-rss' => [
                         'type' => 'Literal',
-                        'options' => array(
+                        'options' => [
                             'route' => '-rss.xml',
-                        ),
-                    ),
-                    'entry' => array(
+                        ],
+                    ],
+                    'entry' => [
                         'type'    => 'Regex',
-                        'options' => array(
+                        'options' => [
                             'regex' => '/(?<id>[^/]+)\.html',
                             'spec' => '/%id%.html',
-                        ),
-                    ),
-                    'author' => array(
+                        ],
+                    ],
+                    'author' => [
                         'type'    => 'Regex',
-                        'options' => array(
+                        'options' => [
                             'regex' => '/author/(?<author>[^/]+)',
-                            'defaults' => array(
+                            'defaults' => [
                                 'action'     => 'author',
-                            ),
+                            ],
                             'spec' => '/author/%author%',
-                        ),
+                        ],
                         'may_terminate' => false,
-                        'child_routes' => array(
-                            'page' => array(
+                        'child_routes' => [
+                            'page' => [
                                 'type' => 'Literal',
-                                'options' => array(
+                                'options' => [
                                     'route' => '.html',
-                                ),
-                            ),
-                            'feed-atom' => array(
+                                ],
+                            ],
+                            'feed-atom' => [
                                 'type'    => 'Literal',
-                                'options' => array(
+                                'options' => [
                                     'route' => '-atom.xml',
-                                ),
-                            ),
-                            'feed-rss' => array(
+                                ],
+                            ],
+                            'feed-rss' => [
                                 'type'    => 'Literal',
-                                'options' => array(
+                                'options' => [
                                     'route' => '-rss.xml',
-                                ),
-                            ),
-                        ),
-                    ),
-                    'tag' => array(
+                                ],
+                            ],
+                        ],
+                    ],
+                    'tag' => [
                         'type'    => 'Regex',
-                        'options' => array(
+                        'options' => [
                             'regex' => '/tag/(?<tag>[^/.-]+)',
-                            'defaults' => array(
+                            'defaults' => [
                                 'action'     => 'tag',
-                            ),
+                            ],
                             'spec' => '/tag/%tag%',
-                        ),
+                        ],
                         'may_terminate' => false,
-                        'child_routes' => array(
-                            'page' => array(
+                        'child_routes' => [
+                            'page' => [
                                 'type' => 'Literal',
-                                'options' => array(
+                                'options' => [
                                     'route' => '.html',
-                                ),
-                            ),
-                            'feed-atom' => array(
+                                ],
+                            ],
+                            'feed-atom' => [
                                 'type'    => 'Literal',
-                                'options' => array(
+                                'options' => [
                                     'route' => '-atom.xml',
-                                ),
-                            ),
-                            'feed-rss' => array(
+                                ],
+                            ],
+                            'feed-rss' => [
                                 'type'    => 'Literal',
-                                'options' => array(
+                                'options' => [
                                     'route' => '-rss.xml',
-                                ),
-                            ),
-                        ),
-                    ),
-                    'year' => array(
+                                ],
+                            ],
+                        ],
+                    ],
+                    'year' => [
                         'type'    => 'Segment',
-                        'options' => array(
+                        'options' => [
                             'route' => '/year/:year.html',
-                            'constraints' => array(
+                            'constraints' => [
                                 'year' => '\d{4}',
-                            ),
-                            'defaults' => array(
+                            ],
+                            'defaults' => [
                                 'action'     => 'year',
-                            ),
-                        ),
-                    ),
-                    'month' => array(
+                            ],
+                        ],
+                    ],
+                    'month' => [
                         'type'    => 'Segment',
-                        'options' => array(
+                        'options' => [
                             'route' => '/month/:year/:month.html',
-                            'constraints' => array(
+                            'constraints' => [
                                 'year'  => '\d{4}',
                                 'month' => '\d{2}',
-                            ),
-                            'defaults' => array(
+                            ],
+                            'defaults' => [
                                 'action'     => 'month',
-                            ),
-                        ),
-                    ),
-                    'day' => array(
+                            ],
+                        ],
+                    ],
+                    'day' => [
                         'type'    => 'Segment',
-                        'options' => array(
+                        'options' => [
                             'route' => '/day/:year/:month/:day.html',
-                            'constraints' => array(
+                            'constraints' => [
                                 'year'  => '\d{4}',
                                 'month' => '\d{2}',
                                 'day'   => '\d{2}',
-                            ),
-                            'defaults' => array(
+                            ],
+                            'defaults' => [
                                 'action'     => 'day',
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        ),
-    ),
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
 
-    'console' => array(
-        'router' => array('routes' => array(
-            'phly-blog-compile' => array(
+    'console' => [
+        'router' => ['routes' => [
+            'phly-blog-compile' => [
                 'type'    => 'Simple',
-                'options' => array(
+                'options' => [
                     'route' => 'blog compile [--all|-a] [--entries|-e] [--archive|-c] [--year|-y] [--month|-m] [--day|-d] [--tag|-t] [--author|-r]',
-                    'defaults' => array(
+                    'defaults' => [
                         'controller' => 'PhlyBlog\CompileController',
                         'action'     => 'compile',
-                    ),
-                ),
-            ),
-        )),
-    ),
-);
+                    ],
+                ],
+            ],
+        ]],
+    ],
+];

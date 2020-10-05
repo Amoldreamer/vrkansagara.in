@@ -127,7 +127,7 @@ class AdapterChain implements AdapterInterface
     public function getEvent()
     {
         if (null === $this->event) {
-            $this->setEvent(new AdapterChainEvent);
+            $this->setEvent(new AdapterChainEvent());
             $this->event->setTarget($this);
         }
 
@@ -144,7 +144,7 @@ class AdapterChain implements AdapterInterface
      */
     public function setEvent(Event $e)
     {
-        if (!$e instanceof AdapterChainEvent) {
+        if (! $e instanceof AdapterChainEvent) {
             $eventParams = $e->getParams();
             $e = new AdapterChainEvent();
             $e->setParams($eventParams);

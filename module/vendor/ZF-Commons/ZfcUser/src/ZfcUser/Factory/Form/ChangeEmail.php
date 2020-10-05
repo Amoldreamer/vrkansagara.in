@@ -16,10 +16,10 @@ class ChangeEmail implements FactoryInterface
 
         $form->setInputFilter(new Form\ChangeEmailFilter(
             $options,
-            new Validator\NoRecordExists(array(
+            new Validator\NoRecordExists([
                 'mapper' => $serviceManager->get('zfcuser_user_mapper'),
                 'key'    => 'email'
-            ))
+            ])
         ));
 
         return $form;

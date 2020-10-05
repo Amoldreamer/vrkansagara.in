@@ -1,4 +1,5 @@
 <?php
+
 namespace ZfcUser\Authentication\Adapter;
 
 use Interop\Container\ContainerInterface;
@@ -24,12 +25,12 @@ class AdapterChainServiceFactory implements FactoryInterface
         foreach ($options->getAuthAdapters() as $priority => $adapterName) {
             $adapter = $serviceLocator->get($adapterName);
 
-            if (is_callable(array($adapter, 'authenticate'))) {
-                $chain->getEventManager()->attach('authenticate', array($adapter, 'authenticate'), $priority);
+            if (is_callable([$adapter, 'authenticate'])) {
+                $chain->getEventManager()->attach('authenticate', [$adapter, 'authenticate'], $priority);
             }
 
-            if (is_callable(array($adapter, 'logout'))) {
-                $chain->getEventManager()->attach('logout', array($adapter, 'logout'), $priority);
+            if (is_callable([$adapter, 'logout'])) {
+                $chain->getEventManager()->attach('logout', [$adapter, 'logout'], $priority);
             }
         }
 
@@ -68,8 +69,8 @@ class AdapterChainServiceFactory implements FactoryInterface
      */
     public function getOptions(ServiceLocatorInterface $serviceLocator = null)
     {
-        if (!$this->options) {
-            if (!$serviceLocator) {
+        if (! $this->options) {
+            if (! $serviceLocator) {
                 throw new OptionsNotFoundException(
                     'Options were tried to retrieve but not set ' .
                     'and no service locator was provided'

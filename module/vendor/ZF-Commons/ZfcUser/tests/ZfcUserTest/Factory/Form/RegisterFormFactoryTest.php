@@ -1,4 +1,5 @@
 <?php
+
 namespace ZfcUserTest\Factory\Form;
 
 use Laminas\Form\FormElementManager;
@@ -12,9 +13,9 @@ class RegisterFormFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testFactory()
     {
-        $serviceManager = new ServiceManager;
-        $serviceManager->setService('zfcuser_module_options', new ModuleOptions);
-        $serviceManager->setService('zfcuser_user_mapper', new UserMapper);
+        $serviceManager = new ServiceManager();
+        $serviceManager->setService('zfcuser_module_options', new ModuleOptions());
+        $serviceManager->setService('zfcuser_user_mapper', new UserMapper());
         $serviceManager->setService('zfcuser_register_form_hydrator', new ClassMethods());
 
         $formElementManager = new FormElementManager($serviceManager);

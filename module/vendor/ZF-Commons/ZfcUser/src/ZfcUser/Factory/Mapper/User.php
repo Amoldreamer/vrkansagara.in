@@ -22,7 +22,7 @@ class User implements FactoryInterface
         $mapper = new Mapper\User();
         $mapper->setDbAdapter($dbAdapter);
         $mapper->setTableName($tableName);
-        $mapper->setEntityPrototype(new $entityClass);
+        $mapper->setEntityPrototype(new $entityClass());
         $mapper->setHydrator(new Mapper\UserHydrator());
 
         return $mapper;

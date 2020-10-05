@@ -1,8 +1,10 @@
 <?php
+
 /**
  * Ids for poedit
  * @method translate()
  */
+
 translate('Username');
 translate('Email');
 translate('New Email');
