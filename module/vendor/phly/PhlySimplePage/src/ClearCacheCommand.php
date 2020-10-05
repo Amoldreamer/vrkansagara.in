@@ -32,7 +32,10 @@ class ClearCacheCommand extends Command
 
     protected function configure(): void
     {
-        $this->setName('cache:clear');
+        $this->setName('phly:page:cache:clear');
+        $this->setDescription('PhlySimplePage clear page cache');
+        $this->setHelp('This command will provide more details about how this command is working.');
+
         $this->addOption(
             'page',
             'p',

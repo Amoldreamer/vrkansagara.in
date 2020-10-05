@@ -1,4 +1,5 @@
 <?php
+
 namespace ZfcUserTest\Factory\Form;
 
 use Laminas\Form\FormElementManager;
@@ -11,9 +12,9 @@ class ChangePasswordFormFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testFactory()
     {
-        $serviceManager = new ServiceManager;
-        $serviceManager->setService('zfcuser_module_options', new ModuleOptions);
-        $serviceManager->setService('zfcuser_user_mapper', new UserMapper);
+        $serviceManager = new ServiceManager();
+        $serviceManager->setService('zfcuser_module_options', new ModuleOptions());
+        $serviceManager->setService('zfcuser_user_mapper', new UserMapper());
 
         $formElementManager = new FormElementManager($serviceManager);
         $serviceManager->setService('FormElementManager', $formElementManager);

@@ -75,7 +75,7 @@ class RedirectCallbackTest extends \PHPUnit_Framework_TestCase
 
         $this->router->expects($this->any())
             ->method('assemble')
-            ->with(array(), array('name' => 'zfcuser'))
+            ->with([], ['name' => 'zfcuser'])
             ->will($this->returnValue($url));
 
         $this->response->expects($this->once())
@@ -105,7 +105,7 @@ class RedirectCallbackTest extends \PHPUnit_Framework_TestCase
         if ($get) {
             $this->router->expects($this->any())
                 ->method('assemble')
-                ->with(array(), array('name' => $get))
+                ->with([], ['name' => $get])
                 ->will($getRouteExists);
 
             if ($getRouteExists == $this->returnValue(true)) {
@@ -113,7 +113,7 @@ class RedirectCallbackTest extends \PHPUnit_Framework_TestCase
             }
         }
 
-        if (!$get || !$getRouteExists) {
+        if (! $get || ! $getRouteExists) {
             $this->request->expects($this->once())
                 ->method('getPost')
                 ->will($this->returnValue($post));
@@ -121,7 +121,7 @@ class RedirectCallbackTest extends \PHPUnit_Framework_TestCase
             if ($post) {
                 $this->router->expects($this->any())
                     ->method('assemble')
-                    ->with(array(), array('name' => $post))
+                    ->with([], ['name' => $post])
                     ->will($postRouteExists);
 
                 if ($postRouteExists == $this->returnValue(true)) {
@@ -142,16 +142,16 @@ class RedirectCallbackTest extends \PHPUnit_Framework_TestCase
 
     public function providerGetRedirectRouteFromRequest()
     {
-        return array(
-            array('user', false, $this->returnValue('route'), false),
-            array('user', false, $this->returnValue('route'), $this->returnValue(true)),
-            array('user', 'user', $this->returnValue('route'), $this->returnValue(true)),
-            array('user', 'user', $this->throwException(new \Laminas\Router\Exception\RuntimeException), $this->returnValue(true)),
-            array('user', 'user', $this->throwException(new \Laminas\Router\Exception\RuntimeException), $this->throwException(new \Laminas\Router\Exception\RuntimeException)),
-            array(false, 'user', false, $this->returnValue(true)),
-            array(false, 'user', false, $this->throwException(new \Laminas\Router\Exception\RuntimeException)),
-            array(false, 'user', false, $this->throwException(new \Laminas\Router\Exception\RuntimeException)),
-        );
+        return [
+            ['user', false, $this->returnValue('route'), false],
+            ['user', false, $this->returnValue('route'), $this->returnValue(true)],
+            ['user', 'user', $this->returnValue('route'), $this->returnValue(true)],
+            ['user', 'user', $this->throwException(new \Laminas\Router\Exception\RuntimeException()), $this->returnValue(true)],
+            ['user', 'user', $this->throwException(new \Laminas\Router\Exception\RuntimeException()), $this->throwException(new \Laminas\Router\Exception\RuntimeException())],
+            [false, 'user', false, $this->returnValue(true)],
+            [false, 'user', false, $this->throwException(new \Laminas\Router\Exception\RuntimeException())],
+            [false, 'user', false, $this->throwException(new \Laminas\Router\Exception\RuntimeException())],
+        ];
     }
 
     public function testRouteExistsRouteExists()
@@ -160,7 +160,7 @@ class RedirectCallbackTest extends \PHPUnit_Framework_TestCase
 
         $this->router->expects($this->once())
             ->method('assemble')
-            ->with(array(), array('name' => $route));
+            ->with([], ['name' => $route]);
 
         $method = new \ReflectionMethod(
             'ZfcUser\Controller\RedirectCallback',
@@ -178,8 +178,8 @@ class RedirectCallbackTest extends \PHPUnit_Framework_TestCase
 
         $this->router->expects($this->once())
             ->method('assemble')
-            ->with(array(), array('name' => $route))
-            ->will($this->throwException(new \Laminas\Router\Exception\RuntimeException));
+            ->with([], ['name' => $route])
+            ->will($this->throwException(new \Laminas\Router\Exception\RuntimeException()));
 
         $method = new \ReflectionMethod(
             'ZfcUser\Controller\RedirectCallback',
@@ -204,7 +204,7 @@ class RedirectCallbackTest extends \PHPUnit_Framework_TestCase
             ->method('assemble');
         $this->router->expects($this->at(1))
             ->method('assemble')
-            ->with(array(), array('name' => $optionsReturn))
+            ->with([], ['name' => $optionsReturn])
             ->will($this->returnValue($expectedResult));
 
         if ($optionsMethod) {
@@ -224,12 +224,12 @@ class RedirectCallbackTest extends \PHPUnit_Framework_TestCase
 
     public function providerGetRedirectNoRedirectParam()
     {
-        return array(
-            array('zfcuser/login', 'zfcuser', '/user', 'getLoginRedirectRoute'),
-            array('zfcuser/authenticate', 'zfcuser', '/user', 'getLoginRedirectRoute'),
-            array('zfcuser/logout', 'zfcuser/login', '/user/login', 'getLogoutRedirectRoute'),
-            array('testDefault', 'zfcuser', '/home', false),
-        );
+        return [
+            ['zfcuser/login', 'zfcuser', '/user', 'getLoginRedirectRoute'],
+            ['zfcuser/authenticate', 'zfcuser', '/user', 'getLoginRedirectRoute'],
+            ['zfcuser/logout', 'zfcuser/login', '/user/login', 'getLogoutRedirectRoute'],
+            ['testDefault', 'zfcuser', '/home', false],
+        ];
     }
 
     public function testGetRedirectWithOptionOnButNoRedirect()
@@ -248,7 +248,7 @@ class RedirectCallbackTest extends \PHPUnit_Framework_TestCase
 
         $this->router->expects($this->once())
             ->method('assemble')
-            ->with(array(), array('name' => $route))
+            ->with([], ['name' => $route])
             ->will($this->returnValue($expectedResult));
 
         $method = new \ReflectionMethod(
@@ -273,12 +273,12 @@ class RedirectCallbackTest extends \PHPUnit_Framework_TestCase
 
         $this->router->expects($this->at(0))
             ->method('assemble')
-            ->with(array(), array('name' => $redirect))
-            ->will($this->throwException(new \Laminas\Router\Exception\RuntimeException));
+            ->with([], ['name' => $redirect])
+            ->will($this->throwException(new \Laminas\Router\Exception\RuntimeException()));
 
         $this->router->expects($this->at(1))
             ->method('assemble')
-            ->with(array(), array('name' => $route))
+            ->with([], ['name' => $route])
             ->will($this->returnValue($expectedResult));
 
         $this->moduleOptions->expects($this->once())

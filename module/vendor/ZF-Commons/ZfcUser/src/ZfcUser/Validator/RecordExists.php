@@ -10,7 +10,7 @@ class RecordExists extends AbstractRecord
         $this->setValue($value);
 
         $result = $this->query($value);
-        if (!$result) {
+        if (! $result) {
             $valid = false;
             $this->error(self::ERROR_NO_RECORD_FOUND);
         }

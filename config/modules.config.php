@@ -30,5 +30,6 @@ return [
     'PhlyContact',
     'PhlyBlog',
     'PhlySimplePage',
+    'Blog',
     'Application',
 ];

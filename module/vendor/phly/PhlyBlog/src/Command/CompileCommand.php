@@ -113,7 +113,7 @@ class CompileCommand extends Command
         if ($config instanceof Traversable) {
             $config = ArrayUtils::iteratorToArray($config);
         }
-        if (!is_array($config)) {
+        if (! is_array($config)) {
             throw new RuntimeException(sprintf(
                 'Expected array or Traversable PhlyBlog configuration; received %s',
                 (is_object($config) ? get_class($config) : gettype($config))
@@ -241,7 +241,7 @@ class CompileCommand extends Command
             $this->getResponseFile(),
             $this->getCompilerOptions()
         );
-        $this->getCompiler()->getEventManager()->attach($tags,$this);
+        $this->getCompiler()->getEventManager()->attach($tags, $this);
         return $tags;
     }
 

@@ -13,7 +13,7 @@ class ModuleOptions implements FactoryInterface
     {
         $config = $serviceLocator->get('Config');
 
-        return new Options\ModuleOptions(isset($config['zfcuser']) ? $config['zfcuser'] : array());
+        return new Options\ModuleOptions(isset($config['zfcuser']) ? $config['zfcuser'] : []);
     }
 
     /**

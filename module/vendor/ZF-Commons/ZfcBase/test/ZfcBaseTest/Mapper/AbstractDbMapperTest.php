@@ -1,4 +1,5 @@
 <?php
+
 namespace ZfcBaseTest\Mapper;
 
 use PHPUnit_Framework_TestCase;
@@ -24,7 +25,7 @@ class AbstractDbMapperTest extends PHPUnit_Framework_TestCase
 
     public function testSetMasterAndSlaveDbAdapterSettersAndGettersWorksAsExpected()
     {
-        $this->mapper = new TestMapper;
+        $this->mapper = new TestMapper();
         $this->mapper->setDbAdapter($this->adapter);
         $this->assertSame($this->adapter, $this->mapper->getDbAdapter());
         $this->assertSame($this->adapter, $this->mapper->getDbSlaveAdapter());
@@ -36,7 +37,7 @@ class AbstractDbMapperTest extends PHPUnit_Framework_TestCase
 
     public function testSetMasterSlaveDbAdapterSetterAndGettersAlsoWorksAsExpected()
     {
-        $this->mapper = new TestMapper;
+        $this->mapper = new TestMapper();
         $this->mapper->setDbAdapter($this->masterSlaveAdapter);
         $this->assertSame($this->masterSlaveAdapter, $this->mapper->getDbAdapter());
         $this->assertSame($this->adapter, $this->mapper->getDbSlaveAdapter());

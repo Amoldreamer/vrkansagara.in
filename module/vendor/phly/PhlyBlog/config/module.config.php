@@ -1,8 +1,6 @@
 <?php
 
-use Laminas\ServiceManager\Factory\InvokableFactory;
 use PhlyBlog\Command\CompileCommand;
-use PhlyBlog\Compiler\ResponseStrategy;
 use PhlyBlog\Factory\CompileCommandFactory;
 use PhlyBlog\Factory\ResponseStrategyFactory;
 

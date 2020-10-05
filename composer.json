@@ -34,11 +34,13 @@
     "autoload": {
         "psr-4": {
             "Application\\": "module/Application/src/",
+            "PhlyCommon\\": "module/vendor/phly/PhlyCommon/src",
             "PhlySimplePage\\": "module/vendor/phly/PhlySimplePage/src",
-            "PhlyBlog\\": "module/vendor/phly/PhlyBlog/src/",
+            "PhlyBlog\\": "module/vendor/phly/PhlyBlog/src",
             "PhlyContact\\": "module/vendor/phly/PhlyContact/src/",
             "Crawler\\": "module/Crawler/src",
-            "ZfcUser\\": "module/vendor/ZF-Commons/ZfcUser/src"
+            "ZfcUser\\": "module/vendor/ZF-Commons/ZfcUser/src",
+            "Blog\\": "module/Blog/src/"
         },
         "files": [
             "module/Application/src/Helpers/app.php"

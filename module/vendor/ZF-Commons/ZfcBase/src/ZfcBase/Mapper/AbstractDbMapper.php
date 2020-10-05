@@ -76,15 +76,15 @@ abstract class AbstractDbMapper extends EventProvider
             return;
         }
 
-        if (!$this->dbAdapter instanceof Adapter) {
+        if (! $this->dbAdapter instanceof Adapter) {
             throw new \Exception('No db adapter present');
         }
 
-        if (!$this->hydrator instanceof HydratorInterface) {
-            $this->hydrator = new ClassMethods;
+        if (! $this->hydrator instanceof HydratorInterface) {
+            $this->hydrator = new ClassMethods();
         }
 
-        if (!is_object($this->entityPrototype)) {
+        if (! is_object($this->entityPrototype)) {
             throw new \Exception('No entity prototype set');
         }
 
@@ -113,8 +113,10 @@ abstract class AbstractDbMapper extends EventProvider
 
         $stmt = $this->getSlaveSql()->prepareStatementForSqlObject($select);
 
-        $resultSet = new HydratingResultSet($hydrator ?: $this->getHydrator(),
-            $entityPrototype ?: $this->getEntityPrototype());
+        $resultSet = new HydratingResultSet(
+            $hydrator ?: $this->getHydrator(),
+            $entityPrototype ?: $this->getEntityPrototype()
+        );
 
         $resultSet->initialize($stmt->execute());
         return $resultSet;
@@ -256,7 +258,7 @@ abstract class AbstractDbMapper extends EventProvider
      */
     public function getHydrator()
     {
-        if (!$this->hydrator) {
+        if (! $this->hydrator) {
             $this->hydrator = new ClassMethods(false);
         }
         return $this->hydrator;
@@ -278,7 +280,7 @@ abstract class AbstractDbMapper extends EventProvider
      */
     protected function getSql()
     {
-        if (!$this->sql instanceof Sql) {
+        if (! $this->sql instanceof Sql) {
             $this->sql = new Sql($this->getDbAdapter());
         }
 
@@ -300,7 +302,7 @@ abstract class AbstractDbMapper extends EventProvider
      */
     protected function getSlaveSql()
     {
-        if (!$this->slaveSql instanceof Sql) {
+        if (! $this->slaveSql instanceof Sql) {
             $this->slaveSql = new Sql($this->getDbSlaveAdapter());
         }
 
@@ -331,7 +333,7 @@ abstract class AbstractDbMapper extends EventProvider
         if (is_array($entity)) {
             return $entity; // cut down on duplicate code
         } elseif (is_object($entity)) {
-            if (!$hydrator) {
+            if (! $hydrator) {
                 $hydrator = $this->getHydrator();
             }
             return $hydrator->extract($entity);

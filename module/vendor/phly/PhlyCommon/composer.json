@@ -1,0 +1,30 @@
+{
+    "name": "phly/phly-common",
+    "description": "A set of interfaces and generic classes used across various Phly modules.",
+    "type": "library",
+    "keywords": [
+        "zf2",
+        "zend",
+        "module"
+    ],
+    "homepage": "https://github.com/weierophinney/PhlyCommon",
+    "authors": [
+        {
+            "name": "Matthew Weier O'Phinney",
+            "email": "matthew@weierophinney.net",
+            "homepage": "http://mwop.net/"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "2.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "PhlyCommon": "src/"
+        },
+        "classmap": [
+            "./"
+        ]
+    }
+}

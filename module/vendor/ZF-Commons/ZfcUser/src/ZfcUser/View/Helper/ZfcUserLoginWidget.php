@@ -25,7 +25,7 @@ class ZfcUserLoginWidget extends AbstractHelper
      * @param array $options array of options
      * @return string
      */
-    public function __invoke($options = array())
+    public function __invoke($options = [])
     {
         if (array_key_exists('render', $options)) {
             $render = $options['render'];
@@ -38,10 +38,10 @@ class ZfcUserLoginWidget extends AbstractHelper
             $redirect = false;
         }
 
-        $vm = new ViewModel(array(
+        $vm = new ViewModel([
             'loginForm' => $this->getLoginForm(),
             'redirect'  => $redirect,
-        ));
+        ]);
         $vm->setTemplate($this->viewTemplate);
         if ($render) {
             return $this->getView()->render($vm);

@@ -1,4 +1,5 @@
 <?php
+
 namespace ZfcUserTest\Factory\Form;
 
 use Laminas\Form\FormElementManager;
@@ -13,8 +14,8 @@ class ChangeEmailFormFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $serviceManager = new ServiceManager([
             'services' => [
-                'zfcuser_module_options' => new ModuleOptions,
-                'zfcuser_user_mapper' => new UserMapper
+                'zfcuser_module_options' => new ModuleOptions(),
+                'zfcuser_user_mapper' => new UserMapper()
             ]
         ]);
 

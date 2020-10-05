@@ -1,4 +1,5 @@
 <?php
+
 namespace ZfcUser\EventManager;
 
 use Traversable;
@@ -21,9 +22,10 @@ abstract class EventProvider implements EventManagerAwareInterface
      */
     public function setEventManager(EventManagerInterface $events)
     {
-        $identifiers = array(__CLASS__, get_called_class());
+        $identifiers = [__CLASS__, get_called_class()];
         if (isset($this->eventIdentifier)) {
-            if ((is_string($this->eventIdentifier))
+            if (
+                (is_string($this->eventIdentifier))
                 || (is_array($this->eventIdentifier))
                 || ($this->eventIdentifier instanceof Traversable)
             ) {
@@ -46,7 +48,7 @@ abstract class EventProvider implements EventManagerAwareInterface
      */
     public function getEventManager()
     {
-        if (!$this->events instanceof EventManagerInterface) {
+        if (! $this->events instanceof EventManagerInterface) {
             $this->setEventManager(new EventManager());
         }
         return $this->events;

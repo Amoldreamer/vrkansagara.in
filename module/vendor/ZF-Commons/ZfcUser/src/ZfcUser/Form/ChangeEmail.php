@@ -17,54 +17,54 @@ class ChangeEmail extends ProvidesEventsForm
 
         parent::__construct($name);
 
-        $this->add(array(
+        $this->add([
             'name' => 'identity',
-            'options' => array(
+            'options' => [
                 'label' => '',
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'type' => 'hidden',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'newIdentity',
-            'options' => array(
+            'options' => [
                 'label' => 'New Email',
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'type' => 'text',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'newIdentityVerify',
-            'options' => array(
+            'options' => [
                 'label' => 'Verify New Email',
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'type' => 'text',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'credential',
             'type' => 'password',
-            'options' => array(
+            'options' => [
                 'label' => 'Password',
-            ),
-            'attributes' => array(
+            ],
+            'attributes' => [
                 'type' => 'password',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'submit',
-            'attributes' => array(
+            'attributes' => [
                 'value' => 'Submit',
                 'type'  => 'submit'
-            ),
-        ));
+            ],
+        ]);
     }
 
     /**
