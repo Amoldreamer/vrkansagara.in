@@ -4,9 +4,9 @@ namespace PhlyBlog;
 
 use DateTime;
 use DateTimezone;
-use Zend\EventManager\EventManagerAwareInterface;
-use Zend\EventManager\EventManagerInterface;
-use Zend\EventManager\EventManager;
+use Laminas\EventManager\EventManagerAwareInterface;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\EventManager\EventManager;
 
 class Compiler implements EventManagerAwareInterface
 {
