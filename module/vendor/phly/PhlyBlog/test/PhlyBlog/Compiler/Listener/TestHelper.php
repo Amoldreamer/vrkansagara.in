@@ -1,15 +1,14 @@
 <?php
-
 namespace PhlyBlog\Compiler\Listener;
 
 use PHPUnit_Framework_TestCase as TestCase;
 use PhlyBlog\Compiler;
 use PhlyBlog\CompilerOptions;
 use PhlyBlog\Compiler\TestAsset;
-use Laminas\Mvc\Router\Http\TreeRouteStack;
-use Laminas\View\View;
-use Laminas\View\Renderer;
-use Laminas\View\Resolver;
+use Zend\Mvc\Router\Http\TreeRouteStack;
+use Zend\View\View;
+use Zend\View\Renderer;
+use Zend\View\Resolver;
 
 class TestHelper
 {
@@ -25,14 +24,14 @@ class TestHelper
         $renderer->setResolver($resolver);
         $renderer->plugin('url')->setRouter($router);
 
-        $testCase->view = new View();
-        $testCase->view->addRenderingStrategy(function ($e) use ($renderer) {
+        $testCase->view = new View;
+        $testCase->view->addRenderingStrategy(function($e) use ($renderer) {
             return $renderer;
         });
 
         $testCase->options  = new CompilerOptions($options['blog']['options']);
         $testCase->file     = new Compiler\ResponseFile();
-        $testCase->writer   = new TestAsset\MockWriter();
+        $testCase->writer   = new TestAsset\MockWriter;
         $testCase->strategy = new Compiler\ResponseStrategy($testCase->writer, $testCase->file, $testCase->view);
         $testCase->compiler = new Compiler(new Compiler\PhpFileFilter(__DIR__ . '/../../_posts'));
         $json               = file_get_contents(__DIR__ . '/../../_posts/metadata.json');
