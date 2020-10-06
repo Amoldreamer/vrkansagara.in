@@ -5,3 +5,18 @@
 ?>
 
 <home-component></home-component>
+
+
+<div class="container">
+  <figure class="text-center">
+    <blockquote class="blockquote">
+      <p><?=$inspire['text']?></p>
+    </blockquote>
+    <?php if (isset($inspire['author'])) : ?>
+    <figcaption class="blockquote-footer">
+        <?=$inspire['author']?>
+    </figcaption>
+    <?php endif; ?>
+  </figure>
+
+</div>
