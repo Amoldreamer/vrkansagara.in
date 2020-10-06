@@ -33,7 +33,7 @@ ZfcRbac is an access control module for Zend Framework 2, based on the RBAC perm
 ## Optional
 
 - [DoctrineModule](https://github.com/doctrine/DoctrineModule): if you want to use some built-in role and permission providers.
-- [Laminas\DeveloperTools](https://github.com/zendframework/Laminas\DeveloperTools): if you want to have useful stats added to
+- [ZendDeveloperTools](https://github.com/zendframework/ZendDeveloperTools): if you want to have useful stats added to
 the Zend Developer toolbar.
 
 ## Upgrade

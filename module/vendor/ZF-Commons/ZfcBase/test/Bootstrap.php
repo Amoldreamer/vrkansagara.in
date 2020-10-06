@@ -72,9 +72,9 @@ class Bootstrap
         }
 
         if (isset($loader)) {
-            $loader->add('Zend', $zf2Path . '/Zend');
+            $loader->add('Laminas', $zf2Path . '/Laminas');
         } else {
-            include $zf2Path . '/Zend/Loader/AutoloaderFactory.php';
+            include $zf2Path . '/Laminas/Loader/AutoloaderFactory.php';
             AutoloaderFactory::factory([
                 'Laminas\Loader\StandardAutoloader' => [
                     'autoregister_zf' => true,

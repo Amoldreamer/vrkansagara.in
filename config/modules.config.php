@@ -31,6 +31,7 @@ return [
 
 
     'ZfcUser',
+//    'ZfcRbac',
 //    'BjyProfiler',
 
     'Crawler',

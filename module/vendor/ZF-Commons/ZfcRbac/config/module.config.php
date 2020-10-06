@@ -1,5 +1,4 @@
 <?php
-
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -61,11 +60,11 @@ return [
     'view_manager' => [
         'template_map' => [
             'error/403'                             => __DIR__ . '/../view/error/403.phtml',
-            'laminas-developer-tools/toolbar/zfc-rbac' => __DIR__ . '/../view/laminas-developer-tools/toolbar/zfc-rbac.phtml'
+            'zend-developer-tools/toolbar/zfc-rbac' => __DIR__ . '/../view/zend-developer-tools/toolbar/zfc-rbac.phtml'
         ]
     ],
 
-    'laminas-developer-tools' => [
+    'zenddevelopertools' => [
         'profiler' => [
             'collectors' => [
                 'zfc_rbac' => 'ZfcRbac\Collector\RbacCollector',
@@ -73,7 +72,7 @@ return [
         ],
         'toolbar' => [
             'entries' => [
-                'zfc_rbac' => 'laminas-developer-tools/toolbar/zfc-rbac',
+                'zfc_rbac' => 'zend-developer-tools/toolbar/zfc-rbac',
             ],
         ],
     ],
