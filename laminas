@@ -41,7 +41,7 @@ include __DIR__ . '/vendor/autoload.php';
 //         Map command:name => service name here.
         'phly:page:cache:clear' => ClearCacheCommand::class,
         'crawler:info ' => \Crawler\Command\InfoCommand::class,
-        'phly:blog:compile' => CompileCommand::class,
+//        'phly:blog:compile' => CompileCommand::class,
 //        'blog:info' => InfoCommand::class,
 //        'blog:compile' => CompileCommand::class,
 
