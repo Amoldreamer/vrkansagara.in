@@ -29,7 +29,10 @@
         "symfony/dotenv": "^5.1",
         "symfony/dom-crawler": "^5.1",
         "sentry/sdk": "^3.0",
-        "laminas/laminas-dependency-plugin": "^1.0"
+        "laminas/laminas-dependency-plugin": "^1.0",
+        "laminas/laminas-db": "^2.11",
+        "laminas/laminas-authentication": "^2.7",
+        "laminas/laminas-mvc-plugin-flashmessenger": "^1.2"
     },
     "autoload": {
         "psr-4": {
@@ -39,7 +42,8 @@
             "PhlyBlog\\": "module/vendor/phly/PhlyBlog/src",
             "PhlyContact\\": "module/vendor/phly/PhlyContact/src/",
             "Crawler\\": "module/Crawler/src",
-            "ZfcUser\\": "module/vendor/ZF-Commons/ZfcUser/src"
+            "ZfcUser\\": "module/vendor/ZF-Commons/ZfcUser/src",
+            "ZfcRbac\\": "module/vendor/ZF-Commons/ZfcRbac/src"
         },
         "files": [
             "module/Application/src/Helpers/app.php"
@@ -51,7 +55,8 @@
             "PhlySimplePageTest\\": "module/vendor/phly/PhlySimplePage/test/",
             "PhlyBlogTest\\": "module/vendor/phly/PhlyBlog/test/",
             "PhlyContactTest\\": "module/vendor/phly/PhlyContact/test/",
-            "ZfcUser\\": "module/vendor/ZF-Commons/ZfcUser/tests"
+            "ZfcUser\\": "module/vendor/ZF-Commons/ZfcUser/tests",
+            "ZfcRbac\\": "module/vendor/ZF-Commons/ZfcRbac/tests"
         }
     },
     "scripts": {

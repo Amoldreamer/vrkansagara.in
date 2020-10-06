@@ -4,11 +4,24 @@
  * code may be modified to fit the specific needs of your application.
  */
 try {
-    window._ = require('lodash');
-    window.$ = window.jQuery = require('jquery');
+    // window._ = require('lodash');
 
+    // window.$ = window.jQuery = require('jquery');
+    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/Base');
+    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/Iter');
+    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/Logging');
+    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/DateTime');
+    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/Format');
+    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/Async');
+    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/DOM');
+    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/Style');
+    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/LoggingPane');
+    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/Color');
+    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/Signal');
+    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/Position');
+    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/Visual');
     require('./vendor/MochiKit-1.4.2/lib/MochiKit/MochiKit');
-    window.$$ = window.MochiKit;
+
 
     window.axios = require('axios');
     /**

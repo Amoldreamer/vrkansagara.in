@@ -10,6 +10,7 @@
     <meta charset="utf-8">
 
     <?= $this->headTitle('VRKANSAGARA')->setSeparator(' - ')->setAutoEscape(false) ?>
+    <meta name="csrf-token" content="<?=csrf_token()?>>">
 
     <?= $this->headMeta()
         ->appendName('viewport', 'width=device-width, initial-scale=1')
@@ -86,6 +87,9 @@
               <li><a class="dropdown-item" href="<?=$this->url('page/projects')?>">See all projects</a></li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?=$this->url('zfcuser/login')?>">Login</a>
+          </li>
         </ul>
         <form  method="get" action="<?=$this->url('search')?>"  class="d-flex">
           <input  name="name" autocomplete="off" id="searchAnyThing" class="form-control mr-2" type="search" placeholder="Search anything..." aria-label="Search anything...">
@@ -126,11 +130,11 @@
 </footer>
 
 <?php
-//echo $this->inlineScript()
-//    ->prependFile($this->basePath('/dist/js/vendor.js'),'text/javascript',['defer'=>true])
-//    ->prependFile($this->basePath('/dist/js/manifest.js'),'text/javascript',['defer'=>true])
-//    ->prependFile($this->basePath('/dist/js/app.js'),'text/javascript',['defer'=>true]);
-
+echo $this->inlineScript()
+    ->prependFile($this->basePath('/dist/js/vendor.js'),'text/javascript',['defer'=>true])
+    ->prependFile($this->basePath('/dist/js/manifest.js'),'text/javascript',['defer'=>true])
+    ->prependFile($this->basePath('/dist/js/app.js'),'text/javascript',['defer'=>true])
+;
 ?>
 </body>
 </html>

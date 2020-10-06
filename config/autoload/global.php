@@ -13,5 +13,27 @@
  */
 
 return [
-    // ...
-];
+    'db' => [
+        'driver' => 'Pdo',
+        'dsn' => 'mysql:dbname=vrkansagara.in;host=localhost',
+        'driver_options' => [
+            1002 => 'SET NAMES \'UTF8\'',
+        ],
+        'username' => 'YOUR SECRET USER NAME',
+        'password' => 'YOUR SECRET PASSWORD',
+    ],
+    'session' => [
+        'config' => [
+            'class' => \Laminas\Session\Config\SessionConfig::class,
+            'options' => [
+                'name' => 'session_name',
+            ],
+        ],
+        'storage' => \Laminas\Session\Storage\SessionArrayStorage::class,
+        'validators' => [
+            \Laminas\Session\Validator\RemoteAddr::class,
+            \Laminas\Session\Validator\HttpUserAgent::class,
+        ],
+    ],
+
+    ];

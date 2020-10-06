@@ -12,6 +12,9 @@
  * This should be an array of module namespaces used in the application.
  */
 return [
+    'Laminas\Mvc\Plugin\FlashMessenger',
+    'Laminas\ZendFrameworkBridge',
+    'Laminas\Db',
     'Laminas\ZendFrameworkBridge',
     'Laminas\I18n',
     'Laminas\Session',
@@ -25,6 +28,8 @@ return [
     'Laminas\Validator',
     'Laminas\DeveloperTools',
 
+
+    'ZfcUser',
 
     'Crawler',
     'PhlyContact',
