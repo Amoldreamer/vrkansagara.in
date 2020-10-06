@@ -2,11 +2,6 @@
 
 namespace PhlyBlog\Compiler\Listener;
 
-use PhlyBlog\AuthorEntity;
-use PhlyBlog\CompilerOptions;
-use PhlyBlog\Compiler\Event;
-use PhlyBlog\Compiler\ResponseFile;
-use PhlyBlog\Compiler\WriterInterface;
 use Laminas\EventManager\EventManagerInterface as Events;
 use Laminas\EventManager\ListenerAggregateInterface;
 use Laminas\Feed\Writer\Feed as FeedWriter;
@@ -14,6 +9,11 @@ use Laminas\Paginator\Adapter\ArrayAdapter as ArrayPaginator;
 use Laminas\Paginator\Paginator;
 use Laminas\View\Model\ViewModel;
 use Laminas\View\View;
+use PhlyBlog\AuthorEntity;
+use PhlyBlog\Compiler\Event;
+use PhlyBlog\Compiler\ResponseFile;
+use PhlyBlog\Compiler\WriterInterface;
+use PhlyBlog\CompilerOptions;
 
 abstract class AbstractList implements ListenerAggregateInterface, ListenerInterface
 {
@@ -31,7 +31,7 @@ abstract class AbstractList implements ListenerAggregateInterface, ListenerInter
         $this->options      = $options;
     }
 
-    public function attach(Events $events, $priority = 1)
+    public function attach(Events $events)
     {
         $this->listeners[] = $events->attach('compile', [$this, 'onCompile']);
         $this->listeners[] = $events->attach('compile.end', [$this, 'onCompileEnd']);

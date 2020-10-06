@@ -39,8 +39,7 @@
             "PhlyBlog\\": "module/vendor/phly/PhlyBlog/src",
             "PhlyContact\\": "module/vendor/phly/PhlyContact/src/",
             "Crawler\\": "module/Crawler/src",
-            "ZfcUser\\": "module/vendor/ZF-Commons/ZfcUser/src",
-            "Blog\\": "module/Blog/src/"
+            "ZfcUser\\": "module/vendor/ZF-Commons/ZfcUser/src"
         },
         "files": [
             "module/Application/src/Helpers/app.php"

@@ -2,28 +2,12 @@
 
 namespace PhlyBlog;
 
-use Traversable;
-use Laminas\Console\Adapter\AdapterInterface as Console;
-use Laminas\Http\PhpEnvironment\Request;
-use Laminas\Http\PhpEnvironment\Response;
-use Laminas\ModuleManager\Feature\ConsoleUsageProviderInterface;
-use Laminas\Stdlib\ArrayUtils;
-use Laminas\View\Renderer\PhpRenderer;
 use Laminas\View\Model;
-use Laminas\View\View;
+use Laminas\View\Renderer\PhpRenderer;
 
-class Module implements ConsoleUsageProviderInterface
+class Module
 {
     public static $config;
-
-    public function getAutoloaderConfig()
-    {
-        return [
-            'Laminas\Loader\ClassMapAutoloader' => [
-                __DIR__ . '/autoload_classmap.php'
-            ],
-        ];
-    }
 
     public function getConfig()
     {
@@ -33,12 +17,6 @@ class Module implements ConsoleUsageProviderInterface
     public function getServiceConfig()
     {
         return ['factories' => [
-            'blogrequest' => function ($services) {
-                return new Request();
-            },
-            'blogresponse' => function ($services) {
-                return new Response();
-            },
             'blogrenderer' => function ($services) {
                 $helpers  = $services->get('ViewHelperManager');
                 $resolver = $services->get('ViewResolver');
@@ -66,84 +44,6 @@ class Module implements ConsoleUsageProviderInterface
         ]];
     }
 
-    public static function prepareCompilerViewOther($view, $config, $services)
-    {
-        $renderer  = $services->get('BlogRenderer');
-        $view->addRenderingStrategy(function ($e) use ($renderer) {
-            return $renderer;
-        }, 100);
-
-        self::$layout = $layout   = new ViewModel();
-        $layout->setTemplate('layout');
-        $view->addResponseStrategy(function ($e) use ($layout, $renderer) {
-            $result = $e->getResult();
-            $layout->setVariable('content', $result);
-            $page   = $renderer->render($layout);
-            $e->setResult($page);
-
-            // Cleanup
-            $headTitle = $renderer->plugin('headtitle');
-            $headTitle->getContainer()->exchangeArray([]);
-            $headTitle->setAutoEscape(false)
-                ->setSeparator(' :: ')
-                ->append('phly, boy, phly');
-
-            $headLink = $renderer->plugin('headLink');
-            $headLink->getContainer()->exchangeArray([]);
-            $headLink([
-                'rel' => 'shortcut icon',
-                'type' => 'image/vnd.microsoft.icon',
-                'href' => '/images/Application/favicon.ico',
-            ]);
-
-            $headScript = $renderer->plugin('headScript');
-            $headScript->getContainer()->exchangeArray([]);
-        }, 100);
-    }
-
-
-    public function getControllerConfig()
-    {
-        return ['factories' => [
-            'PhlyBlog\CompileController' => function ($controllers) {
-                $services   = $controllers->getServiceLocator();
-                $config     = $services->get('Config');
-                $config     = isset($config['blog']) ? $config['blog'] : [];
-
-                $request    = $services->get('BlogRequest');
-                $response   = $services->get('BlogResponse');
-                $view       = new View();
-                $view->setRequest($request);
-                $view->setResponse($response);
-
-                $controller = new CompileController();
-                $controller->setConfig($config);
-                $controller->setConsole($services->get('Console'));
-                $controller->setView($view);
-                return $controller;
-            },
-        ]];
-    }
-
-    public function getConsoleBanner(Console $console)
-    {
-        return 'Phly Static Blog Generator';
-    }
-
-    public function getConsoleUsage(Console $console)
-    {
-        return [
-            'blog compile [--all|-a] [--entries|-e] [--archive|-c] [--year|-y] [--month|-m] [--day|-d] [--tag|-t] [--author|-r]' => 'Compile blog',
-            ['--all|-a'     ,  'Execute all actions (default)'],
-            ['--entries|-e' ,  'Compile entries'],
-            ['--archive|-c' ,  'Compile paginated archive (and feed)'],
-            ['--year|-y'    ,  'Compile paginated entries by year'],
-            ['--month|-m'   ,  'Compile paginated entries by month'],
-            ['--day|-d'     ,  'Compile paginated entries by day'],
-            ['--tag|-t'     ,  'Compile paginated entries by tag (and feeds)'],
-            ['--author|-r'  ,  'Compile paginated entries by author (and feeds)'],
-        ];
-    }
 
     public function onBootstrap($e)
     {
