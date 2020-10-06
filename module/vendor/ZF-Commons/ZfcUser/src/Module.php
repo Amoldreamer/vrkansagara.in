@@ -51,7 +51,7 @@ class Module implements
     {
         return [
             'aliases' => [
-                'zfcuser_zend_db_adapter' => \Laminas\Db\Adapter\Adapter::class,
+                'zfcuser_laminas_db_adapter' => \Laminas\Db\Adapter\Adapter::class,
             ],
             'invokables' => [
                 'zfcuser_register_form_hydrator' => \Laminas\Hydrator\ClassMethodsHydrator::class,

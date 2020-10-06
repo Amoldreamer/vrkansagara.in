@@ -30,6 +30,7 @@ return [
 
 
     'ZfcUser',
+//    'BjyProfiler',
 
     'Crawler',
     'PhlyContact',

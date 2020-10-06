@@ -14,7 +14,7 @@ class User implements FactoryInterface
     {
         /** @var ModuleOptions $options */
         $options = $serviceLocator->get('zfcuser_module_options');
-        $dbAdapter = $serviceLocator->get('zfcuser_zend_db_adapter');
+        $dbAdapter = $serviceLocator->get('zfcuser_laminas_db_adapter');
 
         $entityClass = $options->getUserEntityClass();
         $tableName = $options->getTableName();

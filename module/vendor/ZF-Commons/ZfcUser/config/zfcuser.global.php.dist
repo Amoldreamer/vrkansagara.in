@@ -229,7 +229,7 @@ return array(
     'zfcuser' => $settings,
     'service_manager' => array(
         'aliases' => array(
-            'zfcuser_zend_db_adapter' => (isset($settings['laminas_db_adapter'])) ? $settings['laminas_db_adapter']: 'Laminas\Db\Adapter\Adapter',
+            'zfcuser_laminas_db_adapter' => (isset($settings['laminas_db_adapter'])) ? $settings['laminas_db_adapter']: 'Laminas\Db\Adapter\Adapter',
         ),
     ),
 );

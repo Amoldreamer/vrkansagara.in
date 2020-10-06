@@ -43,7 +43,8 @@
             "PhlyContact\\": "module/vendor/phly/PhlyContact/src/",
             "Crawler\\": "module/Crawler/src",
             "ZfcUser\\": "module/vendor/ZF-Commons/ZfcUser/src",
-            "ZfcRbac\\": "module/vendor/ZF-Commons/ZfcRbac/src"
+            "ZfcRbac\\": "module/vendor/ZF-Commons/ZfcRbac/src",
+            "BjyProfiler\\": "module/vendor/bjyoungblood/BjyProfiler"
         },
         "files": [
             "module/Application/src/Helpers/app.php"
