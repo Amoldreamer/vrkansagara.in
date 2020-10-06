@@ -95,6 +95,8 @@ return [
             'phly-contact/contact/index' => __DIR__ . '/../view/phly-contact/contact/index.phtml',
             'phly-contact/contact/thank-you' => __DIR__ . '/../view/phly-contact/contact/thank-you.phtml',
             'zfc-user/user/login' => __DIR__ . '/../view/user/login.phtml',
+            'zfc-user/user/register' => __DIR__ . '/../view/user/register.phtml',
+            'zfc-user/user/index' => __DIR__ . '/../view/user/index.phtml',
         ],
         'template_path_stack' => [
             __DIR__ . '/../view',
