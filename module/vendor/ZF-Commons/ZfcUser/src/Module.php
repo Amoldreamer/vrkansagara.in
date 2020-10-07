@@ -15,7 +15,7 @@ class Module implements
 {
     public function getConfig($env = null)
     {
-        return include __DIR__ . '/config/module.config.php';
+        return include __DIR__ . '/../config/module.config.php';
     }
 
     public function getControllerPluginConfig()
@@ -54,7 +54,7 @@ class Module implements
                 'zfcuser_zend_db_adapter' => \Laminas\Db\Adapter\Adapter::class,
             ],
             'invokables' => [
-                'zfcuser_register_form_hydrator' => \Laminas\Hydrator\ClassMethods::class,
+                'zfcuser_register_form_hydrator' => \Laminas\Hydrator\ClassMethodsHydrator::class,
             ],
             'factories' => [
                 'zfcuser_redirect_callback' => \ZfcUser\Factory\Controller\RedirectCallbackFactory::class,
