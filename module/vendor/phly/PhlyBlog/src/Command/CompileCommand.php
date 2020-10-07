@@ -200,6 +200,57 @@ class CompileCommand extends Command
         $this->compilerOptions = new CompilerOptions($this->config['options']);
         return $this->compilerOptions;
     }
+    public function attachListeners(array $flags, $tags)
+    {
+        $listeners    = [];
+        $view         = $this->view;
+        $compiler     = $this->getCompiler();
+        $writer       = $this->getWriter();
+        $responseFile = $this->getResponseFile();
+        $options      = $this->getCompilerOptions();
+
+        if ($flags['all'] || $flags['entries']) {
+            $entries = new Compiler\Listener\Entries($view, $responseFile, $options);
+            $compiler->getEventManager()->attach($entries);
+            $listeners['entries'] = $entries;
+        }
+
+        if ($flags['all'] || $flags['archive']) {
+            $archive = new Compiler\Listener\Archives($view, $writer, $responseFile, $options);
+            $compiler->getEventManager()->attach($archive);
+            $listeners['archives'] = $archive;
+        }
+
+        if ($flags['all'] || $flags['year']) {
+            $byYear = new Compiler\Listener\ByYear($view, $writer, $responseFile, $options);
+            $compiler->getEventManager()->attach($byYear);
+            $listeners['entries by year'] = $byYear;
+        }
+
+        if ($flags['all'] || $flags['month']) {
+            $byMonth = new Compiler\Listener\ByMonth($view, $writer, $responseFile, $options);
+            $compiler->getEventManager()->attach($byMonth);
+            $listeners['entries by month'] = $byMonth;
+        }
+
+        if ($flags['all'] || $flags['day']) {
+            $byDay = new Compiler\Listener\ByDate($view, $writer, $responseFile, $options);
+            $compiler->getEventManager()->attach($byDay);
+            $listeners['entries by day'] = $byDay;
+        }
+
+        if ($flags['all'] || $flags['author']) {
+            $byAuthor = new Compiler\Listener\Authors($view, $writer, $responseFile, $options);
+            $compiler->getEventManager()->attach($byAuthor);
+            $listeners['entries by author'] = $byAuthor;
+        }
+
+        if ($flags['all'] || $flags['tag']) {
+            $listeners['entries by tag'] = $tags;
+        }
+
+        return $listeners;
+    }
 
 
 }

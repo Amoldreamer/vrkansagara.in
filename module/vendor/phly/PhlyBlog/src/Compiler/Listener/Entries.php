@@ -26,7 +26,7 @@ class Entries implements ListenerAggregateInterface
         $this->options      = $options;
     }
 
-    public function attach(Events $events)
+    public function attach(Events $events, $priority = 1)
     {
         $this->listeners[] = $events->attach('compile', [$this, 'onCompile']);
     }
