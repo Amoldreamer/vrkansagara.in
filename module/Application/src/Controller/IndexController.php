@@ -35,7 +35,16 @@ class IndexController extends AbstractActionController
 
     public function indexAction()
     {
-        return new ViewModel();
+        $inspire = [
+            [
+             'text' =>"Don't repeat yourself",
+             'author' =>null
+            ]
+        ];
+        $count = count($inspire) - 1;
+        return new ViewModel([
+            'inspire' => $inspire[rand(0,$count)]
+        ]);
     }
 
     public function searchAction()

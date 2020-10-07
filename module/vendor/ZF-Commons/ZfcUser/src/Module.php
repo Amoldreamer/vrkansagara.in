@@ -15,7 +15,7 @@ class Module implements
 {
     public function getConfig($env = null)
     {
-        return include __DIR__ . '/../config/module.config.php';
+        return include __DIR__ . '/config/module.config.php';
     }
 
     public function getControllerPluginConfig()
@@ -51,10 +51,10 @@ class Module implements
     {
         return [
             'aliases' => [
-                'zfcuser_laminas_db_adapter' => \Laminas\Db\Adapter\Adapter::class,
+                'zfcuser_zend_db_adapter' => \Laminas\Db\Adapter\Adapter::class,
             ],
             'invokables' => [
-                'zfcuser_register_form_hydrator' => \Laminas\Hydrator\ClassMethodsHydrator::class,
+                'zfcuser_register_form_hydrator' => \Laminas\Hydrator\ClassMethods::class,
             ],
             'factories' => [
                 'zfcuser_redirect_callback' => \ZfcUser\Factory\Controller\RedirectCallbackFactory::class,
@@ -63,7 +63,7 @@ class Module implements
 
                 // We alias this one because it's ZfcUser's instance of
                 // Laminas\Authentication\AuthenticationService. We don't want to
-                // hog the FQCN service alias for a Laminas\* class.
+                // hog the FQCN service alias for a Zend\* class.
                 'zfcuser_auth_service' => \ZfcUser\Factory\AuthenticationService::class,
 
                 'zfcuser_user_hydrator' => \ZfcUser\Factory\UserHydrator::class,

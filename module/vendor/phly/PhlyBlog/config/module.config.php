@@ -1,10 +1,5 @@
 <?php
 
-use Laminas\ServiceManager\Factory\InvokableFactory;
-use PhlyBlog\Command\CompileCommand;
-use PhlyBlog\Command\CompileCommandFactory;
-use PhlyBlog\Factory\BlogRequestFactory;
-
 return [
     'blog' => [
         'options' => [
@@ -54,13 +49,7 @@ return [
             'phly-blog' => __DIR__ . '/../view',
         ],
     ],
-    'service_manager' => [
-        'factories' => [
-            CompileCommand::class => CompileCommandFactory::class,
-//            CompileCommandFactory::class => InvokableFactory::class
-//            CompileCommand::class =>InvokableFactory::class,
-        ],
-    ],
+
     'router' => [
         'routes' => [
             'phly-blog' => [
