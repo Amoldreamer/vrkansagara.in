@@ -12,6 +12,7 @@ use Laminas\Cli\ContainerCommandLoader;
 use Laminas\Mvc\Application;
 use Laminas\Stdlib\ArrayUtils;
 use PhlyBlog\Command\CompileCommand;
+use PhlyBlog\Command\CompileCommandFactory;
 use PhlySimplePage\ClearCacheCommand;
 
 chdir(dirname(__DIR__));
