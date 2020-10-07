@@ -31,6 +31,7 @@ return [
 
 
     'ZfcUser',
+//    'BjyAuthorize',
 //    'ZfcRbac',
 //    'BjyProfiler',
 

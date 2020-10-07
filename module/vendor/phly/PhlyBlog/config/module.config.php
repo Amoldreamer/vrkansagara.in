@@ -57,6 +57,8 @@ return [
     'service_manager' => [
         'factories' => [
             CompileCommand::class => CompileCommandFactory::class,
+//            CompileCommandFactory::class => InvokableFactory::class
+//            CompileCommand::class =>InvokableFactory::class,
         ],
     ],
     'router' => [

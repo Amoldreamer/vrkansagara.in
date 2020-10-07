@@ -43,7 +43,7 @@ include __DIR__ . '/vendor/autoload.php';
         'crawler:info ' => \Crawler\Command\InfoCommand::class,
 //        'phly:blog:compile' => CompileCommand::class,
 //        'blog:info' => InfoCommand::class,
-//        'blog:compile' => CompileCommand::class,
+        'blog:compile' => CompileCommand::class,
 
     ]);
 

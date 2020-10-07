@@ -10,15 +10,15 @@ use PhlyBlog\CompileController;
 class CompileCommandFactory implements FactoryInterface
 {
 
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): CompileCommand
     {
-        $services   = $container;
-        $config     = $services->get('Config');
-        $config     = isset($config['blog']) ? $config['blog'] : [];
+        $services = $container;
+        $config = $services->get('Config');
+        $config = isset($config['blog']) ? $config['blog'] : [];
 
-        $request    = $services->get('Request');
-        $response   = $services->get('Response');
-        $view       = new View();
+        $request = $services->get('Request');
+        $response = $services->get('Response');
+        $view = new View();
         $view->setRequest($request);
         $view->setResponse($response);
 
@@ -26,6 +26,8 @@ class CompileCommandFactory implements FactoryInterface
         $controller->setConfig($config);
 //        $controller->setConsole($services->get('Console'));
         $controller->setView($view);
-        return $controller;
+        $command = new CompileCommand();
+        $command->setConfig($config);
+        return $command;
     }
 }
