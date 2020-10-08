@@ -46,7 +46,8 @@
             "ZfcUser\\": "module/vendor/ZF-Commons/ZfcUser/src",
             "ZfcRbac\\": "module/vendor/ZF-Commons/ZfcRbac/src",
             "BjyProfiler\\": "module/vendor/bjyoungblood/BjyProfiler/src",
-            "BjyAuthorize\\": "module/vendor/bjyoungblood/BjyAuthorize/src"
+            "BjyAuthorize\\": "module/vendor/bjyoungblood/BjyAuthorize/src",
+            "Album\\": "module/Album/src"
         },
         "files": [
             "module/Application/src/Helpers/app.php"

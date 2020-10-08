@@ -35,6 +35,7 @@ return [
 //    'ZfcRbac',
 //    'BjyProfiler',
 
+    'Album',
     'Crawler',
     'PhlyContact',
     'PhlyBlog',

@@ -4,33 +4,16 @@
  * code may be modified to fit the specific needs of your application.
  */
 try {
-    // window._ = require('lodash');
-
-    // window.$ = window.jQuery = require('jquery');
-    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/Base');
-    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/Iter');
-    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/Logging');
-    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/DateTime');
-    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/Format');
-    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/Async');
-    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/DOM');
-    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/Style');
-    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/LoggingPane');
-    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/Color');
-    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/Signal');
-    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/Position');
-    // require('./vendor/MochiKit-1.4.2/lib/MochiKit/Visual');
-    require('./vendor/MochiKit-1.4.2/lib/MochiKit/MochiKit');
-
-
+    window._ = require('lodash');
+    window.$ = window.jQuery = require('jquery');
     window.axios = require('axios');
+    require('bootstrap');
     /**
      * We'll load the axios HTTP library which allows us to easily issue requests
      * to our Laravel back-end. This library automatically handles sending the
      * CSRF token as a header based on the value of the "XSRF" token cookie.
      */
     window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-    require('bootstrap');
 } catch (e) {}
 
 
