@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap = "bootstrap/app.php"
+         backupGlobals               = "false"
+         backupStaticAttributes      = "false"
+         colors                      = "true"
+         convertErrorsToExceptions   = "true"
+         convertNoticesToExceptions  = "true"
+         convertWarningsToExceptions = "true"
+         processIsolation            = "false"
+         stopOnFailure               = "true">
+    <php>
+        <ini name="date.timezone" value="UTC"/>
+    </php>
+    <testsuites>
+        <testsuite name="Laminas MVC Skeleton Test Suite">
+            <directory>./module/*/test</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./module/*/src</directory>
+        </whitelist>
+    </filter>
+    <logging>
+        <log type="coverage-text" target="php://stdout"/>
+<!--        <log type="coverage-clover" target="../build/logs/clover.xml"/>-->
+    </logging>
+</phpunit>

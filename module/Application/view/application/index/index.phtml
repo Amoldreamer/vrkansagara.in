@@ -20,3 +20,11 @@
   </figure>
 
 </div>
+
+
+
+
+<?=$this->inlineScript()->captureStart();?>
+console.log('I am loded from server script');
+<?=$this->inlineScript()->captureEnd();?>
+
