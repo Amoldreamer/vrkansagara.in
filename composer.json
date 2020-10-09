@@ -108,6 +108,7 @@
         "laminas/laminas-cli": "^0.1.4",
         "roave/security-advisories": "dev-latest",
         "laminas/laminas-test": "^3.4",
-        "phpunit/phpunit": "^9.4"
+        "phpunit/phpunit": "^9.4",
+        "phpspec/prophecy-phpunit": "^2.0"
     }
 }

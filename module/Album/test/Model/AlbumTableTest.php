@@ -6,12 +6,15 @@ namespace AlbumTest\Model;
 use Album\Model\AlbumTable;
 use Album\Model\Album;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 use RuntimeException;
 use Laminas\Db\ResultSet\ResultSetInterface;
 use Laminas\Db\TableGateway\TableGatewayInterface;
 
 class AlbumTableTest extends TestCase
 {
+    use ProphecyTrait;
+
     protected function setUp() : void
     {
         $this->tableGateway = $this->prophesize(TableGatewayInterface::class);

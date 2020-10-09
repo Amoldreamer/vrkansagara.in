@@ -8,11 +8,14 @@ use Laminas\Stdlib\ArrayUtils;
 use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 use Album\Model\Album;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class AlbumControllerTest extends AbstractHttpControllerTestCase
 {
     protected $traceError = true;
     protected $albumTable;
+
+    use ProphecyTrait;
 
     protected function setUp() : void
     {

@@ -6,9 +6,12 @@ namespace AlbumTest\Model;
 
 use Album\Model\Album;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class AlbumTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testInitialAlbumValuesAreNull()
     {
         $album = new Album();
