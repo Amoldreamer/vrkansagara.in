@@ -80,19 +80,19 @@ class AdapterChainTest extends \PHPUnit_Framework_TestCase
               ->will($this->returnValue('identity'));
         $event->expects($this->once())
               ->method('getMessages')
-              ->will($this->returnValue([]));
+              ->will($this->returnValue(array()));
 
         $this->sharedEventManager->expects($this->once())
              ->method('getListeners')
              ->with($this->equalTo(['authenticate']), $this->equalTo('authenticate'))
-             ->will($this->returnValue([]));
+             ->will($this->returnValue(array()));
 
         $this->adapterChain->setEvent($event);
         $result = $this->adapterChain->authenticate();
 
         $this->assertInstanceOf('Laminas\Authentication\Result', $result);
         $this->assertEquals($result->getIdentity(), 'identity');
-        $this->assertEquals($result->getMessages(), []);
+        $this->assertEquals($result->getMessages(), array());
     }
 
     /**
@@ -100,9 +100,9 @@ class AdapterChainTest extends \PHPUnit_Framework_TestCase
      */
     public function testResetAdapters()
     {
-        $listeners = [];
+        $listeners = array();
 
-        for ($i = 1; $i <= 3; $i++) {
+        for ($i=1; $i<=3; $i++) {
             $storage = $this->getMock('ZfcUser\Authentication\Storage\Db');
             $storage->expects($this->once())
                     ->method('clear');
@@ -165,10 +165,10 @@ class AdapterChainTest extends \PHPUnit_Framework_TestCase
      */
     public function identityProvider()
     {
-        return [
-            [true, true],
-            [false, false],
-        ];
+        return array(
+            array(true, true),
+            array(false, false),
+        );
     }
 
     /**
@@ -281,9 +281,9 @@ class AdapterChainTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetEventWithDifferentEventType()
     {
-        $testParams = ['testParam' => 'testValue'];
+        $testParams = array('testParam' => 'testValue');
 
-        $event = new \Laminas\EventManager\Event();
+        $event = new \Laminas\EventManager\Event;
         $event->setParams($testParams);
 
         $this->adapterChain->setEvent($event);

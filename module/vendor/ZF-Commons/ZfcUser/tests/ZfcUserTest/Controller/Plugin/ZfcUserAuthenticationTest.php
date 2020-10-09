@@ -61,7 +61,7 @@ class ZfcUserAuthenticationTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($this->SUT->hasIdentity());
         $this->assertTrue($this->SUT->hasIdentity());
 
-        $callbackIndex = 0;
+        $callbackIndex= 0;
 
         $this->assertTrue($this->SUT->getIdentity());
         $this->assertFalse($this->SUT->getIdentity());

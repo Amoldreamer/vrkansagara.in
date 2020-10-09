@@ -7,26 +7,25 @@
  * to the application root now.
  */
 
-
-use Laminas\Cli\ContainerCommandLoader;
+use Crawler\Command\InfoCommand;
 use Laminas\Mvc\Application;
 use Laminas\Stdlib\ArrayUtils;
 use PhlyBlog\Command\CompileCommand;
-use PhlyBlog\Command\CompileCommandFactory;
 use PhlySimplePage\ClearCacheCommand;
-
+use Symfony\Component\Console\CommandLoader\ContainerCommandLoader;
+use Symfony\Component\Console\Application as ConsoleApplication;
 chdir(dirname(__DIR__));
 
 // Composer autoloading
 include __DIR__ . '/vendor/autoload.php';
+$app = require_once __DIR__ . '/bootstrap/app.php';
 
 /**
  * Self-called anonymous function that creates its own scope and keep the global namespace clean.
  */
 (function () {
-    require_once __DIR__ . '/bootstrap/app.php';
 
-    // Retrieve configuration
+// Retrieve configuration
     $appConfig = require __DIR__ . '/config/application.config.php';
     if (file_exists(__DIR__ . '/config/development.config.php')) {
         $appConfig = ArrayUtils::merge($appConfig, require __DIR__ . '/config/development.config.php');
@@ -35,20 +34,18 @@ include __DIR__ . '/vendor/autoload.php';
 // Run the application!
     /** @var Application $application */
     $application = Application::init($appConfig);
-    $container = $application->getServiceManager();
+    $container   = $application->getServiceManager();
 
 
     $commandLoader = new ContainerCommandLoader($container, [
-//         Map command:name => service name here.
-        'phly:page:cache:clear' => ClearCacheCommand::class,
-        'crawler:info ' => \Crawler\Command\InfoCommand::class,
-//        'phly:blog:compile' => CompileCommand::class,
-//        'blog:info' => InfoCommand::class,
-        'blog:compile' => CompileCommand::class,
-
+        // Map command:name => service name here.
+    'cache:clear' => ClearCacheCommand::class,
+//    'blog:compile ' => CompileCommand::class,
+    'crawler:info ' => InfoCommand::class,
+    'phly:blog:compile' => CompileCommand::class,
     ]);
 
-    $consoleApplication = new \Symfony\Component\Console\Application();
+    $consoleApplication = new ConsoleApplication();
     $consoleApplication->setCommandLoader($commandLoader);
     $consoleApplication->setDefaultCommand('list');
     $consoleApplication->run();

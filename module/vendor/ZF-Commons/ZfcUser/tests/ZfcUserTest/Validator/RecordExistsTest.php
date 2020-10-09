@@ -12,7 +12,7 @@ class RecordExistsTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $options = ['key' => 'username'];
+        $options = array('key' => 'username');
         $validator = new Validator($options);
         $this->validator = $validator;
 

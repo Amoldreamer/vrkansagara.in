@@ -47,13 +47,13 @@ class AdapterChainServiceFactoryTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->serviceLocatorArray = [
-            'zfcuser_module_options' => $this->options
-        ];
+        $this->serviceLocatorArray = array (
+            'zfcuser_module_options'=>$this->options
+        );
 
         $this->serviceLocator->expects($this->any())
             ->method('get')
-            ->will($this->returnCallback([$this,'helperServiceLocator']));
+            ->will($this->returnCallback(array($this,'helperServiceLocator')));
 
         $this->eventManager = $this->getMock('Laminas\EventManager\EventManager');
 
@@ -65,17 +65,17 @@ class AdapterChainServiceFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateService()
     {
-        $adapter = [
-            'adapter1' => $this->getMock(
+        $adapter = array(
+            'adapter1'=> $this->getMock(
                 'ZfcUser\Authentication\Adapter\AbstractAdapter',
-                ['authenticate', 'logout']
+                array('authenticate', 'logout')
             ),
-            'adapter2' => $this->getMock(
+            'adapter2'=> $this->getMock(
                 'ZfcUser\Authentication\Adapter\AbstractAdapter',
-                ['authenticate', 'logout']
+                array('authenticate', 'logout')
             )
-        ];
-        $adapterNames = [100 => 'adapter1', 200 => 'adapter2'];
+        );
+        $adapterNames = array(100=>'adapter1', 200=>'adapter2');
 
         $this->serviceLocatorArray = array_merge($this->serviceLocatorArray, $adapter);
 

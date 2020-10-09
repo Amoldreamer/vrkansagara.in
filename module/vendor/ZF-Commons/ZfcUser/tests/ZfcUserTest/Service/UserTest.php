@@ -23,7 +23,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $service = new Service();
+        $service = new Service;
         $this->service = $service;
 
         $options = $this->getMock('ZfcUser\Options\ModuleOptions');
@@ -57,7 +57,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testRegisterWithInvalidForm()
     {
-        $expectArray = ['username' => 'ZfcUser'];
+        $expectArray = array('username' => 'ZfcUser');
 
         $this->options->expects($this->once())
                       ->method('getUserEntityClass')
@@ -87,7 +87,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testRegisterWithUsernameAndDisplayNameUserStateDisabled()
     {
-        $expectArray = ['username' => 'ZfcUser', 'display_name' => 'Zfc User'];
+        $expectArray = array('username' => 'ZfcUser', 'display_name' => 'Zfc User');
 
         $user = $this->getMock('ZfcUser\Entity\User');
         $user->expects($this->once())
@@ -158,7 +158,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testRegisterWithDefaultUserStateOfZero()
     {
-        $expectArray = ['username' => 'ZfcUser', 'display_name' => 'Zfc User'];
+        $expectArray = array('username' => 'ZfcUser', 'display_name' => 'Zfc User');
 
         $user = $this->getMock('ZfcUser\Entity\User');
         $user->expects($this->once())
@@ -230,7 +230,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testRegisterWithUserStateDisabled()
     {
-        $expectArray = ['username' => 'ZfcUser', 'display_name' => 'Zfc User'];
+        $expectArray = array('username' => 'ZfcUser', 'display_name' => 'Zfc User');
 
         $user = $this->getMock('ZfcUser\Entity\User');
         $user->expects($this->once())
@@ -294,13 +294,13 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($user, $result);
         $this->assertEquals(0, $user->getState());
     }
-
+    
     /**
      * @covers ZfcUser\Service\User::changePassword
      */
     public function testChangePasswordWithWrongOldPassword()
     {
-        $data = ['newCredential' => 'zfcUser', 'credential' => 'zfcUserOld'];
+        $data = array('newCredential' => 'zfcUser', 'credential' => 'zfcUserOld');
 
         $this->options->expects($this->any())
              ->method('getPasswordCost')
@@ -327,7 +327,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testChangePassword()
     {
-        $data = ['newCredential' => 'zfcUser', 'credential' => 'zfcUserOld'];
+        $data = array('newCredential' => 'zfcUser', 'credential' => 'zfcUserOld');
 
         $this->options->expects($this->any())
              ->method('getPasswordCost')
@@ -363,7 +363,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testChangeEmail()
     {
-        $data = ['credential' => 'zfcUser', 'newIdentity' => 'zfcUser@zfcUser.com'];
+        $data = array('credential' => 'zfcUser', 'newIdentity' => 'zfcUser@zfcUser.com');
 
         $this->options->expects($this->any())
              ->method('getPasswordCost')
@@ -400,7 +400,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testChangeEmailWithWrongPassword()
     {
-        $data = ['credential' => 'zfcUserOld'];
+        $data = array('credential' => 'zfcUserOld');
 
         $this->options->expects($this->any())
              ->method('getPasswordCost')
@@ -432,7 +432,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
                              ->with('zfcuser_user_mapper')
                              ->will($this->returnValue($this->mapper));
 
-        $service = new Service();
+        $service = new Service;
         $service->setServiceManager($this->serviceManager);
         $this->assertInstanceOf('ZfcUser\Mapper\UserInterface', $service->getUserMapper());
     }
@@ -456,7 +456,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
              ->with('zfcuser_auth_service')
              ->will($this->returnValue($this->authService));
 
-        $service = new Service();
+        $service = new Service;
         $service->setServiceManager($this->serviceManager);
         $this->assertInstanceOf('Laminas\Authentication\AuthenticationService', $service->getAuthService());
     }
@@ -482,7 +482,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
              ->with('zfcuser_register_form')
              ->will($this->returnValue($form));
 
-        $service = new Service();
+        $service = new Service;
         $service->setServiceManager($this->serviceManager);
 
         $result = $service->getRegisterForm();
@@ -515,7 +515,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
              ->with('zfcuser_change_password_form')
              ->will($this->returnValue($form));
 
-        $service = new Service();
+        $service = new Service;
         $service->setServiceManager($this->serviceManager);
         $this->assertInstanceOf('ZfcUser\Form\ChangePassword', $service->getChangePasswordForm());
     }
@@ -542,7 +542,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
              ->with('zfcuser_module_options')
              ->will($this->returnValue($this->options));
 
-        $service = new Service();
+        $service = new Service;
         $service->setServiceManager($this->serviceManager);
         $this->assertInstanceOf('ZfcUser\Options\ModuleOptions', $service->getOptions());
     }
@@ -574,7 +574,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
              ->with('zfcuser_register_form_hydrator')
              ->will($this->returnValue($this->formHydrator));
 
-        $service = new Service();
+        $service = new Service;
         $service->setServiceManager($this->serviceManager);
         $this->assertInstanceOf('Laminas\Hydrator\HydratorInterface', $service->getFormHydrator());
     }

@@ -29,7 +29,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $db = new Db();
+        $db = new Db;
         $this->db = $db;
 
         $this->storage = $this->getMock('Laminas\Authentication\Storage\Session');
@@ -192,7 +192,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetGetMapper()
     {
-        $mapper = new \ZfcUser\Mapper\User();
+        $mapper = new \ZfcUser\Mapper\User;
         $mapper->setTableName('zfcUser');
 
         $this->db->setMapper($mapper);

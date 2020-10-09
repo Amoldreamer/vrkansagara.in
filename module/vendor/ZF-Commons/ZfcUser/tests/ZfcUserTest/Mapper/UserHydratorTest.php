@@ -10,7 +10,7 @@ class UserHydratorTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $hydrator = new Hydrator();
+        $hydrator = new Hydrator;
         $this->hydrator = $hydrator;
     }
 
@@ -20,7 +20,7 @@ class UserHydratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testExtractWithInvalidUserObject()
     {
-        $user = new \StdClass();
+        $user = new \StdClass;
         $this->hydrator->extract($user);
     }
 
@@ -42,8 +42,8 @@ class UserHydratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testHydrateWithInvalidUserObject()
     {
-        $user = new \StdClass();
-        $this->hydrator->hydrate([], $user);
+        $user = new \StdClass;
+        $this->hydrator->hydrate(array(), $user);
     }
 
     /**
@@ -52,16 +52,16 @@ class UserHydratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testHydrateWithValidUserObject()
     {
-        $user = new \ZfcUser\Entity\User();
+        $user = new \ZfcUser\Entity\User;
 
-        $expectArray = [
+        $expectArray = array(
             'username' => 'zfcuser',
             'email' => 'Zfc User',
             'display_name' => 'ZfcUser',
             'password' => 'ZfcUserPassword',
             'state' => 1,
             'user_id' => 1
-        ];
+        );
 
         $result = $this->hydrator->hydrate($expectArray, $user);
 
@@ -76,42 +76,42 @@ class UserHydratorTest extends \PHPUnit_Framework_TestCase
     public function dataProviderTestExtractWithValidUserObject()
     {
         $createUserObject = function ($data) {
-            $user = new \ZfcUser\Entity\User();
+            $user = new \ZfcUser\Entity\User;
             foreach ($data as $key => $value) {
                 if ($key == 'user_id') {
-                    $key = 'id';
+                    $key='id';
                 }
                 $methode = 'set' . str_replace(" ", "", ucwords(str_replace("_", " ", $key)));
-                call_user_func([$user,$methode], $value);
+                call_user_func(array($user,$methode), $value);
             }
             return $user;
         };
-        $return = [];
-        $expectArray = [];
+        $return = array();
+        $expectArray = array();
 
-        $buffer = [
+        $buffer = array(
             'username' => 'zfcuser',
             'email' => 'Zfc User',
             'display_name' => 'ZfcUser',
             'password' => 'ZfcUserPassword',
             'state' => 1,
             'user_id' => 1
-        ];
+        );
 
-        $return[] = [$createUserObject($buffer), $buffer];
+        $return[]=array($createUserObject($buffer), $buffer);
 
         /**
          * @see https://github.com/ZF-Commons/ZfcUser/pull/421
          */
-        $buffer = [
+        $buffer = array(
             'username' => 'zfcuser',
             'email' => 'Zfc User',
             'display_name' => 'ZfcUser',
             'password' => 'ZfcUserPassword',
             'state' => 1
-        ];
+        );
 
-        $return[] = [$createUserObject($buffer), $buffer];
+        $return[]=array($createUserObject($buffer), $buffer);
 
         return $return;
     }

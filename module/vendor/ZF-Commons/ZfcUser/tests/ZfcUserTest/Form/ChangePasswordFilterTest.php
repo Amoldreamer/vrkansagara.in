@@ -11,7 +11,7 @@ class ChangePasswordFilterTest extends \PHPUnit_Framework_TestCase
         $options = $this->getMock('ZfcUser\Options\ModuleOptions');
         $options->expects($this->once())
                 ->method('getAuthIdentityFields')
-                ->will($this->returnValue(['email']));
+                ->will($this->returnValue(array('email')));
 
         $filter = new Filter($options);
 
@@ -34,7 +34,7 @@ class ChangePasswordFilterTest extends \PHPUnit_Framework_TestCase
         $options = $this->getMock('ZfcUser\Options\ModuleOptions');
         $options->expects($this->once())
                 ->method('getAuthIdentityFields')
-                ->will($this->returnValue($onlyEmail ? ['email'] : ['username']));
+                ->will($this->returnValue($onlyEmail ? array('email') : array('username')));
 
         $filter = new Filter($options);
 
@@ -58,9 +58,9 @@ class ChangePasswordFilterTest extends \PHPUnit_Framework_TestCase
 
     public function providerTestConstructIdentityEmail()
     {
-        return [
-            [true],
-            [false]
-        ];
+        return array(
+            array(true),
+            array(false)
+        );
     }
 }

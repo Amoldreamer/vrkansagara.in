@@ -12,7 +12,7 @@ $settings = array(
      * Please specify the DI alias for the configured Laminas\Db\Adapter\Adapter
      * instance that ZfcUser should use.
      */
-    //'laminas_db_adapter' => 'Laminas\Db\Adapter\Adapter',
+    //'zend_db_adapter' => 'Laminas\Db\Adapter\Adapter',
 
     /**
      * User Model Entity Class
@@ -229,7 +229,7 @@ return array(
     'zfcuser' => $settings,
     'service_manager' => array(
         'aliases' => array(
-            'zfcuser_laminas_db_adapter' => (isset($settings['laminas_db_adapter'])) ? $settings['laminas_db_adapter']: 'Laminas\Db\Adapter\Adapter',
+            'zfcuser_zend_db_adapter' => (isset($settings['zend_db_adapter'])) ? $settings['zend_db_adapter']: 'Laminas\Db\Adapter\Adapter',
         ),
     ),
 );

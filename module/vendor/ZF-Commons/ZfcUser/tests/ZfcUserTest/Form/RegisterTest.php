@@ -43,10 +43,10 @@ class RegisterTest extends \PHPUnit_Framework_TestCase
 
     public function providerTestConstruct()
     {
-        return [
-            [true],
-            [false]
-        ];
+        return array(
+            array(true),
+            array(false)
+        );
     }
 
     public function testSetGetRegistrationOptions()

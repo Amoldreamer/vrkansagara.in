@@ -10,7 +10,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $user = new Entity();
+        $user = new Entity;
         $this->user = $user;
     }
 

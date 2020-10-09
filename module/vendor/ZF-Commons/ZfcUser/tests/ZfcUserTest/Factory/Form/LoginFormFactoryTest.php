@@ -1,5 +1,4 @@
 <?php
-
 namespace ZfcUserTest\Factory\Form;
 
 use Laminas\Form\FormElementManager;
@@ -11,8 +10,8 @@ class LoginFormFactoryTest extends \PHPUnit_Framework_TestCase
 {
     public function testFactory()
     {
-        $serviceManager = new ServiceManager();
-        $serviceManager->setService('zfcuser_module_options', new ModuleOptions());
+        $serviceManager = new ServiceManager;
+        $serviceManager->setService('zfcuser_module_options', new ModuleOptions);
 
         $formElementManager = new FormElementManager($serviceManager);
         $serviceManager->setService('FormElementManager', $formElementManager);

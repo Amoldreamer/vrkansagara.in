@@ -13,7 +13,7 @@ class ZfcUserLoginWidgetTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->helper = new ViewHelper();
+        $this->helper = new ViewHelper;
 
         $view = $this->getMock('Laminas\View\Renderer\RendererInterface');
         $this->view = $view;
@@ -23,35 +23,35 @@ class ZfcUserLoginWidgetTest extends \PHPUnit_Framework_TestCase
 
     public function providerTestInvokeWithRender()
     {
-        $attr = [];
-        $attr[] = [
-            [
+        $attr = array();
+        $attr[] = array(
+            array(
                 'render' => true,
                 'redirect' => 'zfcUser'
-            ],
-            [
+            ),
+            array(
                 'loginForm' => null,
                 'redirect' => 'zfcUser'
-            ],
-        ];
-        $attr[] = [
-            [
+            ),
+        );
+        $attr[] = array(
+            array(
                 'redirect' => 'zfcUser'
-            ],
-            [
+            ),
+            array(
                 'loginForm' => null,
                 'redirect' => 'zfcUser'
-            ],
-        ];
-        $attr[] = [
-            [
+            ),
+        );
+        $attr[] = array(
+            array(
                 'render' => true,
-            ],
-            [
+            ),
+            array(
                 'loginForm' => null,
                 'redirect' => false
-            ],
-        ];
+            ),
+        );
 
         return $attr;
     }
@@ -91,10 +91,10 @@ class ZfcUserLoginWidgetTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvokeWithoutRender()
     {
-        $result = $this->helper->__invoke([
+        $result = $this->helper->__invoke(array(
             'render' => false,
             'redirect' => 'zfcUser'
-        ]);
+        ));
 
         $this->assertInstanceOf('Laminas\View\Model\ViewModel', $result);
         $this->assertEquals('zfcUser', $result->redirect);

@@ -1,15 +1,5 @@
 <?php
 
-if (! function_exists('csrf_token')) {
-    /**
-     * @return string
-     */
-    function csrf_token(): string
-    {
-        return rand(0, 16);
-    }
-}
-
 if (! function_exists('env')) {
     function env($key, $default = null)
     {

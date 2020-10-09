@@ -21,12 +21,10 @@ class MasterSlaveAdapter extends Adapter implements MasterSlaveAdapterInterface
      * @param Platform\PlatformInterface $platform
      * @param ResultSet\ResultSet $queryResultPrototype
      */
-    public function __construct(
-        Adapter $slaveAdapter,
-        $driver,
+    public function __construct(Adapter $slaveAdapter, $driver,
         Platform\PlatformInterface $platform = null,
-        ResultSet\ResultSetInterface $queryResultPrototype = null
-    ) {
+        ResultSet\ResultSetInterface $queryResultPrototype = null)
+    {
         $this->slaveAdapter = $slaveAdapter;
         parent::__construct($driver, $platform, $queryResultPrototype);
     }

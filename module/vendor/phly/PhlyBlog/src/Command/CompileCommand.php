@@ -2,14 +2,20 @@
 
 namespace PhlyBlog\Command;
 
-use Laminas\Console\ColorInterface as Color;
+use Laminas\EventManager\EventManagerInterface;
 use Laminas\View\View;
 use PhlyBlog\Compiler;
+use PhlyBlog\Compiler\FileWriter;
+use PhlyBlog\Compiler\PhpFileFilter;
+use PhlyBlog\Compiler\ResponseFile;
+use PhlyBlog\Compiler\ResponseStrategy;
 use PhlyBlog\CompilerOptions;
+use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 class CompileCommand extends Command
 {
@@ -18,33 +24,32 @@ class CompileCommand extends Command
 
     protected $compiler;
     protected $compilerOptions;
-    protected $console;
     protected $responseFile;
     protected $writer;
 
-
     protected $defaultOptions = [
-        'all'     => true,
+        'all' => true,
         'entries' => false,
         'archive' => false,
-        'year'    => false,
-        'month'   => false,
-        'day'     => false,
-        'tag'     => false,
-        'author'  => false,
+        'year' => false,
+        'month' => false,
+        'day' => false,
+        'tag' => false,
+        'author' => false,
     ];
 
-
-    protected function configure(): void
+    protected function configure()
     {
         $this->setName('phly:blog:compile');
         $this->setDescription('PhlyBlog');
-        $this->setHelp('Phly Static Blog Generator');
+        $this->setHelp('PhlyBlog compile all the entries.');
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 //PhlyBlog
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
-        $this->addOption('all', 'a', InputOption::VALUE_OPTIONAL, 'Execute all actions (default)',true);
+
+        // index.php blog compile [--all|-a] [--entries|-e] [--archive|-c] [--year|-y] [--month|-m] [--day|-d] [--tag|-t] [--author|-r]    Compile blog:
+        $this->addOption('all', 'a', InputOption::VALUE_OPTIONAL, 'Execute all actions (default)');
         $this->addOption('entries', 'e', InputOption::VALUE_OPTIONAL, 'Compile entries');
         $this->addOption('archive', 'c', InputOption::VALUE_OPTIONAL, 'Compile paginated archive (and feed)');
         $this->addOption('year', 'y', InputOption::VALUE_OPTIONAL, 'Compile paginated entries by year');
@@ -54,18 +59,32 @@ class CompileCommand extends Command
         $this->addOption('author', 'r', InputOption::VALUE_OPTIONAL, 'Compile paginated entries by author (and feeds)');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): int
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $flags     = $this->getFlags($input);
-        $compiler  = $this->getCompiler();
-        $tags      = $this->attachTags();
+        $io = new SymfonyStyle($input, $output);
+
+        // outputs multiple lines to the console (adding "\n" at the end of each line)
+//        $output->writeln([
+//            'Crawling information',
+//            '====',
+//            '',
+//        ]);
+        // this method must return an integer number with the "exit status code"
+        // of the command. You can also use these constants to make code more readable
+        // return this if there was no problem running the command
+        // (it's equivalent to returning int(0))
+//        return Command::SUCCESS;
+
+        $flags = $this->getFlags();
+        $compiler = $this->getCompiler();
+        $tags = $this->attachTags();
         $listeners = $this->attachListeners($flags, $tags);
 
+        $io->title('Copying asset symlinks');
+        $io->success('Compiling and sorting entries');
+
         // Compile
-        $width = $this->console->getWidth();
-        $this->console->write("Compiling and sorting entries", Color::BLUE);
         $compiler->compile();
-        $this->reportDone($width, 29);
 
         // Create tag cloud
         if (
@@ -86,36 +105,69 @@ class CompileCommand extends Command
             $listener->compile();
             $this->reportDone($width, strlen($message));
         }
-        return Command::SUCCESS;
     }
 
 
-    public function getFlags(InputInterface  $input)
+    public function setConfig($config)
     {
-        $options = $input->getOptions();
-        $test = [
-            ['long' => 'all',     'short' => 'a'],
-            ['long' => 'entries', 'short' => 'e'],
-            ['long' => 'archive', 'short' => 'c'],
-            ['long' => 'year',    'short' => 'y'],
-            ['long' => 'month',   'short' => 'm'],
-            ['long' => 'day',     'short' => 'd'],
-            ['long' => 'tag',     'short' => 't'],
-            ['long' => 'author',  'short' => 'r'],
-        ];
-        foreach ($test as $spec) {
-            $long  = $spec['long'];
-            $short = $spec['short'];
-            if (
-                (! isset($options[$long]) || ! $options[$long])
-                && (isset($options[$short]) && $options[$short])
-            ) {
-                $options[$long] = true;
-                unset($options[$short]);
-            }
+        if ($config instanceof Traversable) {
+            $config = ArrayUtils::iteratorToArray($config);
         }
+        if (!is_array($config)) {
+            throw new RuntimeException(sprintf(
+                'Expected array or Traversable PhlyBlog configuration; received %s',
+                (is_object($config) ? get_class($config) : gettype($config))
+            ));
+        }
+        $this->config = $config;
+    }
 
-        $options = array_merge($this->defaultOptions, $options);
+//    public function setConsole(Console $console)
+//    {
+//        $this->console = $console;
+//    }
+
+    public function setEventManager(EventManagerInterface $events)
+    {
+//        parent::setEventManager($events);
+        $events->attach('dispatch', function ($events) {
+            $controller = $events->getTarget();
+            $config = $controller->config;
+            if ($config['view_callback'] && is_callable($config['view_callback'])) {
+                $callable = $config['view_callback'];
+                $view = $controller->view;
+                $locator = $controller->getServiceLocator();
+                call_user_func($callable, $view, $config, $locator);
+            }
+        }, 100);
+    }
+
+    public function getFlags()
+    {
+//        $options = $this->params()->fromRoute();
+//        $test = array(
+//            array('long' => 'all', 'short' => 'a'),
+//            array('long' => 'entries', 'short' => 'e'),
+//            array('long' => 'archive', 'short' => 'c'),
+//            array('long' => 'year', 'short' => 'y'),
+//            array('long' => 'month', 'short' => 'm'),
+//            array('long' => 'day', 'short' => 'd'),
+//            array('long' => 'tag', 'short' => 't'),
+//            array('long' => 'author', 'short' => 'r'),
+//        );
+//        foreach ($test as $spec) {
+//            $long = $spec['long'];
+//            $short = $spec['short'];
+//            if ((!isset($options[$long]) || !$options[$long])
+//                && (isset($options[$short]) && $options[$short])
+//            ) {
+//                $options[$long] = true;
+//                unset($options[$short]);
+//            }
+//        }
+
+        $options = array_merge($this->defaultOptions, $options = []);
+
         if (
             $options['entries']
             || $options['archive']
@@ -131,64 +183,27 @@ class CompileCommand extends Command
         return $options;
     }
 
-    public function getCompiler()
+    public function setView(View $view)
     {
-        if ($this->compiler) {
-            return $this->compiler;
-        }
-
-        $view             = $this->getView();
-        $writer           = $this->getWriter();
-        $config           = $this->config;
-        $responseFile     = $this->getResponseFile();
-        $responseStrategy = new Compiler\ResponseStrategy($writer, $responseFile, $view);
-        $postFiles        = new Compiler\PhpFileFilter($config['posts_path']);
-
-        $this->compiler   = new Compiler($postFiles);
-        return $this->compiler;
+        $this->view = $view;
     }
+
     public function getWriter()
     {
         if ($this->writer) {
             return $this->writer;
         }
-        $this->writer = new Compiler\FileWriter();
+        $this->writer = new FileWriter();
         return $this->writer;
     }
+
     public function getResponseFile()
     {
         if ($this->responseFile) {
             return $this->responseFile;
         }
-        $this->responseFile = new Compiler\ResponseFile();
+        $this->responseFile = new ResponseFile();
         return $this->responseFile;
-    }
-
-    public function getView()
-    {
-        if ($this->view) {
-            return $this->view;
-        }
-        $this->view = new View();
-        return $this->view;
-    }
-    public function setView(View $view)
-    {
-        $this->view = $view;
-    }
-    /**
-     * @param array $config
-     */
-    public function setConfig(array $config): void
-    {
-        $this->config = $config;
-    }
-
-    public function attachTags()
-    {
-        $tags = new Compiler\Listener\Tags($this->view, $this->getWriter(), $this->getResponseFile(), $this->getCompilerOptions());
-        $this->getCompiler()->getEventManager()->attach($tags);
-        return $tags;
     }
 
     public function getCompilerOptions()
@@ -198,16 +213,46 @@ class CompileCommand extends Command
         }
 
         $this->compilerOptions = new CompilerOptions($this->config['options']);
+
         return $this->compilerOptions;
     }
+
+    public function getCompiler()
+    {
+        if ($this->compiler) {
+            return $this->compiler;
+        }
+
+        $view = $this->view;
+        $writer = $this->getWriter();
+        $responseFile = $this->getResponseFile();
+        $responseStrategy = new ResponseStrategy($writer, $responseFile, $view);
+        $postFiles = new PhpFileFilter($this->config['posts_path']);
+
+        $this->compiler = new Compiler($postFiles);
+        return $this->compiler;
+    }
+
+    public function attachTags()
+    {
+        $tags = new Compiler\Listener\Tags(
+            $this->view,
+            $this->getWriter(),
+            $this->getResponseFile(),
+            $this->getCompilerOptions()
+        );
+        $this->getCompiler()->getEventManager()->attach($tags,$this);
+        return $tags;
+    }
+
     public function attachListeners(array $flags, $tags)
     {
-        $listeners    = [];
-        $view         = $this->view;
-        $compiler     = $this->getCompiler();
-        $writer       = $this->getWriter();
+        $listeners = [];
+        $view = $this->view;
+        $compiler = $this->getCompiler();
+        $writer = $this->getWriter();
         $responseFile = $this->getResponseFile();
-        $options      = $this->getCompilerOptions();
+        $options = $this->getCompilerOptions();
 
         if ($flags['all'] || $flags['entries']) {
             $entries = new Compiler\Listener\Entries($view, $responseFile, $options);
@@ -251,6 +296,4 @@ class CompileCommand extends Command
 
         return $listeners;
     }
-
-
 }

@@ -24,30 +24,21 @@
         "laminas/laminas-form": "^2.15",
         "laminas/laminas-session": "^2.9",
         "laminas/laminas-i18n": "^2.10",
+        "laminas/laminas-test": "^3.4",
         "laminas/laminas-crypt": "^3.3",
         "symfony/dotenv": "^5.1",
         "symfony/dom-crawler": "^5.1",
         "sentry/sdk": "^3.0",
-        "laminas/laminas-dependency-plugin": "^1.0",
-        "laminas/laminas-db": "^2.11",
-        "laminas/laminas-authentication": "^2.7",
-        "laminas/laminas-mvc-plugin-flashmessenger": "^1.2",
-        "laminas/laminas-mvc-plugin-prg": "^1.2",
-        "laminas/laminas-navigation": "^2.9"
+        "laminas/laminas-dependency-plugin": "^1.0"
     },
     "autoload": {
         "psr-4": {
             "Application\\": "module/Application/src/",
-            "PhlyCommon\\": "module/vendor/phly/PhlyCommon/src",
             "PhlySimplePage\\": "module/vendor/phly/PhlySimplePage/src",
-            "PhlyBlog\\": "module/vendor/phly/PhlyBlog/src",
+            "PhlyBlog\\": "module/vendor/phly/PhlyBlog/src/",
             "PhlyContact\\": "module/vendor/phly/PhlyContact/src/",
             "Crawler\\": "module/Crawler/src",
-            "ZfcUser\\": "module/vendor/ZF-Commons/ZfcUser/src",
-            "ZfcRbac\\": "module/vendor/ZF-Commons/ZfcRbac/src",
-            "BjyProfiler\\": "module/vendor/bjyoungblood/BjyProfiler/src",
-            "BjyAuthorize\\": "module/vendor/bjyoungblood/BjyAuthorize/src",
-            "Album\\": "module/Album/src"
+            "ZfcUser\\": "module/vendor/ZF-Commons/ZfcUser/src"
         },
         "files": [
             "module/Application/src/Helpers/app.php"
@@ -59,9 +50,7 @@
             "PhlySimplePageTest\\": "module/vendor/phly/PhlySimplePage/test/",
             "PhlyBlogTest\\": "module/vendor/phly/PhlyBlog/test/",
             "PhlyContactTest\\": "module/vendor/phly/PhlyContact/test/",
-            "ZfcUser\\": "module/vendor/ZF-Commons/ZfcUser/tests",
-            "ZfcRbac\\": "module/vendor/ZF-Commons/ZfcRbac/tests",
-            "AlbumTest\\": "module/Album/test/"
+            "ZfcUser\\": "module/vendor/ZF-Commons/ZfcUser/tests"
         }
     },
     "scripts": {
@@ -91,7 +80,7 @@
             "sudo chmod -R ug+rwx data",
             "php -S 0.0.0.0:8080 -t public"
         ],
-        "test": "./vendor/bin/phpunit"
+        "test": "phpunit"
     },
     "scripts-descriptions": {
         "cs-check": "Run coding standards checks.",
@@ -107,9 +96,6 @@
         "squizlabs/php_codesniffer": "^3.5",
         "laminas/laminas-code": "^3.4",
         "laminas/laminas-cli": "^0.1.4",
-        "roave/security-advisories": "dev-latest",
-        "laminas/laminas-test": "^3.4",
-        "phpunit/phpunit": "^9.4",
-        "phpspec/prophecy-phpunit": "^2.0"
+        "roave/security-advisories": "dev-latest"
     }
 }

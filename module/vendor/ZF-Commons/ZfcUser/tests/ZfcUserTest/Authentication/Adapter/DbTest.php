@@ -66,7 +66,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
         $user = $this->getMock('ZfcUser\Entity\UserInterface');
         $this->user = $user;
 
-        $this->db = new Db();
+        $this->db = new Db;
         $this->db->setStorage($this->storage);
 
         $sessionManager = $this->getMock('Laminas\Session\SessionManager');
@@ -99,15 +99,15 @@ class DbTest extends \PHPUnit_Framework_TestCase
                         ->will($this->returnValue($this->authEvent));
         $this->authEvent->expects($this->once())
                         ->method('setMessages')
-                        ->with(['Authentication successful.'])
+                        ->with(array('Authentication successful.'))
                         ->will($this->returnValue($this->authEvent));
 
         $this->storage->expects($this->at(0))
             ->method('read')
-            ->will($this->returnValue(['is_satisfied' => true]));
+            ->will($this->returnValue(array('is_satisfied' => true)));
         $this->storage->expects($this->at(1))
             ->method('read')
-            ->will($this->returnValue(['identity' => 'ZfcUser']));
+            ->will($this->returnValue(array('identity' => 'ZfcUser')));
 
         $event = new Event(null, $this->authEvent);
 
@@ -124,7 +124,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
 
         $this->options->expects($this->once())
             ->method('getAuthIdentityFields')
-            ->will($this->returnValue([]));
+            ->will($this->returnValue(array()));
 
         $this->authEvent->expects($this->once())
             ->method('setCode')
@@ -132,7 +132,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($this->authEvent));
         $this->authEvent->expects($this->once())
             ->method('setMessages')
-            ->with(['A record with the supplied identity could not be found.'])
+            ->with(array('A record with the supplied identity could not be found.'))
             ->will($this->returnValue($this->authEvent));
 
         $this->db->setOptions($this->options);
@@ -157,7 +157,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(true));
         $this->options->expects($this->once())
             ->method('getAllowedLoginStates')
-            ->will($this->returnValue([2, 3]));
+            ->will($this->returnValue(array(2, 3)));
 
         $this->authEvent->expects($this->once())
             ->method('setCode')
@@ -165,7 +165,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($this->authEvent));
         $this->authEvent->expects($this->once())
             ->method('setMessages')
-            ->with(['A record with the supplied identity is not active.'])
+            ->with(array('A record with the supplied identity is not active.'))
             ->will($this->returnValue($this->authEvent));
 
         $this->user->expects($this->once())
@@ -205,7 +205,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($this->authEvent));
         $this->authEvent->expects($this->once(1))
             ->method('setMessages')
-            ->with(['Supplied credential is invalid.']);
+            ->with(array('Supplied credential is invalid.'));
 
         $this->db->setMapper($this->mapper);
         $this->db->setOptions($this->options);
@@ -254,7 +254,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
                         ->will($this->returnValue($this->authEvent));
         $this->authEvent->expects($this->once())
                         ->method('setMessages')
-                        ->with(['Authentication successful.'])
+                        ->with(array('Authentication successful.'))
                         ->will($this->returnValue($this->authEvent));
 
         $this->db->setMapper($this->mapper);
@@ -278,7 +278,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
 
         $this->options->expects($this->once())
              ->method('getAllowedLoginStates')
-             ->will($this->returnValue([1, 2, 3]));
+             ->will($this->returnValue(array(1, 2, 3)));
 
         $this->options->expects($this->once())
             ->method('getPasswordCost')
@@ -308,7 +308,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
                         ->will($this->returnValue($this->authEvent));
         $this->authEvent->expects($this->once())
                         ->method('setMessages')
-                        ->with(['Authentication successful.'])
+                        ->with(array('Authentication successful.'))
                         ->will($this->returnValue($this->authEvent));
 
         $this->db->setMapper($this->mapper);
@@ -454,7 +454,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetGetOptions()
     {
-        $options = new \ZfcUser\Options\ModuleOptions();
+        $options = new \ZfcUser\Options\ModuleOptions;
         $options->setLoginRedirectRoute('zfcUser');
 
         $this->db->setOptions($options);
@@ -487,7 +487,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetGetMapper()
     {
-        $mapper = new \ZfcUser\Mapper\User();
+        $mapper = new \ZfcUser\Mapper\User;
         $mapper->setTableName('zfcUser');
 
         $this->db->setMapper($mapper);
@@ -505,7 +505,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
 
         $this->options->expects($this->once())
             ->method('getAuthIdentityFields')
-            ->will($this->returnValue(['email']));
+            ->will($this->returnValue(array('email')));
     }
 
     protected function setAuthenticationUser()
@@ -517,14 +517,14 @@ class DbTest extends \PHPUnit_Framework_TestCase
 
         $this->options->expects($this->once())
             ->method('getAuthIdentityFields')
-            ->will($this->returnValue(['username']));
+            ->will($this->returnValue(array('username')));
     }
 
     protected function setAuthenticationCredentials($identity = 'ZfcUser', $credential = 'ZfcUserPassword')
     {
         $this->storage->expects($this->at(0))
             ->method('read')
-            ->will($this->returnValue(['is_satisfied' => false]));
+            ->will($this->returnValue(array('is_satisfied' => false)));
 
         $post = $this->getMock('Laminas\Stdlib\Parameters');
         $post->expects($this->at(0))

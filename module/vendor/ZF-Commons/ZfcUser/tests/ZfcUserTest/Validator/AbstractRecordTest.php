@@ -11,7 +11,7 @@ class AbstractRecordTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstruct()
     {
-        $options = ['key' => 'value'];
+        $options = array('key'=>'value');
         new AbstractRecordExtension($options);
     }
 
@@ -22,7 +22,7 @@ class AbstractRecordTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructEmptyArray()
     {
-        $options = [];
+        $options = array();
         new AbstractRecordExtension($options);
     }
 
@@ -32,7 +32,7 @@ class AbstractRecordTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSetMapper()
     {
-        $options = ['key' => ''];
+        $options = array('key' => '');
         $validator = new AbstractRecordExtension($options);
 
         $this->assertNull($validator->getMapper());
@@ -48,7 +48,7 @@ class AbstractRecordTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSetKey()
     {
-        $options = ['key' => 'username'];
+        $options = array('key' => 'username');
         $validator = new AbstractRecordExtension($options);
 
         $this->assertEquals('username', $validator->getKey());
@@ -64,13 +64,13 @@ class AbstractRecordTest extends \PHPUnit_Framework_TestCase
      */
     public function testQueryWithInvalidKey()
     {
-        $options = ['key' => 'zfcUser'];
+        $options = array('key' => 'zfcUser');
         $validator = new AbstractRecordExtension($options);
 
         $method = new \ReflectionMethod('ZfcUserTest\Validator\TestAsset\AbstractRecordExtension', 'query');
         $method->setAccessible(true);
 
-        $method->invoke($validator, ['test']);
+        $method->invoke($validator, array('test'));
     }
 
     /**
@@ -78,7 +78,7 @@ class AbstractRecordTest extends \PHPUnit_Framework_TestCase
      */
     public function testQueryWithKeyUsername()
     {
-        $options = ['key' => 'username'];
+        $options = array('key' => 'username');
         $validator = new AbstractRecordExtension($options);
 
         $mapper = $this->getMock('ZfcUser\Mapper\UserInterface');
@@ -102,7 +102,7 @@ class AbstractRecordTest extends \PHPUnit_Framework_TestCase
      */
     public function testQueryWithKeyEmail()
     {
-        $options = ['key' => 'email'];
+        $options = array('key' => 'email');
         $validator = new AbstractRecordExtension($options);
 
         $mapper = $this->getMock('ZfcUser\Mapper\UserInterface');

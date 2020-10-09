@@ -24,7 +24,7 @@ abstract class AbstractModule implements
     {
         $sharedManager = $moduleManager->getEventManager()->getSharedManager();
         $instance = $this;//TODO this will no be needed in PHP 5.4
-        $sharedManager->attach('Laminas\Mvc\Application', 'bootstrap', function ($e) use ($instance, $moduleManager) {
+        $sharedManager->attach('Laminas\Mvc\Application', 'bootstrap', function($e) use ($instance, $moduleManager) {
             $app = $e->getParam('application');
             $instance->setMergedConfig($app->getConfig());
             $instance->bootstrap($moduleManager, $app);
@@ -37,16 +37,16 @@ abstract class AbstractModule implements
 
     public function getAutoloaderConfig()
     {
-        return [
-            'Laminas\Loader\ClassMapAutoloader' => [
+        return array(
+            'Laminas\Loader\ClassMapAutoloader' => array(
                 $this->getDir() . '/autoload_classmap.php',
-            ],
-            'Laminas\Loader\StandardAutoloader' => [
-                'namespaces' => [
+            ),
+            'Laminas\Loader\StandardAutoloader' => array(
+                'namespaces' => array(
                     $this->getNamespace() => $this->getDir() . '/src/' . $this->getNamespace(),
-                ],
-            ],
-        ];
+                ),
+            ),
+        );
     }
 
     public function getConfig()
@@ -67,8 +67,8 @@ abstract class AbstractModule implements
     public function getOptions($namespace = 'options')
     {
         $config = $this->getMergedConfig();
-        if (empty($config[$this->getNamespace()][$namespace])) {
-            return [];
+        if(empty($config[$this->getNamespace()][$namespace])) {
+            return array();
         }
 
         if (is_array($config[$this->getNamespace()][$namespace])) {
@@ -121,18 +121,19 @@ abstract class AbstractModule implements
         $currOption = array_shift($option);
         //we need this fix to accept both array/LaminasConfig -- there is know problem with offsetExists() in PHP
         //if(array_key_exists($currOption, $options)) {
-        if (array_key_exists($currOption, $options) || ($options instanceof Config && $options->offsetExists($currOption))) {
-            if (count($option) >= 1) {
+        if(array_key_exists($currOption, $options) || ($options instanceof Config && $options->offsetExists($currOption))) {
+            if(count($option) >= 1) {
                 return $this->getOptionFromArray($options[$currOption], $option, $default, $origOption);
             }
 
             return $options[$currOption];
         }
 
-        if ($default !== null) {
+        if($default !== null) {
             return $default;
         }
 
         throw new InvalidArgumentException("Option '$origOption' is not set");
     }
+
 }

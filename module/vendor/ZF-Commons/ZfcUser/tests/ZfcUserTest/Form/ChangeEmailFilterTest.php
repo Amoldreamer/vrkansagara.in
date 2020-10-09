@@ -11,7 +11,7 @@ class ChangeEmailFilterTest extends \PHPUnit_Framework_TestCase
         $options = $this->getMock('ZfcUser\Options\ModuleOptions');
         $options->expects($this->once())
                 ->method('getAuthIdentityFields')
-                ->will($this->returnValue(['email']));
+                ->will($this->returnValue(array('email')));
 
         $validator = $this->getMockBuilder('ZfcUser\Validator\NoRecordExists')->disableOriginalConstructor()->getMock();
         $filter = new Filter($options, $validator);
@@ -34,7 +34,7 @@ class ChangeEmailFilterTest extends \PHPUnit_Framework_TestCase
         $options = $this->getMock('ZfcUser\Options\ModuleOptions');
         $options->expects($this->once())
                 ->method('getAuthIdentityFields')
-                ->will($this->returnValue(($onlyEmail) ? ['email'] : ['username']));
+                ->will($this->returnValue(($onlyEmail) ? array('email') : array('username')));
 
         $validator = $this->getMockBuilder('ZfcUser\Validator\NoRecordExists')->disableOriginalConstructor()->getMock();
         $filter = new Filter($options, $validator);
@@ -61,7 +61,7 @@ class ChangeEmailFilterTest extends \PHPUnit_Framework_TestCase
         $options = $this->getMock('ZfcUser\Options\ModuleOptions');
         $options->expects($this->once())
                 ->method('getAuthIdentityFields')
-                ->will($this->returnValue([]));
+                ->will($this->returnValue(array()));
 
         $validatorInit = $this->getMockBuilder('ZfcUser\Validator\NoRecordExists')->disableOriginalConstructor()->getMock();
         $validatorNew = $this->getMockBuilder('ZfcUser\Validator\NoRecordExists')->disableOriginalConstructor()->getMock();
@@ -75,9 +75,9 @@ class ChangeEmailFilterTest extends \PHPUnit_Framework_TestCase
 
     public function providerTestConstructIdentityEmail()
     {
-        return [
-            [true],
-            [false]
-        ];
+        return array(
+            array(true),
+            array(false)
+        );
     }
 }

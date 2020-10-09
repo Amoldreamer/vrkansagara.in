@@ -1,5 +1,4 @@
 <?php
-
 namespace ZfcBaseTest\Form;
 
 use PHPUnit_Framework_TestCase;
@@ -10,7 +9,7 @@ class ProvidesEventsFormTest extends PHPUnit_Framework_TestCase
 {
     public function setup()
     {
-        $this->form = new ProvidesEventsForm();
+        $this->form = new ProvidesEventsForm;
     }
 
     public function testGetEventManagerSetsDefaultIdentifiers()
@@ -27,3 +26,4 @@ class ProvidesEventsFormTest extends PHPUnit_Framework_TestCase
         $this->assertSame($this->form->getEventManager(), $em);
     }
 }
+

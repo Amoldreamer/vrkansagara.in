@@ -12,7 +12,7 @@ class ZfcUserIdentityTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $helper = new ViewHelper();
+        $helper = new ViewHelper;
         $this->helper = $helper;
 
         $authService = $this->getMock('Laminas\Authentication\AuthenticationService');

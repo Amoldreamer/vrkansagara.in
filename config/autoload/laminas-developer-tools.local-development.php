@@ -23,7 +23,7 @@ return [
              * Expects: bool
              * Default: true
              */
-            'enabled' => ! is_production_mode(),
+            'enabled' => IS_PRODUCTION ? false : true,
 
             /**
              * Enables or disables the strict mode. If the strict mode is enabled, any error will throw an exception,
@@ -115,7 +115,7 @@ return [
              * Expects: bool
              * Default: false
              */
-            'enabled' => ! is_production_mode(),
+            'enabled' => IS_PRODUCTION ? false : true,
 
             /**
              * If enabled, every empty collector will be hidden.
@@ -123,7 +123,7 @@ return [
              * Expects: bool
              * Default: false
              */
-            'auto_hide' => ! is_production_mode(),
+            'auto_hide' => IS_PRODUCTION ? false : true,
 
             /**
              * The Toolbar position.
@@ -134,7 +134,7 @@ return [
             'position' => 'bottom',
 
             /**
-             * If enabled, the Toolbar will check if your current Laminas Framework version is up-to-date.
+             * If enabled, the Toolbar will check if your current Zend Framework version is up-to-date.
              * Note: The check will only occur once every hour.
              *
              * Expects: bool

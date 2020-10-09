@@ -33,21 +33,10 @@ return [
                     'mochikit' => [
                         'type' => Literal::class,
                         'options' => [
-                            'route' => '/mochikit',
+                            'route' => '/blog',
                             'defaults' => [
                                 'controller' => PageController::class,
                                 'template' => 'page/mochikit',
-                                'do_not_cache' => ! is_production_mode(),
-                            ],
-                        ],
-                    ],
-                    'jquery' => [
-                        'type' => Literal::class,
-                        'options' => [
-                            'route' => '/jquery',
-                            'defaults' => [
-                                'controller' => PageController::class,
-                                'template' => 'page/jquery',
                                 'do_not_cache' => ! is_production_mode(),
                             ],
                         ],
