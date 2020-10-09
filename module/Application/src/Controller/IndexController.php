@@ -51,6 +51,9 @@ class IndexController extends AbstractActionController
         ]);
     }
 
+    /**
+     * @return ViewModel
+     */
     public function searchAction()
     {
         return new ViewModel();
