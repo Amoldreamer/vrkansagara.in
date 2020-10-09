@@ -26,6 +26,11 @@ use PhlySimplePage\PageCacheFactory;
 use PhlySimplePage\PageController;
 
 return [
+    'navigation' => [
+        'default' => [
+            // Fail back key for navigation menu
+        ]
+    ],
     'laminas-cli' => [
         'commands' => [
             'cache:clear' => ClearCacheCommand::class,

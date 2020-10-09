@@ -32,7 +32,8 @@
         "laminas/laminas-db": "^2.11",
         "laminas/laminas-authentication": "^2.7",
         "laminas/laminas-mvc-plugin-flashmessenger": "^1.2",
-        "laminas/laminas-mvc-plugin-prg": "^1.2"
+        "laminas/laminas-mvc-plugin-prg": "^1.2",
+        "laminas/laminas-navigation": "^2.9"
     },
     "autoload": {
         "psr-4": {
