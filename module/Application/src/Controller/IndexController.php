@@ -53,9 +53,6 @@ class IndexController extends AbstractActionController
 
     public function searchAction()
     {
-        // Use the Layout plugin to access the ViewModel
-        // object associated with layout template.
-//        $this->layout()->setTemplate('layout/layout2');
         return new ViewModel();
     }
 }
