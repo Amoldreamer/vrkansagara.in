@@ -3,10 +3,7 @@ declare(strict_types=1);
 
 namespace Album;
 
-use Album\Controller\AlbumController;
-use Album\Model\Factory\AlbumTableFactory;
 use Laminas\Router\Http\Segment;
-use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
     'router' => [
@@ -20,8 +17,21 @@ return [
                         'id'     => '[0-9]+',
                     ],
                     'defaults' => [
-                        'controller' => AlbumController::class,
+                        'controller' => Controller\AlbumController::class,
                         'action'     => 'index',
+                    ],
+                ],
+            ],
+            'album-api' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route' => '/api/album[/:action[/:id]]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ],
+                    'defaults' => [
+                        'controller' => Api\AlbumController::class
                     ],
                 ],
             ],

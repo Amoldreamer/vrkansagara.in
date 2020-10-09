@@ -52,6 +52,11 @@ class Module implements ConfigProviderInterface
                         $container->get(Model\AlbumTable::class)
                     );
                 },
+                Api\AlbumController::class => function($container) {
+                    return new Api\AlbumController(
+                        $container->get(Model\AlbumTable::class)
+                    );
+                },
             ],
         ];
     }

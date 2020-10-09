@@ -24,7 +24,6 @@
         "laminas/laminas-form": "^2.15",
         "laminas/laminas-session": "^2.9",
         "laminas/laminas-i18n": "^2.10",
-        "laminas/laminas-test": "^3.4",
         "laminas/laminas-crypt": "^3.3",
         "symfony/dotenv": "^5.1",
         "symfony/dom-crawler": "^5.1",
@@ -60,7 +59,8 @@
             "PhlyBlogTest\\": "module/vendor/phly/PhlyBlog/test/",
             "PhlyContactTest\\": "module/vendor/phly/PhlyContact/test/",
             "ZfcUser\\": "module/vendor/ZF-Commons/ZfcUser/tests",
-            "ZfcRbac\\": "module/vendor/ZF-Commons/ZfcRbac/tests"
+            "ZfcRbac\\": "module/vendor/ZF-Commons/ZfcRbac/tests",
+            "AlbumTest\\": "module/Album/test/"
         }
     },
     "scripts": {
@@ -90,7 +90,7 @@
             "sudo chmod -R ug+rwx data",
             "php -S 0.0.0.0:8080 -t public"
         ],
-        "test": "phpunit"
+        "test": "./vendor/bin/phpunit"
     },
     "scripts-descriptions": {
         "cs-check": "Run coding standards checks.",
@@ -106,6 +106,8 @@
         "squizlabs/php_codesniffer": "^3.5",
         "laminas/laminas-code": "^3.4",
         "laminas/laminas-cli": "^0.1.4",
-        "roave/security-advisories": "dev-latest"
+        "roave/security-advisories": "dev-latest",
+        "laminas/laminas-test": "^3.4",
+        "phpunit/phpunit": "^9.4"
     }
 }

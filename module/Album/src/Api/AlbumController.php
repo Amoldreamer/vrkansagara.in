@@ -2,11 +2,22 @@
 
 namespace Album\Api;
 
-
+use Album\Model\AlbumTable;
 use Laminas\Mvc\Controller\AbstractRestfulController;
+use Laminas\View\Model\ViewModel;
 
 class AlbumController extends AbstractRestfulController
 {
+
+    // Add this property:
+    private $table;
+
+    // Add this constructor:
+    public function __construct(AlbumTable $table)
+    {
+        $this->table = $table;
+    }
+
     public function get($id)
     {
         // associated with GET request with identifier
@@ -14,8 +25,13 @@ class AlbumController extends AbstractRestfulController
 
     public function getList()
     {
-        // associated with GET request without identifier
+        try {
+            $data = $this->table->fetchAll();
+        } catch (\Exception $exception) {
+            throw $exception;
+        }
     }
+
 
     public function create($data)
     {
