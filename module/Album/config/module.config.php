@@ -6,6 +6,35 @@ namespace Album;
 use Laminas\Router\Http\Segment;
 
 return [
+    'navigation' => [
+        'default' => [
+            [
+                'label' => 'Home',
+                'route' => 'home',
+            ],
+            [
+                'label' => 'Album',
+                'route' => 'album',
+                'pages' => [
+                    [
+                        'label'  => 'Add',
+                        'route'  => 'album',
+                        'action' => 'add',
+                    ],
+                    [
+                        'label'  => 'Edit',
+                        'route'  => 'album',
+                        'action' => 'edit',
+                    ],
+                    [
+                        'label'  => 'Delete',
+                        'route'  => 'album',
+                        'action' => 'delete',
+                    ],
+                ],
+            ],
+        ],
+    ],
     'router' => [
         'routes' => [
             'album' => [
