@@ -20,6 +20,7 @@ use Laminas\Mail\Transport\Smtp;
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
 use Laminas\ServiceManager\Factory\InvokableFactory;
+use Laminas\View\Helper\BasePath;
 use PhlyBlog\Command\CompileCommand;
 use PhlyBlog\CompileController;
 use PhlySimplePage\ClearCacheCommand;
@@ -116,4 +117,12 @@ return [
             __DIR__ . '/../view',
         ],
     ],
+    'controller_plugins' => [
+        'factories' => [
+            Controller\Plugin\AccessPlugin::class => InvokableFactory::class,
+        ],
+        'aliases' => [
+            'access' => Controller\Plugin\AccessPlugin::class,
+        ]
+    ]
 ];
