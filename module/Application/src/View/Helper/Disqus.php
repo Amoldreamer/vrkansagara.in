@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Application\View\Helper;
@@ -22,7 +23,7 @@ class Disqus extends AbstractHelper
 
     public function setOptions($options)
     {
-        if (!is_array($options) && !$options instanceof Traversable) {
+        if (! is_array($options) && ! $options instanceof Traversable) {
             throw new InvalidArgumentException('Expected a traversable set of options');
         }
 
@@ -42,24 +43,24 @@ class Disqus extends AbstractHelper
 
     public function __invoke($identifier = '', $url = '', $title = '', $key = false, $developer = false)
     {
-        if (!$key && !$this->key) {
+        if (! $key && ! $this->key) {
             throw new DomainException('No disqus key provided');
-        } elseif (!$key) {
+        } elseif (! $key) {
             $key = $this->key;
         }
 
-        if (!$developer) {
+        if (! $developer) {
             $developer = $this->developer;
         }
 
-        if (!preg_match('#^https?://#', $url)) {
+        if (! preg_match('#^https?://#', $url)) {
             // Ensure Disqus uses appropriate hostname!
             $serverUrl = $this->getView()->plugin('serverUrl');
             $serverUrl->setHost('framework.zend.com');
             $url = $serverUrl($url);
         }
 
-        $html =<<<EOH
+        $html = <<<EOH
     <div id="disqus_thread"></div>
     <script type="text/javascript">
         var disqus_developer = $developer;

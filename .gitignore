@@ -12,3 +12,4 @@ npm-debug.log
 yarn-error.log
 .phpcs-cache
 .env
+public/blog

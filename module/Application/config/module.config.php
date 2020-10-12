@@ -29,7 +29,7 @@ return [
     'laminas-cli' => [
         'commands' => [
             'cache:clear' => ClearCacheCommand::class,
-            'blog:compile ' => CompileCommand::class,
+//            'blog:compile ' => CompileCommand\::class,
         ],
     ],
     'router' => [
@@ -87,6 +87,7 @@ return [
         'doctype' => 'HTML5',
         'not_found_template' => 'error/404',
         'exception_template' => 'error/index',
+        'base_path' =>'/',
         'template_map' => [
             'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
             'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',

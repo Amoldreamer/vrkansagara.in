@@ -26,7 +26,8 @@ class Module implements
     ViewHelperProviderInterface
 {
 
-    public static $layout;
+    protected static $layout;
+    protected $config;
 
     public function getConfig(): array
     {
@@ -235,6 +236,47 @@ class Module implements
         return trim($script);
     }
 
+    public function getServiceConfig()
+    {
+        return [
+            'initializers' => [
+                function ($instance, $services) {
+                    if (!Console::isConsole()) {
+                        return;
+                    }
+                    if (!$instance instanceof HelperPluginManager) {
+                        return;
+                    }
+                    $instance->setFactory('basePath', function ($sm) use ($services) {
+                        $config = $services->get('Config');
+                        $config = $config['view_manager'];
+                        $basePathHelper = new ViewHelper\BasePath();
+                        $basePath = '/';
+                        if (isset($config['base_path'])) {
+                            $basePath = $config['base_path'];
+                        }
+                        $basePathHelper->setBasePath($basePath);
+                        return $basePathHelper;
+                    });
+                },
+            ]];
+    }
+
+    public function getViewHelperConfig()
+    {
+        return ['factories' => [
+            'disqus' => function ($services) {
+                $sm = $services->getServiceLocator();
+                $config = $sm->get('config');
+                if ($config instanceof Config) {
+                    $config = $config->toArray();
+                }
+                $config = $config['disqus'];
+                return new View\Helper\Disqus($config);
+            },
+        ]];
+    }
+
     public static function prepareCompilerView($view, $config, $services)
     {
         $renderer = $services->get('BlogRenderer');
@@ -251,11 +293,11 @@ class Module implements
             $e->setResult($page);
 
             // Cleanup
+            $layout->setVariable('single', false);
+
             $headTitle = $renderer->plugin('headtitle');
             $headTitle->getContainer()->exchangeArray([]);
-            $headTitle->setAutoEscape(false)
-                ->setSeparator(' :: ')
-                ->append('phly, boy, phly');
+            $headTitle->append('Zend Framework');
 
             $headLink = $renderer->plugin('headLink');
             $headLink->getContainer()->exchangeArray([]);
@@ -267,46 +309,26 @@ class Module implements
 
             $headScript = $renderer->plugin('headScript');
             $headScript->getContainer()->exchangeArray([]);
+
+            $headMeta = $renderer->plugin('headMeta');
+            $headMeta->getContainer()->exchangeArray([]);
+
+            foreach (['sidebar', 'scripts'] as $name) {
+                $placeholder = $renderer->placeholder($name);
+                $placeholder->exchangeArray([]);
+            }
         }, 100);
     }
 
-    public function getServiceConfig()
+    public static function handleTagCloud($cloud, $view, $config, $locator)
     {
-        return array('initializers' => array(
-            function ($instance, $services) {
-                if (!Console::isConsole()) {
-                    return;
-                }
-                if (!$instance instanceof HelperPluginManager) {
-                    return;
-                }
-                $instance->setFactory('basepath', function ($sm) use ($services) {
-                    $config = $services->get('Config');
-                    $config = $config['view_manager'];
-                    $basePathHelper = new ViewHelper\BasePath;
-                    $basePath = '/';
-                    if (isset($config['base_path'])) {
-                        $basePath = $config['base_path'];
-                    }
-                    $basePathHelper->setBasePath($basePath);
-                    return $basePathHelper;
-                });
-            },
-        ));
-    }
+        if (!self::$layout) {
+            return;
+        }
 
-    public function getViewHelperConfig()
-    {
-        return array('factories' => array(
-            'disqus' => function ($services) {
-                $sm     = $services->getServiceLocator();
-                $config = $sm->get('config');
-                if ($config instanceof Config) {
-                    $config = $config->toArray();
-                }
-                $config = $config['disqus'];
-                return new View\Helper\Disqus($config);
-            },
+        self::$layout->setVariable('footer', sprintf(
+            "<h4>Tag Cloud</h4>\n<div class=\"cloud\">\n%s</div>\n",
+            $cloud->render()
         ));
     }
 }
