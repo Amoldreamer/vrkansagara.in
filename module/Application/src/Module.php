@@ -296,7 +296,9 @@ class Module implements
 
             $headTitle = $renderer->plugin('headtitle');
             $headTitle->getContainer()->exchangeArray([]);
-            $headTitle->append('Zend Framework');
+            $headTitle->append('VRKANSAGARA');
+            $headTitle->setSeparator(' - ');
+            $headTitle->setAutoEscape(false);
 
             $headLink = $renderer->plugin('headLink');
             $headLink->getContainer()->exchangeArray([]);
