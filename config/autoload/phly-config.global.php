@@ -1,20 +1,15 @@
 <?php
 
-/**
- * This is a sample "local" configuration for your application. To use it, copy
- * it to your config/autoload/ directory of your application, and edit to suit
- * your application.
- *
- * This configuration example demonstrates using an SMTP mail transport, a
- * ReCaptcha CAPTCHA adapter, and setting the to and sender addresses for the
- * mail message.
- */
-
 use Laminas\Cache\Storage\Adapter\Filesystem;
 use Laminas\Captcha\Dumb;
 use Laminas\Mail\Transport\File;
+use Laminas\Router\Http\Literal;
 
 return [
+    'disqus' => [
+        'key'         => 'vrkansagara',
+        'development' => 0,
+    ],
     'blog' => [
         'options' => [
             // The following indicate where to write files. Note that this
@@ -103,6 +98,37 @@ return [
         // instance, application configuration // (as an array), and the
         // application's Locator instance.
         'cloud_callback' => ['Application\Module', 'handleTagCloud'],
+    ],
+    'router' => [
+        'routes' => [
+            'blog' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route' => '/blog',
+                ],
+                'may_terminate' => true,
+                'child_routes'  => [
+                    'index' => [
+                        'type' => Literal::class,
+                        'options' => [
+                            'route' => '/index.html',
+                        ],
+                    ],
+                    'feed-atom' => [
+                        'type' => Literal::class,
+                        'options' => [
+                            'route' => '/feed-atom.xml',
+                        ],
+                    ],
+                    'feed-rss' => [
+                        'type' => Literal::class,
+                        'options' => [
+                            'route' => '/feed-rss.xml',
+                        ],
+                    ],
+                ],
+            ]
+        ],
     ],
     'phly-simple-page' => [
         'cache' => [

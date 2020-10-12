@@ -30,10 +30,10 @@
         "symfony/dom-crawler": "^5.1",
         "sentry/sdk": "^3.0",
         "laminas/laminas-dependency-plugin": "^1.0",
-        "phly/phly-blog": "dev-refresh",
-        "phly/phly-common": "dev-refresh",
         "laminas/laminas-navigation": "^2.9",
-        "laminas/laminas-mvc-console": "^1.2"
+        "laminas/laminas-mvc-console": "^1.2",
+        "phly/phly-blog": "dev-refresh",
+        "phly/phly-common": "dev-refresh"
     },
     "repositories": [
         {
@@ -49,7 +49,6 @@
         "psr-4": {
             "Application\\": "module/Application/src/",
             "PhlySimplePage\\": "module/vendor/phly/PhlySimplePage/src",
-            "PhlyBlog\\": "module/vendor/phly/PhlyBlog/src/",
             "PhlyContact\\": "module/vendor/phly/PhlyContact/src/",
             "Crawler\\": "module/Crawler/src",
             "ZfcUser\\": "module/vendor/ZF-Commons/ZfcUser/src"
@@ -62,7 +61,6 @@
         "psr-4": {
             "ApplicationTest\\": "module/Application/test/",
             "PhlySimplePageTest\\": "module/vendor/phly/PhlySimplePage/test/",
-            "PhlyBlogTest\\": "module/vendor/phly/PhlyBlog/test/",
             "PhlyContactTest\\": "module/vendor/phly/PhlyContact/test/",
             "ZfcUser\\": "module/vendor/ZF-Commons/ZfcUser/tests"
         }

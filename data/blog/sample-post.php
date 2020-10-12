@@ -5,21 +5,24 @@ use PhlyBlog\EntryEntity;
 $entry  = new EntryEntity();
 $author = new AuthorEntity();
 $author->fromArray(array(
-    'id'    => 'yourusername',
-    'name'  => 'Your Full Name',
-    'email' => 'you@your.tld',
-    'url'   => 'http://your.tld/',
+    'id'    => 'vrkansagara',
+    'name'  => 'Vallabh Kansagara',
+    'email' => 'vrkansagara@gmail.com',
+    'url'   => 'https://vrkansagara.in',
 ));
 
-$entry->setId('this-is-the-stub-used-in-the-uri-and-should-be-unique');
+$entry->setId('sample-post');
 $entry->setTitle('New site!');
 $entry->setAuthor($author);
-$entry->setDraft(false);
-$entry->setPublic(true);
-$entry->setCreated(1300744335);
-$entry->setUpdated(1301034313);
-$entry->setTimezone('America/New_York');
-$entry->setTags(array('php', 'personal'));
+$entry->setDraft(true);
+$entry->setPublic(false);
+$entry->setCreated(new DateTime('2004:01:14 23:27:27'));
+$entry->setUpdated(new DateTime('2004:01:14 23:27:27'));
+$entry->setTimezone('America/Chicago');
+$entry->setTags(array (
+    0 => 'draft',
+    1 => 'php',
+));
 
 $body =<<<'EOT'
 <p>

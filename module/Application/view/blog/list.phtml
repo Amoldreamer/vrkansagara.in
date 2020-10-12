@@ -1,12 +1,19 @@
 <div class="container">
     <?php
+    //$this->layout()->single = true;
+    $this->render('blog/assets');
+
     $paginatorUrl          = $this->paginator_url;
     $urlSubstitutionString = $this->substitution;
     $basePageUrl           = str_replace('-p%d', '', $paginatorUrl);
     if ($urlSubstitutionString) {
         $basePageUrl = str_replace('%s', str_replace(' ', '+', $urlSubstitutionString), $basePageUrl);
     }
+
+    // Set head title
     $this->headTitle()->prepend($this->title);
+
+    // Add feed links
     $this->headLink(array(
         'href'  => rtrim(dirname($basePageUrl), '/') . '/' . basename($basePageUrl, '.html') . '-atom.xml',
         'type'  => 'application/atom+xml',
@@ -20,17 +27,24 @@
         'title' => $this->title . ' RSS Feed',
     ));
     ?>
-  <section class="blog">
-    <h2><?php echo $this->title ?></h2>
 
-      <?php
-      foreach ($this->entries as $entry) {
-          echo $this->render('phly-blog/entry-short', array('entry' => $entry));
-      }
+  <h1><?php echo $this->title ?></h1>
 
-      echo $this->paginationControl($this->entries, 'Sliding', 'phly-blog/paginator', array('url' => $paginatorUrl, 'substitution' => $urlSubstitutionString));
-      ?>
-  </section>
+    <?php
+    foreach ($this->entries as $entry) {
+        echo $this->render('blog/entry-short', array('entry' => $entry));
+    }
+    ?>
 
-
+    <?php echo
+    $this->paginationControl(
+        $this->entries,
+        'Sliding',
+        'blog/paginator',
+        array(
+            'url'          => $paginatorUrl,
+            'substitution' => $urlSubstitutionString,
+        )
+    )
+    ?>
 </div>

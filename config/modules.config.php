@@ -12,6 +12,7 @@
  * This should be an array of module namespaces used in the application.
  */
 return [
+    'Laminas\Paginator',
     'Laminas\Mvc\Console',
     'Laminas\Navigation',
     'Laminas\ZendFrameworkBridge',
@@ -27,10 +28,9 @@ return [
     'Laminas\Validator',
     'Laminas\DeveloperTools',
 
-
+    'PhlyBlog',
     'Crawler',
     'PhlyContact',
-    'PhlyBlog',
     'PhlySimplePage',
     'Application',
 ];

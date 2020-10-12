@@ -241,10 +241,10 @@ class Module implements
         return [
             'initializers' => [
                 function ($instance, $services) {
-                    if (!Console::isConsole()) {
+                    if (! Console::isConsole()) {
                         return;
                     }
-                    if (!$instance instanceof HelperPluginManager) {
+                    if (! $instance instanceof HelperPluginManager) {
                         return;
                     }
                     $instance->setFactory('basePath', function ($sm) use ($services) {
@@ -266,8 +266,7 @@ class Module implements
     {
         return ['factories' => [
             'disqus' => function ($services) {
-                $sm = $services->getServiceLocator();
-                $config = $sm->get('config');
+                $config = $services->get('config');
                 if ($config instanceof Config) {
                     $config = $config->toArray();
                 }
@@ -285,7 +284,7 @@ class Module implements
         }, 100);
 
         self::$layout = $layout = new ViewModel();
-        $layout->setTemplate('layout/layout');
+        $layout->setTemplate('layout');
         $view->addResponseStrategy(function ($e) use ($layout, $renderer) {
             $result = $e->getResult();
             $layout->setVariable('content', $result);
@@ -322,7 +321,7 @@ class Module implements
 
     public static function handleTagCloud($cloud, $view, $config, $locator)
     {
-        if (!self::$layout) {
+        if (! self::$layout) {
             return;
         }
 
