@@ -113,7 +113,7 @@ class Db implements Storage\StorageInterface
     public function getStorage()
     {
         if (null === $this->storage) {
-            $this->setStorage(new Storage\Session);
+            $this->setStorage(new Storage\Session());
         }
         return $this->storage;
     }

@@ -21,7 +21,7 @@ class Profiler implements ProfilerInterface
     /**
      * @var array
      */
-    protected $profiles = array();
+    protected $profiles = [];
 
     /**
      * @var boolean
@@ -64,7 +64,7 @@ class Profiler implements ProfilerInterface
 
     public function startQuery($sql, $parameters = null, $stack = null)
     {
-        if (!$this->enabled) {
+        if (! $this->enabled) {
             return null;
         }
 
@@ -72,7 +72,7 @@ class Profiler implements ProfilerInterface
             if (version_compare('5.3.6', phpversion(), '<=')) {
                 $stack = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
             } else {
-                $stack = array();
+                $stack = [];
             }
         }
 
@@ -105,7 +105,7 @@ class Profiler implements ProfilerInterface
 
     public function endQuery()
     {
-        if (!$this->enabled) {
+        if (! $this->enabled) {
             return false;
         }
 
@@ -115,7 +115,7 @@ class Profiler implements ProfilerInterface
 
     public function getQueryProfiles($queryTypes = null)
     {
-        $profiles = array();
+        $profiles = [];
 
         if (count($this->profiles)) {
             foreach ($this->profiles as $id => $profile) {

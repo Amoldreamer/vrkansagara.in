@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace AlbumTest\Model;
@@ -15,7 +16,7 @@ class AlbumTableTest extends TestCase
 {
     use ProphecyTrait;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->tableGateway = $this->prophesize(TableGatewayInterface::class);
         $this->albumTable = new AlbumTable($this->tableGateway->reveal());
@@ -88,6 +89,4 @@ class AlbumTableTest extends TestCase
         $this->expectExceptionMessage('Could not find row with identifier 123');
         $this->albumTable->getAlbum(123);
     }
-
-
 }

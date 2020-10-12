@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Album\Model\Factory;
-
 
 use Album\Model\Album;
 use Album\Model\AlbumTable;
@@ -18,7 +16,7 @@ use Laminas\ServiceManager\Factory\FactoryInterface;
 class AlbumTableFactory implements FactoryInterface
 {
 
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null) : AlbumTable
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): AlbumTable
     {
 
         $dbAdapter = $container->get(AdapterInterface::class);
@@ -27,6 +25,5 @@ class AlbumTableFactory implements FactoryInterface
         $tableGatWay = new TableGateway('album', $dbAdapter, null, $resultSetPrototype);
 
         return new AlbumTable($tableGatWay);
-
     }
 }

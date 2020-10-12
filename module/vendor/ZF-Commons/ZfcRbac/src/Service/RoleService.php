@@ -1,4 +1,5 @@
 <?php
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -130,11 +131,11 @@ class RoleService
      */
     public function getIdentityRoles()
     {
-        if (!$identity = $this->getIdentity()) {
+        if (! $identity = $this->getIdentity()) {
             return $this->convertRoles([$this->guestRole]);
         }
 
-        if (!$identity instanceof IdentityInterface) {
+        if (! $identity instanceof IdentityInterface) {
             throw new Exception\RuntimeException(sprintf(
                 'ZfcRbac expects your identity to implement ZfcRbac\Identity\IdentityInterface, "%s" given',
                 is_object($identity) ? get_class($identity) : gettype($identity)

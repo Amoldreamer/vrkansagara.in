@@ -1,4 +1,5 @@
 <?php
+
 namespace Album\Form;
 
 use Laminas\Form\Form;

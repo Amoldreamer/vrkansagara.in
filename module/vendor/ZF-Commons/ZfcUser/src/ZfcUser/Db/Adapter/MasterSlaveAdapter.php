@@ -1,4 +1,5 @@
 <?php
+
 namespace ZfcBase\Db\Adapter;
 
 use Laminas\Db\Adapter\Adapter;

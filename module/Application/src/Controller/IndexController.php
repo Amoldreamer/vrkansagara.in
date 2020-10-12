@@ -41,13 +41,13 @@ class IndexController extends AbstractActionController
     {
         $inspire = [
             [
-             'text' =>"Don't repeat yourself",
-             'author' =>null
+             'text' => "Don't repeat yourself",
+             'author' => null
             ]
         ];
         $count = count($inspire) - 1;
         return new ViewModel([
-            'inspire' => $inspire[rand(0,$count)]
+            'inspire' => $inspire[rand(0, $count)]
         ]);
     }
 

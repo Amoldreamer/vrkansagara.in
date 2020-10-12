@@ -1,4 +1,5 @@
 <?php
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -104,7 +105,7 @@ class ControllerGuard extends AbstractGuard
         $action     = strtolower($routeMatch->getParam('action'));
 
         // If no rules apply, it is considered as granted or not based on the protection policy
-        if (!isset($this->rules[$controller])) {
+        if (! isset($this->rules[$controller])) {
             return $this->protectionPolicy === self::POLICY_ALLOW;
         }
 

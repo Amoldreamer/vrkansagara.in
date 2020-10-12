@@ -29,7 +29,7 @@ class Module implements ConfigProviderInterface
     {
         return [
             'factories' => [
-                Model\AlbumTable::class => function($container) {
+                Model\AlbumTable::class => function ($container) {
                     $tableGateway = $container->get(Model\AlbumTableGateway::class);
                     return new Model\AlbumTable($tableGateway);
                 },
@@ -47,12 +47,12 @@ class Module implements ConfigProviderInterface
     {
         return [
             'factories' => [
-                Controller\AlbumController::class => function($container) {
+                Controller\AlbumController::class => function ($container) {
                     return new Controller\AlbumController(
                         $container->get(Model\AlbumTable::class)
                     );
                 },
-                Api\AlbumController::class => function($container) {
+                Api\AlbumController::class => function ($container) {
                     return new Api\AlbumController(
                         $container->get(Model\AlbumTable::class)
                     );

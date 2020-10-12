@@ -1,4 +1,5 @@
 <?php
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -62,9 +63,10 @@ class RedirectStrategy extends AbstractStrategy
     public function onError(MvcEvent $event)
     {
         // Do nothing if no error or if response is not HTTP response
-        if (!($event->getParam('exception') instanceof UnauthorizedExceptionInterface)
+        if (
+            ! ($event->getParam('exception') instanceof UnauthorizedExceptionInterface)
             || ($event->getResult() instanceof HttpResponse)
-            || !($event->getResponse() instanceof HttpResponse)
+            || ! ($event->getResponse() instanceof HttpResponse)
         ) {
             return;
         }
@@ -72,7 +74,7 @@ class RedirectStrategy extends AbstractStrategy
         $router = $event->getRouter();
 
         if ($this->authenticationService->hasIdentity()) {
-            if (!$this->options->getRedirectWhenConnected()) {
+            if (! $this->options->getRedirectWhenConnected()) {
                 return;
             }
 

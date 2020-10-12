@@ -47,5 +47,4 @@ class AlbumController extends AbstractRestfulController
     {
         // associated with DELETE request
     }
-
 }

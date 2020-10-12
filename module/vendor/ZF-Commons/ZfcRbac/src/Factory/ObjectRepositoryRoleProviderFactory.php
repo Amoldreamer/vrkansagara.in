@@ -1,4 +1,5 @@
 <?php
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -63,7 +64,7 @@ class ObjectRepositoryRoleProviderFactory implements FactoryInterface
     {
         $objectRepository = null;
 
-        if (!isset($options['role_name_property'])) {
+        if (! isset($options['role_name_property'])) {
             throw new Exception\RuntimeException('The "role_name_property" option is missing');
         }
 

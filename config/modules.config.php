@@ -12,6 +12,8 @@
  * This should be an array of module namespaces used in the application.
  */
 return [
+    'Laminas\Mvc\Console',
+    'Laminas\Navigation',
     'Laminas\ZendFrameworkBridge',
     'Laminas\I18n',
     'Laminas\Session',

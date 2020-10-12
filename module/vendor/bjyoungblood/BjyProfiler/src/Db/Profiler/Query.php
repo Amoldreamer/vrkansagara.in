@@ -11,9 +11,9 @@ class Query
     protected $startTime = null;
     protected $endTime = null;
     protected $parameters = null;
-    protected $callStack = array();
+    protected $callStack = [];
 
-    public function __construct($sql, $queryType, $parameters = null, $stack = array())
+    public function __construct($sql, $queryType, $parameters = null, $stack = [])
     {
         $this->sql = $sql;
         $this->queryType = $queryType;
@@ -40,7 +40,7 @@ class Query
 
     public function getElapsedTime()
     {
-        if (!$this->hasEnded()) {
+        if (! $this->hasEnded()) {
             return false;
         }
         return $this->endTime - $this->startTime;
@@ -89,7 +89,7 @@ class Query
                 break;
         }
 
-        return array(
+        return [
             'type'    => $type,
             'sql'     => $this->sql,
             'start'   => $this->startTime,
@@ -97,6 +97,6 @@ class Query
             'elapsed' => $this->getElapsedTime(),
             'parameters' => $this->parameters,
             'stack'   => $this->callStack
-        );
+        ];
     }
 }

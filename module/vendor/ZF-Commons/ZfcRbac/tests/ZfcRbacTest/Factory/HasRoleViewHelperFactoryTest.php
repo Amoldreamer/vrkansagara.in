@@ -1,4 +1,5 @@
 <?php
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -52,7 +53,7 @@ class HasRoleViewHelperFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $serviceManager = new ServiceManager();
 
-        if (!method_exists($serviceManager, 'build')) {
+        if (! method_exists($serviceManager, 'build')) {
             $this->markTestSkipped('this test is only vor zend-servicemanager v3');
         }
 

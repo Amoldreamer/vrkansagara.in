@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 use Album\Controller\AlbumController;
@@ -17,7 +18,7 @@ class AlbumControllerTest extends AbstractHttpControllerTestCase
 
     use ProphecyTrait;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         // The module configuration should still be applicable for tests.
         // You can override configuration here with test case specific values,
@@ -40,7 +41,6 @@ class AlbumControllerTest extends AbstractHttpControllerTestCase
 //        $services->setAllowOverride(true);
 //        $services->setService('config', $config);
 //        $services->setAllowOverride(false);
-
     }
 
     public function testIndexActionCanBeAccessed()
@@ -93,7 +93,4 @@ class AlbumControllerTest extends AbstractHttpControllerTestCase
         $this->assertResponseStatusCode(302);
         $this->assertRedirectTo('/album');
     }
-
-
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -90,7 +91,7 @@ class InMemoryRoleProvider implements RoleProviderInterface
         }
 
         // If no config, we create a simple role with no permission
-        if (!isset($this->rolesConfig[$roleName])) {
+        if (! isset($this->rolesConfig[$roleName])) {
             $role = new Role($roleName);
             $this->roles[$roleName] = $role;
             return $role;

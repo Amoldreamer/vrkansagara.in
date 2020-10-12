@@ -31,10 +31,10 @@ class ProfilingAdapter extends Adapter
         return $return;
     }
 
-    public function injectProfilingStatementPrototype(array $options = array())
+    public function injectProfilingStatementPrototype(array $options = [])
     {
         $profiler = $this->getProfiler();
-        if (!$profiler instanceof Profiler) {
+        if (! $profiler instanceof Profiler) {
             throw new \InvalidArgumentException('No profiler attached!');
         }
 
@@ -46,7 +46,7 @@ class ProfilingAdapter extends Adapter
                     $statementPrototype = new ZdbDriver\IbmDb2\Statement();
                     break;
                 case 'Laminas\Db\Adapter\Driver\Mysqli\Mysqli':
-                    $defaults = array('buffer_results' => false);
+                    $defaults = ['buffer_results' => false];
                     $options = array_intersect_key(array_merge($defaults, $options), $defaults);
 
                     $statementPrototype = new ZdbDriver\Mysqli\Statement($options['buffer_results']);
@@ -70,4 +70,3 @@ class ProfilingAdapter extends Adapter
         }
     }
 }
-

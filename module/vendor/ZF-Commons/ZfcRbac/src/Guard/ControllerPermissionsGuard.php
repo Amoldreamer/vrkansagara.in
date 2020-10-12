@@ -1,4 +1,5 @@
 <?php
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -105,7 +106,7 @@ class ControllerPermissionsGuard extends AbstractGuard
         $action     = strtolower($routeMatch->getParam('action'));
 
         // If no rules apply, it is considered as granted or not based on the protection policy
-        if (!isset($this->rules[$controller])) {
+        if (! isset($this->rules[$controller])) {
             return $this->protectionPolicy === self::POLICY_ALLOW;
         }
 
@@ -131,7 +132,7 @@ class ControllerPermissionsGuard extends AbstractGuard
         }
 
         foreach ($allowedPermissions as $permission) {
-            if (!$this->authorizationService->isGranted($permission)) {
+            if (! $this->authorizationService->isGranted($permission)) {
                 return false;
             }
         }

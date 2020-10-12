@@ -1,4 +1,5 @@
 <?php
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -127,7 +128,7 @@ class AuthorizationService implements AuthorizationServiceInterface
             return false;
         }
 
-        if (!$this->rbac->isGranted($roles, $permission)) {
+        if (! $this->rbac->isGranted($roles, $permission)) {
             return false;
         }
 

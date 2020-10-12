@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Album\Controller;
-
 
 use Album\Form\AlbumForm;
 use Album\Model\Album;
@@ -41,7 +39,7 @@ class AlbumController extends AbstractActionController
 
             $request = $this->getRequest();
 
-            if (!$request->isPost()) {
+            if (! $request->isPost()) {
                 return ['form' => $form];
             }
 
@@ -49,7 +47,7 @@ class AlbumController extends AbstractActionController
             $form->setInputFilter($album->getInputFilter());
             $form->setData($request->getPost());
 
-            if (!$form->isValid()) {
+            if (! $form->isValid()) {
                 return ['form' => $form];
             }
 
@@ -86,14 +84,14 @@ class AlbumController extends AbstractActionController
             $request = $this->getRequest();
             $viewData = ['id' => $id, 'form' => $form];
 
-            if (!$request->isPost()) {
+            if (! $request->isPost()) {
                 return $viewData;
             }
 
             $form->setInputFilter($album->getInputFilter());
             $form->setData($request->getPost());
 
-            if (!$form->isValid()) {
+            if (! $form->isValid()) {
                 return $viewData;
             }
 
@@ -104,14 +102,13 @@ class AlbumController extends AbstractActionController
         } catch (\Exception $exception) {
             throw $exception;
         }
-
     }
 
     public function deleteAction()
     {
         try {
             $id = (int)$this->params()->fromRoute('id', 0);
-            if (!$id) {
+            if (! $id) {
                 return $this->redirect()->toRoute('album');
             }
 

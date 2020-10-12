@@ -1,4 +1,5 @@
 <?php
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -89,7 +90,7 @@ return [
          *
          * Supported options depend of the role provider, so please refer to the official documentation
          */
-        'role_provider' => [
+         'role_provider' => [
             'ZfcRbac\Role\InMemoryRoleProvider' => [
                 'admin' => [
                     'children'    => ['member'],
@@ -103,23 +104,23 @@ return [
                     'permissions' => ['article.read']
                 ]
             ]
-        ],
+         ],
 
         /**
          * Configure the unauthorized strategy. It is used to render a template whenever a user is unauthorized
          */
-        'unauthorized_strategy' => [
+         'unauthorized_strategy' => [
             /**
              * Set the template name to render
              */
             // 'template' => 'error/403'
-        ],
+         ],
 
         /**
          * Configure the redirect strategy. It is used to redirect the user to another route when a user is
          * unauthorized
          */
-        'redirect_strategy' => [
+         'redirect_strategy' => [
             /**
              * Enable redirection when the user is connected
              */
@@ -146,7 +147,7 @@ return [
              * the previous uri is appended
              */
              'previous_uri_query_key' => 'redirectTo'
-        ],
+         ],
 
         /**
          * Various plugin managers for guards and role providers. Each of them must follow a common

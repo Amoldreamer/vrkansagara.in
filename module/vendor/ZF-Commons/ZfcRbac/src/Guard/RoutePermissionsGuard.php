@@ -1,4 +1,5 @@
 <?php
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -111,7 +112,7 @@ class RoutePermissionsGuard extends AbstractGuard
 
         if (GuardInterface::CONDITION_AND === $condition) {
             foreach ($permissions as $permission) {
-                if (!$this->authorizationService->isGranted($permission)) {
+                if (! $this->authorizationService->isGranted($permission)) {
                     return false;
                 }
             }

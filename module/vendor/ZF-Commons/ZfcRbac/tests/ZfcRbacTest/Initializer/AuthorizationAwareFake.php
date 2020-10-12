@@ -1,4 +1,5 @@
 <?php
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -21,12 +22,11 @@ use ZfcRbac\Service\AuthorizationServiceAwareInterface;
 
 /**
  * A fake implementation for AuthorizationServiceAwareInterface
- * 
+ *
  * @author  Aeneas Rekkas
  * @license MIT License
  */
 class AuthorizationAwareFake implements AuthorizationServiceAwareInterface
 {
-
     use \ZfcRbac\Service\AuthorizationServiceAwareTrait;
 }

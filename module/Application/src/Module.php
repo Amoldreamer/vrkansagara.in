@@ -10,11 +10,24 @@ declare(strict_types=1);
 
 namespace Application;
 
-use Laminas\ModuleManager\ModuleManager;
+use Laminas\Config\Config;
+use Laminas\ModuleManager\Feature\ConfigProviderInterface;
+use Laminas\ModuleManager\Feature\ServiceProviderInterface;
+use Laminas\ModuleManager\Feature\ViewHelperProviderInterface;
 use Laminas\Mvc\MvcEvent;
+use Laminas\View\Helper as ViewHelper;
+use Laminas\View\Model\ViewModel;
+use Laminas\View\HelperPluginManager;
+use Laminas\Console\Console;
 
-class Module
+class Module implements
+    ConfigProviderInterface,
+    ServiceProviderInterface,
+    ViewHelperProviderInterface
 {
+
+    public static $layout;
+
     public function getConfig(): array
     {
         return include __DIR__ . '/../config/module.config.php';
@@ -119,11 +132,11 @@ class Module
      * This method will no longer support.
      *
      * @note Code will be healed even after marked as @deprecated for further reference.
-     * @deprecated
-     *
      * @param $buffer
      *
      * @return null|string|string[] Compressed output
+     * @deprecated
+     *
      */
     public static function compress($buffer)
     {
@@ -220,5 +233,80 @@ class Module
         $script = str_replace(array_keys($replace), $replace, $script);
 
         return trim($script);
+    }
+
+    public static function prepareCompilerView($view, $config, $services)
+    {
+        $renderer = $services->get('BlogRenderer');
+        $view->addRenderingStrategy(function ($e) use ($renderer) {
+            return $renderer;
+        }, 100);
+
+        self::$layout = $layout = new ViewModel();
+        $layout->setTemplate('layout/layout');
+        $view->addResponseStrategy(function ($e) use ($layout, $renderer) {
+            $result = $e->getResult();
+            $layout->setVariable('content', $result);
+            $page = $renderer->render($layout);
+            $e->setResult($page);
+
+            // Cleanup
+            $headTitle = $renderer->plugin('headtitle');
+            $headTitle->getContainer()->exchangeArray([]);
+            $headTitle->setAutoEscape(false)
+                ->setSeparator(' :: ')
+                ->append('phly, boy, phly');
+
+            $headLink = $renderer->plugin('headLink');
+            $headLink->getContainer()->exchangeArray([]);
+            $headLink([
+                'rel' => 'shortcut icon',
+                'type' => 'image/vnd.microsoft.icon',
+                'href' => '/images/Application/favicon.ico',
+            ]);
+
+            $headScript = $renderer->plugin('headScript');
+            $headScript->getContainer()->exchangeArray([]);
+        }, 100);
+    }
+
+    public function getServiceConfig()
+    {
+        return array('initializers' => array(
+            function ($instance, $services) {
+                if (!Console::isConsole()) {
+                    return;
+                }
+                if (!$instance instanceof HelperPluginManager) {
+                    return;
+                }
+                $instance->setFactory('basepath', function ($sm) use ($services) {
+                    $config = $services->get('Config');
+                    $config = $config['view_manager'];
+                    $basePathHelper = new ViewHelper\BasePath;
+                    $basePath = '/';
+                    if (isset($config['base_path'])) {
+                        $basePath = $config['base_path'];
+                    }
+                    $basePathHelper->setBasePath($basePath);
+                    return $basePathHelper;
+                });
+            },
+        ));
+    }
+
+    public function getViewHelperConfig()
+    {
+        return array('factories' => array(
+            'disqus' => function ($services) {
+                $sm     = $services->getServiceLocator();
+                $config = $sm->get('config');
+                if ($config instanceof Config) {
+                    $config = $config->toArray();
+                }
+                $config = $config['disqus'];
+                return new View\Helper\Disqus($config);
+            },
+        ));
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -44,7 +45,7 @@ class AuthorizationServiceDelegatorFactory implements DelegatorFactoryInterface
     {
         $instanceToDecorate = call_user_func($callback);
 
-        if (!$instanceToDecorate instanceof AuthorizationServiceAwareInterface) {
+        if (! $instanceToDecorate instanceof AuthorizationServiceAwareInterface) {
             throw new RuntimeException("The service $name must implement AuthorizationServiceAwareInterface.");
         }
 

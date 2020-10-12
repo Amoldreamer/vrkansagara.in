@@ -1,4 +1,5 @@
 <?php
+
 /*
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -91,7 +92,7 @@ class RbacCollector implements CollectorInterface, Serializable
      */
     public function collect(MvcEvent $mvcEvent)
     {
-        if (!$application = $mvcEvent->getApplication()) {
+        if (! $application = $mvcEvent->getApplication()) {
             return;
         }
 
@@ -151,7 +152,7 @@ class RbacCollector implements CollectorInterface, Serializable
         foreach ($identityRoles as $role) {
             $roleName = $role->getName();
 
-            if (!$role instanceof HierarchicalRoleInterface) {
+            if (! $role instanceof HierarchicalRoleInterface) {
                 $this->collectedRoles[] = $roleName;
             } else {
                 $iteratorIterator = new RecursiveIteratorIterator(
@@ -225,12 +226,12 @@ class RbacCollector implements CollectorInterface, Serializable
     public function unserialize($serialized)
     {
         $collection = unserialize($serialized);
-        if (!is_array($collection)) {
+        if (! is_array($collection)) {
             throw new InvalidArgumentException(__METHOD__ . ": Unserialized data should be an array.");
         }
         $this->collectedGuards = $collection['guards'];
         $this->collectedRoles  = $collection['roles'];
-        $this->collectedPermissions =  $collection['permissions'];
+        $this->collectedPermissions = $collection['permissions'];
         $this->collectedOptions = $collection['options'];
     }
 }

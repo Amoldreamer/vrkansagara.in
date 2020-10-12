@@ -17,14 +17,14 @@ class Register implements FactoryInterface
         //$form->setCaptchaElement($sm->get('zfcuser_captcha_element'));
         $form->setHydrator($serviceManager->get('zfcuser_register_form_hydrator'));
         $form->setInputFilter(new Form\RegisterFilter(
-            new Validator\NoRecordExists(array(
+            new Validator\NoRecordExists([
                 'mapper' => $serviceManager->get('zfcuser_user_mapper'),
                 'key'    => 'email'
-            )),
-            new Validator\NoRecordExists(array(
+            ]),
+            new Validator\NoRecordExists([
                 'mapper' => $serviceManager->get('zfcuser_user_mapper'),
                 'key'    => 'username'
-            )),
+            ]),
             $options
         ));
 

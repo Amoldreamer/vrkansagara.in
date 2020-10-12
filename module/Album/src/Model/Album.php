@@ -1,4 +1,5 @@
 <?php
+
 namespace Album\Model;
 
 use DomainException;
@@ -10,7 +11,7 @@ use Laminas\InputFilter\InputFilterAwareInterface;
 use Laminas\InputFilter\InputFilterInterface;
 use Laminas\Validator\StringLength;
 
-class Album implements  InputFilterAwareInterface
+class Album implements InputFilterAwareInterface
 {
     public $id;
     public $artist;
@@ -20,9 +21,9 @@ class Album implements  InputFilterAwareInterface
 
     public function exchangeArray(array $data)
     {
-        $this->id     = !empty($data['id']) ? $data['id'] : null;
-        $this->artist = !empty($data['artist']) ? $data['artist'] : null;
-        $this->title  = !empty($data['title']) ? $data['title'] : null;
+        $this->id     = ! empty($data['id']) ? $data['id'] : null;
+        $this->artist = ! empty($data['artist']) ? $data['artist'] : null;
+        $this->title  = ! empty($data['title']) ? $data['title'] : null;
     }
 
     public function getArrayCopy()

@@ -8,15 +8,15 @@ class Module implements AutoloaderProviderInterface
 {
     public function getAutoloaderConfig()
     {
-        return array(
-            'Laminas\Loader\ClassMapAutoloader' => array(
+        return [
+            'Laminas\Loader\ClassMapAutoloader' => [
                 __DIR__ . '/autoload_classmap.php',
-            ),
-            'Laminas\Loader\StandardAutoloader' => array(
-                'namespaces' => array(
+            ],
+            'Laminas\Loader\StandardAutoloader' => [
+                'namespaces' => [
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
     }
 }

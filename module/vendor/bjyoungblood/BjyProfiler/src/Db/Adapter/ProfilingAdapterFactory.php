@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by Inditel Meedia OÜ
  * User: Oliver Leisalu
  */
 
 namespace BjyProfiler\Db\Adapter;
-
 
 use BjyProfiler\Db\Profiler\Profiler;
 use Laminas\ServiceManager\FactoryInterface;
@@ -24,11 +24,11 @@ class ProfilingAdapterFactory implements FactoryInterface
         $dbParams = $config['db'];
         $adapter = new ProfilingAdapter($dbParams);
 
-        $adapter->setProfiler(new Profiler);
+        $adapter->setProfiler(new Profiler());
         if (isset($dbParams['options']) && is_array($dbParams['options'])) {
             $options = $dbParams['options'];
         } else {
-            $options = array();
+            $options = [];
         }
         $adapter->injectProfilingStatementPrototype($options);
         return $adapter;
