@@ -27,7 +27,6 @@ return [
     'Laminas\Router',
     'Laminas\Validator',
     'Laminas\DeveloperTools',
-
     'PhlyBlog',
     'Crawler',
     'PhlyContact',
