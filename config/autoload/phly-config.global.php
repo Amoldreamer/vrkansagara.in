@@ -82,14 +82,7 @@ return [
         ],
         // This is the location where you are keeping your post files (the PHP
         // files returning `PhlyBlog\EntryEntity` objects).
-        'posts_path' => 'data/blog',
-
-        // You can provide your own callback to setup renderer and response
-        // strategies. This is useful, for instance, for injecting your
-        // rendered contents into a layout.
-        // The callback will receive a View instance, application configuration
-        // (as an array), and the application's Locator instance.
-        'view_callback' => 'Application\Module::prepareCompilerView',
+        'posts_path' => 'data/blog/',
 
         // Tag cloud generation is possible, but you likely need to capture
         // the rendered cloud to inject elsewhere. You can do this with a

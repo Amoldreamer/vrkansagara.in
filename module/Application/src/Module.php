@@ -283,7 +283,7 @@ class Module implements
             return $renderer;
         }, 100);
 
-        self::$layout = $layout = new ViewModel();
+        $layout = new ViewModel();
         $layout->setTemplate('layout');
         $view->addResponseStrategy(function ($e) use ($layout, $renderer) {
             $result = $e->getResult();
@@ -321,7 +321,7 @@ class Module implements
         }, 100);
     }
 
-    public static function handleTagCloud($cloud, $view, $config, $locator)
+    public static function handleTagCloud($cloud, $view, $config)
     {
         if (! self::$layout) {
             return;

@@ -32,19 +32,8 @@
         "laminas/laminas-dependency-plugin": "^1.0",
         "laminas/laminas-navigation": "^2.9",
         "laminas/laminas-mvc-console": "^1.2",
-        "phly/phly-blog": "dev-refresh",
-        "phly/phly-common": "dev-refresh"
+        "phly/phly-blog": "^2.0"
     },
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/rieschl/PhlyBlog.git"
-        },
-        {
-            "type": "git",
-            "url": "https://github.com/rieschl/PhlyCommon.git"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "Application\\": "module/Application/src/",

@@ -10,14 +10,8 @@ declare(strict_types=1);
 
 namespace Application\Controller;
 
-use Application\Controller\Plugin\AccessPlugin;
-use Laminas\Mail\Message;
-use Laminas\Mail\Transport\Sendmail;
 use Laminas\Mvc\Controller\AbstractActionController;
-use Laminas\Mvc\MvcEvent;
 use Laminas\View\Model\ViewModel;
-use Laminas\Mail\Transport\Smtp as SmtpTransport;
-use Laminas\Mail\Transport\SmtpOptions;
 
 class IndexController extends AbstractActionController
 {

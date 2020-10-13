@@ -14,12 +14,16 @@ use PhlyBlog\Command\CompileCommand;
 use PhlySimplePage\ClearCacheCommand;
 use Symfony\Component\Console\CommandLoader\ContainerCommandLoader;
 use Symfony\Component\Console\Application as ConsoleApplication;
+use Laminas\Cli\ApplicationFactory;
+use Laminas\Cli\ContainerResolver;
 chdir(dirname(__DIR__));
 
 // Composer autoloading
 include __DIR__ . '/vendor/autoload.php';
 $app = require_once __DIR__ . '/bootstrap/app.php';
 
+$applicationFactory = new ApplicationFactory();
+exit($applicationFactory(ContainerResolver::resolve())->run());
 /**
  * Self-called anonymous function that creates its own scope and keep the global namespace clean.
  */

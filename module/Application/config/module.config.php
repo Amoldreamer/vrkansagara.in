@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace Application;
 
 use Application\Controller\Factory\IndexControllerFactory;
+use Application\Factory\PhlyBlogViewFactory;
 use Application\Middleware\XClacksOverheadMiddleware;
 use Laminas\Cache\Storage\Adapter\Filesystem;
 use Laminas\Captcha\Dumb;
@@ -95,6 +96,7 @@ return [
     'service_manager' => [
         'factories' => [
             'PhlySimplePage\PageCache' => PageCacheFactory::class,
+            'PhlyBlog\Console\View' => PhlyBlogViewFactory::class,
         ],
     ],
     'view_manager' => [
