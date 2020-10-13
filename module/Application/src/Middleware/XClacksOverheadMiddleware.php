@@ -13,7 +13,7 @@ class XClacksOverheadMiddleware implements MiddlewareInterface
 {
 
 
-    public function process(ServerRequestInterface $request, DelegateInterface $delegate) : ResponseInterface
+    public function process(ServerRequestInterface $request, DelegateInterface $delegate): ResponseInterface
     {
         $response = $delegate->handle($request);
         return $response->withHeader('X-Clacks-Overhead', 'GNU Terry Pratchett');

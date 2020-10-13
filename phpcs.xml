@@ -34,5 +34,6 @@
     <!-- Paths to check -->
     <file>config</file>
     <file>module</file>
+    <file>data/blog</file>
     <file>public/index.php</file>
 </ruleset>

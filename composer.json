@@ -32,7 +32,8 @@
         "laminas/laminas-dependency-plugin": "^1.0",
         "laminas/laminas-navigation": "^2.9",
         "laminas/laminas-mvc-console": "^1.2",
-        "phly/phly-blog": "^2.0"
+        "phly/phly-blog": "^2.0",
+        "league/commonmark": "^1.5"
     },
     "autoload": {
         "psr-4": {
