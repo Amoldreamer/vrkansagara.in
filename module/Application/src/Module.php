@@ -50,21 +50,12 @@ class Module implements
         $eventManager = $application->getEventManager();
 
         $eventManager->attach(MvcEvent::EVENT_FINISH, function ($e) {
-            $time = microtime(true) - REQUEST_MICROTIME;
-
-            // formatting time to be more friendly
-            if ($time <= 60) {
-                $timeF = number_format($time, 2, ',', '.') . 's'; // conversion to seconds
-            } else {
-                $resto = fmod($time, 60);
-                $minuto = number_format($time / 60, 0);
-                $timeF = sprintf('%dm%02ds', $minuto, $resto); // conversion to minutes and seconds
-            }
-
+           $timeF =getRequestExecutionTime(microtime(true),REQUEST_MICROTIME);
             // Search static content and replace for execution time
             $response = $e->getResponse();
-            $content = $this->compressJscript($response->getContent());
-//            $content = self::compress($content);
+            $content = $response->getContent();
+            $content = $this->compressJscript($content);
+            $content = self::compress($content);
             $response->setContent(str_replace(
                 'Execution time:',
                 'Execution time: ' . $timeF,
@@ -168,7 +159,7 @@ class Module implements
          */
         $regexRemoveWhiteSpace
             = '%(?>[^\S ]\s*| \s{2,})(?=(?:(?:[^<]++| <(?!/?(?:textarea|pre)\b))*+)(?:<(?>textarea|pre)\b|\z))%ix';
-        $new_buffer = preg_replace($regexRemoveWhiteSpace, '', $buffer);
+        $new_buffer = preg_replace($regexRemoveWhiteSpace, ' ', $buffer);
         // We are going to check if processing has working
         if ($new_buffer === null) {
             $new_buffer = $buffer;
