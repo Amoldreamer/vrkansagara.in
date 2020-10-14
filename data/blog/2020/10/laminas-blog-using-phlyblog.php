@@ -17,8 +17,8 @@ $entry->setTitle('Welcome back to the Static blog generation using PhlyBlog');
 $entry->setAuthor($author);
 $entry->setDraft(false);
 $entry->setPublic(true);
-$entry->setCreated(new DateTime('2020:10:13 21:37:00'), new DateTimeZone('Asia/Kolkata'));
-$entry->setUpdated(new DateTime('2020:10:13 21:37:00'), new DateTimeZone('Asia/Kolkata'));
+$entry->setCreated(new DateTime('2020:10:13 21:37:00'));
+$entry->setUpdated(new DateTime('2020:10:13 21:37:00'));
 $entry->setTimezone('Asia/Kolkata');
 $entry->setTags(['hello', 'laminas', 'PhlyBlog']);
 

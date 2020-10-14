@@ -240,10 +240,10 @@ class Module implements
         return [
             'initializers' => [
                 function ($instance, $services) {
-                    if (!Console::isConsole()) {
+                    if (! Console::isConsole()) {
                         return;
                     }
-                    if (!$instance instanceof HelperPluginManager) {
+                    if (! $instance instanceof HelperPluginManager) {
                         return;
                     }
                     $instance->setFactory('basePath', function ($sm) use ($services) {
@@ -308,7 +308,7 @@ class Module implements
 
     public static function handleTagCloud($cloud, $view, $config)
     {
-        if (!self::$layout) {
+        if (! self::$layout) {
             return;
         }
 

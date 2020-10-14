@@ -11,10 +11,13 @@ $url      = $this->plugin('url');
 $entryUrl = $url('phly-blog/entry', array('id' => $entry->getId()));
 $title    = $this->escapeHtml($entry->getTitle());
 ?>
+
+<h2 class="blog-post-title"><a href="<?php echo $entryUrl ?>"><?php echo $title ?></a></h2>
+<p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
+
 <div class="container">
   <article>
     <header>
-      <h2><a href="<?php echo $entryUrl ?>"><?php echo $title ?></a></h2>
       <p class="secondary label">
         Posted on:
         <time pubdate><?php echo $ds($entry->getCreated()) ?></time>

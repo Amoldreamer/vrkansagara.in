@@ -73,7 +73,7 @@ class PhlyBlogViewFactory
 
     private function getRootModel(ContainerInterface $container): ViewModel
     {
-        if (!$container->has('MvcEvent')) {
+        if (! $container->has('MvcEvent')) {
             return new ViewModel();
         }
 

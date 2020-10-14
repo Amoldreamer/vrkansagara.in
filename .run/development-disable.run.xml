@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="development-disable" type="ComposerRunConfigurationType" factoryName="Composer Script" singleton="false">
+    <option name="commandLineParameters" value="" />
+    <option name="pathToComposerJson" value="$PROJECT_DIR$/composer.json" />
+    <option name="script" value="development-disable" />
+    <method v="2" />
+  </configuration>
+</component>
