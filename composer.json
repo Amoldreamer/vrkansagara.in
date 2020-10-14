@@ -98,6 +98,7 @@
         "squizlabs/php_codesniffer": "^3.5",
         "laminas/laminas-code": "^3.4",
         "laminas/laminas-cli": "^0.1.4",
-        "roave/security-advisories": "dev-latest"
+        "roave/security-advisories": "dev-latest",
+        "phly/keep-a-changelog": "^2.10"
     }
 }
