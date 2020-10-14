@@ -12,21 +12,11 @@ namespace Application;
 
 use Application\Controller\Factory\IndexControllerFactory;
 use Application\Factory\PhlyBlogViewFactory;
-use Application\Middleware\XClacksOverheadMiddleware;
-use Laminas\Cache\Storage\Adapter\Filesystem;
-use Laminas\Captcha\Dumb;
-use Laminas\DevelopmentMode\Command;
-use Laminas\Mail\Transport\File;
-use Laminas\Mail\Transport\Smtp;
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
 use Laminas\ServiceManager\Factory\InvokableFactory;
-use Laminas\View\Helper\BasePath;
-use PhlyBlog\Command\CompileCommand;
-use PhlyBlog\CompileController;
 use PhlySimplePage\ClearCacheCommand;
 use PhlySimplePage\PageCacheFactory;
-use PhlySimplePage\PageController;
 
 return [
     'laminas-cli' => [

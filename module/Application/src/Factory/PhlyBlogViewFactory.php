@@ -2,6 +2,8 @@
 
 namespace Application\Factory;
 
+use Application\View\Helper\Disqus;
+use Laminas\Config\Config;
 use Laminas\Http\PhpEnvironment\Request;
 use Laminas\Http\PhpEnvironment\Response;
 use Laminas\View\Model\ViewModel;
@@ -16,7 +18,7 @@ class PhlyBlogViewFactory
     public function __invoke(ContainerInterface $container): View
     {
         $renderer = $this->createRenderer($container);
-        $view     = new View();
+        $view = new View();
         $view->setEventManager($container->get('EventManager'));
         $view->setRequest(new Request());
         $view->setResponse(new Response());
@@ -43,25 +45,35 @@ class PhlyBlogViewFactory
     private function createRenderer(ContainerInterface $container): PhpRenderer
     {
         /** @var \Laminas\View\HelperPluginManager $helpers */
-        $helpers   = $container->get('ViewHelperManager');
-        $renderer  = new PhpRenderer();
+        $helpers = $container->get('ViewHelperManager');
+        $renderer = new PhpRenderer();
         $urlHelper = (new Url())->setRouter($container->get(TreeRouteStack::class));
         $helpers->setService('url', $urlHelper);
+
+        $helpers->setFactory('disqus', function ($services) {
+            $config = $services->get('config');
+            if ($config instanceof Config) {
+                $config = $config->toArray();
+            }
+            $config = $config['disqus'];
+            return new Disqus($config);
+        });
 
         $renderer->setHelperPluginManager($helpers);
         $renderer->setResolver($container->get('ViewResolver'));
 
         $config = $container->get('config');
         $layout = $config['view_manager']['layout'] ?? 'layout/layout';
-        $model  = $this->getRootModel($container);
+        $model = $this->getRootModel($container);
         $model->setTemplate($layout);
         $helpers->get('view_model')->setRoot($model);
 
         return $renderer;
     }
+
     private function getRootModel(ContainerInterface $container): ViewModel
     {
-        if (! $container->has('MvcEvent')) {
+        if (!$container->has('MvcEvent')) {
             return new ViewModel();
         }
 
