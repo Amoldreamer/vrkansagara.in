@@ -41,7 +41,8 @@
             "PhlySimplePage\\": "module/vendor/phly/PhlySimplePage/src",
             "PhlyContact\\": "module/vendor/phly/PhlyContact/src/",
             "Crawler\\": "module/Crawler/src",
-            "ZfcUser\\": "module/vendor/ZF-Commons/ZfcUser/src"
+            "ZfcUser\\": "module/vendor/ZF-Commons/ZfcUser/src",
+            "FileEditor\\": "module/FileEditor/src"
         },
         "files": [
             "module/Application/src/Helpers/app.php"

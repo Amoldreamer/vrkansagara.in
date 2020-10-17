@@ -23,7 +23,7 @@ return [
              * Expects: bool
              * Default: true
              */
-            'enabled' => IS_PRODUCTION ? false : true,
+            'enabled' => ! is_production_mode(),
 
             /**
              * Enables or disables the strict mode. If the strict mode is enabled, any error will throw an exception,
@@ -115,7 +115,7 @@ return [
              * Expects: bool
              * Default: false
              */
-            'enabled' => IS_PRODUCTION ? false : true,
+            'enabled' => ! is_production_mode(),
 
             /**
              * If enabled, every empty collector will be hidden.
@@ -123,7 +123,7 @@ return [
              * Expects: bool
              * Default: false
              */
-            'auto_hide' => IS_PRODUCTION ? false : true,
+            'auto_hide' => ! is_production_mode(),
 
             /**
              * The Toolbar position.

@@ -23,6 +23,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('home-component', require('./components/HomeComponent.vue').default);
 Vue.component('about-component', require('./components/AboutComponent.vue').default);
 Vue.component('nav-component', require('./components/NavComponent.vue').default);
+Vue.component('footer-component', require('./components/FooterComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -1,31 +1,33 @@
 <?php
 $entry = $this->entry;
-$ds    = function($ts) use ($entry) {
-    $tz   = $entry->getTimezone();
+$ds = function ($ts) use ($entry) {
+    $tz = $entry->getTimezone();
     $date = new \DateTime();
     $date->setTimezone(new \DateTimeZone($tz));
     $date->setTimestamp($ts);
     return $date->format('Y-m-d H:i:s');
 };
-$url      = $this->plugin('url');
+$url = $this->plugin('url');
 $entryUrl = $url('phly-blog/entry', array('id' => $entry->getId()));
-$title    = $this->escapeHtml($entry->getTitle());
+$title = $this->escapeHtml($entry->getTitle());
 ?>
 
 <h2 class="blog-post-title"><a href="<?php echo $entryUrl ?>"><?php echo $title ?></a></h2>
-<p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
+<p class="blog-post-meta">
+    <ul>
+  <li>
+    Written on <?php echo $ds($entry->getCreated()) ?>
+
+  </li>
+  <li>
+    Last updated<?php echo $ds($entry->getUpdated()) ?>
+  </li>
+</ul>
+</p>
 
 <div class="container">
   <article>
-    <header>
-      <p class="secondary label">
-        Posted on:
-        <time pubdate><?php echo $ds($entry->getCreated()) ?></time>
-      </p>
-    </header>
-
       <?php echo $entry->getBody() ?>
-
     <footer>
       <p class="text-right">
         <a href="<?php echo $entryUrl ?>">Continue reading...</a>

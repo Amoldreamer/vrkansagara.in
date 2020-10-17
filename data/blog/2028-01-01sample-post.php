@@ -11,21 +11,20 @@ $author->fromArray([
     'email' => 'vrkansagara@gmail.com',
     'url'   => 'https://vrkansagara.in',
 ]);
-
-$entry->setId('hello-world');
-$entry->setTitle('hello world');
+$entry->setId(pathinfo(__FILE__,PATHINFO_FILENAME));
+$entry->setTitle('Sample Post');
 $entry->setAuthor($author);
 $entry->setDraft(false);
-$entry->setPublic(true);
-$entry->setCreated(new DateTime('2015:01:01 23:27:27'));
-$entry->setUpdated(new DateTime('2015:01:01 23:27:27'));
+$entry->setPublic(false);
+$entry->setCreated(new DateTime('2028:01:01 23:27:27'));
+$entry->setUpdated(new DateTime('2028:01:01 23:27:27'));
 $entry->setTimezone('Asia/Kolkata');
 $entry->setTags(['hello', 'world', 'php']);
 
 $body = <<<'EOT'
 Hello World.
 EOT;
-$entry->setBody($body);
+$entry->setBody(convertMarkdownToHtml($body));
 
 $extended = <<<'EOT'
 This is my fist blog post entry.
@@ -36,12 +35,6 @@ This is my fist blog post entry.
   * Item 2b
 EOT;
 
-
-$converter = new \League\CommonMark\CommonMarkConverter([
-    'html_input' => 'strip',
-    'allow_unsafe_links' => false,
-]);
-
-$entry->setExtended($converter->convertToHtml($extended));
+$entry->setExtended(convertMarkdownToHtml($extended));
 
 return $entry;

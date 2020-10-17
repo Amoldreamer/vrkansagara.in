@@ -1,5 +1,8 @@
 <?php
 
+use League\CommonMark\CommonMarkConverter;
+use League\CommonMark\ConverterInterface;
+
 if (!function_exists('env')) {
     function env($key, $default = null)
     {
@@ -41,7 +44,7 @@ if (!function_exists('getRequestExecutionTime')) {
      */
     function getRequestExecutionTime($startMicroTime, $endMicroTime, $format = null): string
     {
-        $time = $startMicroTime - $endMicroTime ;
+        $time = $startMicroTime - $endMicroTime;
 
         // formatting time to be more friendly
         if ($time <= 60) {
@@ -55,3 +58,22 @@ if (!function_exists('getRequestExecutionTime')) {
         return $timeF;
     }
 }
+
+if (!function_exists('convertMarkdownToHtml')) {
+    /**
+     * Convert Markdown text into html
+     * @param $markdownContent
+     * @param array $options Markdown option for CommonMarkConverter object.
+     * @return string Converted HTML string
+     */
+    function convertMarkdownToHtml($markdownContent, array $options = [])
+    {
+        $converter = new CommonMarkConverter([
+            'html_input' => isset($options['html_input']) ? $options['html_input'] : 'strip',
+            'allow_unsafe_links' => isset($options['allow_unsafe_links']) ? $options['allow_unsafe_links'] : false,
+        ]);
+        return $converter->convertToHtml($markdownContent);
+
+    }
+}
+

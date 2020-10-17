@@ -36,6 +36,18 @@ class PhlyBlogViewFactory
             $layout->setVariable('content', $result);
             $page = $renderer->render($layout);
             $e->setResult($page);
+
+            // Cleanup
+            $headTitle = $renderer->plugin('headtitle');
+            $headTitle->getContainer()->exchangeArray(array());
+            $headTitle->append('Vallabh Kansagara');
+
+            $headLink = $renderer->plugin('headLink');
+            $headLink->getContainer()->exchangeArray(array());
+
+            $headScript = $renderer->plugin('headScript');
+            $headScript->getContainer()->exchangeArray(array());
+
         }, 100);
 
 
@@ -73,7 +85,7 @@ class PhlyBlogViewFactory
 
     private function getRootModel(ContainerInterface $container): ViewModel
     {
-        if (! $container->has('MvcEvent')) {
+        if (!$container->has('MvcEvent')) {
             return new ViewModel();
         }
 
