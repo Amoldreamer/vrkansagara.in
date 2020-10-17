@@ -28,7 +28,7 @@ return [
     'Laminas\Validator',
     'Laminas\DeveloperTools',
 
-    'FileEditor',
+//    'FileEditor',
     'PhlyBlog',
     'Crawler',
     'PhlyContact',
