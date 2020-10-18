@@ -36,10 +36,6 @@ $ds    = function ($entry)  {
 <div class="container font-q">
   <div class="row">
     <div class="col-md-8 blog-main">
-      <h3 class="pb-3 mb-4 font-italic border-bottom">
-        From the Firehose
-      </h3>
-
       <?php foreach ($this->entries as $entry): ?>
         <div class="blog-post">
             <?php echo $this->render('blog/entry-short', array('entry' => $entry)); ?>
