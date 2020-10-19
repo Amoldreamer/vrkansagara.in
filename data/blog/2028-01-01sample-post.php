@@ -11,7 +11,7 @@ $author->fromArray([
     'email' => 'vrkansagara@gmail.com',
     'url'   => 'https://vrkansagara.in',
 ]);
-$entry->setId(pathinfo(__FILE__,PATHINFO_FILENAME));
+$entry->setId(pathinfo(__FILE__, PATHINFO_FILENAME));
 $entry->setTitle('Sample Post');
 $entry->setAuthor($author);
 $entry->setDraft(false);

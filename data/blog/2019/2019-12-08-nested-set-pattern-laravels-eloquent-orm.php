@@ -12,7 +12,7 @@ $author->fromArray([
     'url'   => 'https://vrkansagara.in',
 ]);
 
-$entry->setId(pathinfo(__FILE__,PATHINFO_FILENAME));
+$entry->setId(pathinfo(__FILE__, PATHINFO_FILENAME));
 $entry->setTitle('Nested Set pattern for Laravel’s Eloquent ORM.');
 $entry->setAuthor($author);
 $entry->setDraft(false);
@@ -27,7 +27,8 @@ $body = <<<'EOT'
 
 ## The theory behind, a TL;DR version
 
-An easy way to visualize how a nested set works is to think of a parent entity surrounding all of its children, and its parent surrounding it, etc. So this tree:
+An easy way to visualize how a nested set works is to think of a parent entity surrounding all of its children,
+ and its parent surrounding it, etc. So this tree:
 EOT;
 $entry->setBody(convertMarkdownToHtml($body));
 $extended = <<<'EOT'
@@ -66,7 +67,8 @@ The numbers represent the left and right boundaries. The table then might look l
   For more information you can follow links.
 
 *   [https://github.com/etrepat/baum](https://github.com/etrepat/baum)
-*   [https://github.com/rails/acts_as_nested_set/blob/master/lib/active_record/acts/nested_set.rb](https://github.com/rails/acts_as_nested_set/blob/master/lib/active_record/acts/nested_set.rb)
+*   [https://github.com/rails/acts_as_nested_set/blob/master/lib/active_record/acts/nested_set.rb]
+(https://github.com/rails/acts_as_nested_set/blob/master/lib/active_record/acts/nested_set.rb)
 EOT;
 
 

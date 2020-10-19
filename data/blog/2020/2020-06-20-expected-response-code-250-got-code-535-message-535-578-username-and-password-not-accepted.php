@@ -12,8 +12,9 @@ $author->fromArray([
     'url'   => 'https://vrkansagara.in',
 ]);
 
-$entry->setId(pathinfo(__FILE__,PATHINFO_FILENAME));
-$entry->setTitle('Expected response code 250 but got code “535”, with message "535-5.7.8 Username and Password not accepted');
+$entry->setId(pathinfo(__FILE__, PATHINFO_FILENAME));
+$entry->setTitle('Expected response code 250 but got code “535”, with message "535-5.7.8 Username and Password
+ not accepted');
 $entry->setAuthor($author);
 $entry->setDraft(false);
 $entry->setPublic(true);
@@ -23,7 +24,8 @@ $entry->setTimezone('Asia/Kolkata');
 $entry->setTags(['google', 'smtp']);
 
 $body = <<<'EOT'
-I researched on the internet and some answers includes enabling the "access for lesser app" and "unlocking gmail captcha" which sadly didn't work for me until I found the 2-step verification.
+I researched on the internet and some answers includes enabling the "access for lesser app" and "unlocking gmail 
+captcha" which sadly didn't work for me until I found the 2-step verification.
 EOT;
 $entry->setBody(convertMarkdownToHtml($body));
 
@@ -42,7 +44,8 @@ MAIL_USERNAME=talentscoutphil@gmail.com
 
 MAIL_PASSWORD=thepasswordgenerated
 
-Restarted my apache server and boom! It works again. This was my solution. I created this to atleast make other people not go wasting their time researching for a possible answer.
+Restarted my apache server and boom! It works again. This was my solution. I created this to at least make 
+other people not go wasting their time researching for a possible answer.
 EOT;
 
 

@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace AlbumTest\Controller;
+
 use Album\Controller\AlbumController;
 use Album\Model\AlbumTable;
 use Laminas\ServiceManager\ServiceManager;
@@ -13,10 +15,11 @@ use Prophecy\PhpUnit\ProphecyTrait;
 
 class AlbumControllerTest extends AbstractHttpControllerTestCase
 {
+    use ProphecyTrait;
+
     protected $traceError = true;
     protected $albumTable;
 
-    use ProphecyTrait;
 
     protected function setUp(): void
     {

@@ -50,7 +50,7 @@ class Module implements
         $eventManager = $application->getEventManager();
 
         $eventManager->attach(MvcEvent::EVENT_FINISH, function ($e) {
-           $timeF =getRequestExecutionTime(microtime(true),REQUEST_MICROTIME);
+            $timeF = getRequestExecutionTime(microtime(true), REQUEST_MICROTIME);
             // Search static content and replace for execution time
             $response = $e->getResponse();
             $content = $response->getContent();

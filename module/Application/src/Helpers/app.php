@@ -3,14 +3,14 @@
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\ConverterInterface;
 
-if (!function_exists('env')) {
+if (! function_exists('env')) {
     function env($key, $default = null)
     {
         return ($_SERVER[$key]) ? $_SERVER[$key] : $default;
     }
 }
 
-if (!function_exists('is_production_mode')) {
+if (! function_exists('is_production_mode')) {
 
     /**
      *Display all errors when APPLICATION_ENV is development.
@@ -34,7 +34,7 @@ if (!function_exists('is_production_mode')) {
     }
 }
 
-if (!function_exists('getRequestExecutionTime')) {
+if (! function_exists('getRequestExecutionTime')) {
 
     /**
      * @param $startMicroTime
@@ -59,7 +59,7 @@ if (!function_exists('getRequestExecutionTime')) {
     }
 }
 
-if (!function_exists('convertMarkdownToHtml')) {
+if (! function_exists('convertMarkdownToHtml')) {
     /**
      * Convert Markdown text into html
      * @param $markdownContent
@@ -73,7 +73,5 @@ if (!function_exists('convertMarkdownToHtml')) {
             'allow_unsafe_links' => isset($options['allow_unsafe_links']) ? $options['allow_unsafe_links'] : false,
         ]);
         return $converter->convertToHtml($markdownContent);
-
     }
 }
-
