@@ -15,7 +15,7 @@ $author->fromArray([
 $entry->setId(pathinfo(__FILE__, PATHINFO_FILENAME));
 $entry->setTitle('Testing of markdown');
 $entry->setAuthor($author);
-$entry->setDraft(false);
+$entry->setDraft(true);
 $entry->setPublic(true);
 $entry->setCreated(new DateTime('2020:10:17 09:05:00'));
 $entry->setUpdated(new DateTime('2020:10:17 09:05:00'));

@@ -14,7 +14,7 @@ $author->fromArray([
 $entry->setId(pathinfo(__FILE__, PATHINFO_FILENAME));
 $entry->setTitle('Sample Post');
 $entry->setAuthor($author);
-$entry->setDraft(false);
+$entry->setDraft(true);
 $entry->setPublic(false);
 $entry->setCreated(new DateTime('2028:01:01 23:27:27'));
 $entry->setUpdated(new DateTime('2028:01:01 23:27:27'));
