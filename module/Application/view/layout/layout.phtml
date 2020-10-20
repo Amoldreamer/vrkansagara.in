@@ -98,7 +98,8 @@
     </div>
 </footer>
 
-<?= $this->inlineScript()
+<?php
+echo $this->inlineScript()
     ->prependFile($this->basePath('/dist/js/vendor.js'),'text/javascript',['defer'=>true])
     ->prependFile($this->basePath('/dist/js/manifest.js'),'text/javascript',['defer'=>true])
     ->prependFile($this->basePath('/dist/js/app.js'),'text/javascript',['defer'=>true])
