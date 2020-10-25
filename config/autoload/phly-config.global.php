@@ -29,7 +29,7 @@ return [
 
             // For feeds, the final "%s" is the feed type -- "atom" or "rss". In
             // the case of the tag feed, the initial "%s" is the current tag.
-            'feed_filename' => 'public/blog/feed-%s.xml',
+            'feed_filename' => 'public/blog/index-%s.xml',
             'tag_feed_filename_template' => 'public/blog/tag/%s-%s.xml',
 
             // This is the link to a blog post
