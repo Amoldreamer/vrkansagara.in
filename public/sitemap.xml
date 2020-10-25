@@ -14,4 +14,10 @@
     <sitemap>
         <loc>http://vrkansagara.in/blog/author/vrkansagara-rss.xml</loc>
     </sitemap>
+    <sitemap>
+        <loc>http://vrkansagara.in/blog/tag/linux-rss.xml</loc>
+    </sitemap>
+    <sitemap>
+        <loc>http://vrkansagara.in/blog/tag/linux-atom.xml</loc>
+    </sitemap>
 </sitemapindex>
