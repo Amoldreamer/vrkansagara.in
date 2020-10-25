@@ -14,13 +14,15 @@ $this->headTitle()->prepend($this->title);
 
 // Add feed links
 $this->headLink(array(
-    'href' => rtrim(dirname($basePageUrl), '/') . '/' . basename($basePageUrl, '.html') . '-atom.xml',
+//    'href' => rtrim(dirname($basePageUrl), '/') . '/' . basename($basePageUrl, '.html') . '-atom.xml',
+    'href' => $this->url('blog/feed-atom'),
     'type' => 'application/atom+xml',
     'rel' => 'alternate',
     'title' => $this->title . ' Atom Feed',
 ));
 $this->headLink(array(
-    'href' => rtrim(dirname($basePageUrl), '/') . '/' . basename($basePageUrl, '.html') . '-rss.xml',
+//    'href' => rtrim(dirname($basePageUrl), '/') . '/' . basename($basePageUrl, '.html') . '-rss.xml',
+    'href' => $this->url('blog/feed-rss'),
     'type' => 'application/rss+xml',
     'rel' => 'alternate',
     'title' => $this->title . ' RSS Feed',

@@ -110,13 +110,13 @@ return [
                     'feed-atom' => [
                         'type' => Literal::class,
                         'options' => [
-                            'route' => '/feed-atom.xml',
+                            'route' => '/index-atom.xml',
                         ],
                     ],
                     'feed-rss' => [
                         'type' => Literal::class,
                         'options' => [
-                            'route' => '/feed-rss.xml',
+                            'route' => '/index-rss.xml',
                         ],
                     ],
                 ],
