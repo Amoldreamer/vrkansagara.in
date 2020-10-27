@@ -78,7 +78,22 @@ if (!function_exists('convertMarkdownToHtml')) {
 if (!function_exists('myIpAddress')) {
     function myIpAddress(): string
     {
-        return '103.240.169.239';
+        $ipaddress = '127.0.0.1';
+        if (isset($_SERVER['HTTP_CLIENT_IP']))
+            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+        else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED'];
+        else if(isset($_SERVER['REMOTE_ADDR']))
+            $ipaddress = $_SERVER['REMOTE_ADDR'];
+        else
+            $ipaddress = '127.0.0.1';
+        return $ipaddress;
     }
 }
 
@@ -86,8 +101,8 @@ if (!function_exists('getMyInfo')) {
     function getMyInfo($ipAddress = null): array
     {
 // set IP address and API access key
-        $ip = isset($ipAddress) ? $ipAddress : myIpAddress();
-        $access_key = 'd0b4bf830049714624619b750d3099d2';
+        $ip = !empty($ipAddress) ? $ipAddress : myIpAddress();
+        $access_key = env('IPSTACK_API_KEY');
 
 // Initialize CURL:
         $ch = curl_init('http://api.ipstack.com/' . $ip . '?access_key=' . $access_key . '');
