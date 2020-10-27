@@ -3,14 +3,14 @@
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\ConverterInterface;
 
-if (!function_exists('env')) {
+if (! function_exists('env')) {
     function env($key, $default = null)
     {
         return ($_SERVER[$key]) ? $_SERVER[$key] : $default;
     }
 }
 
-if (!function_exists('is_production_mode')) {
+if (! function_exists('is_production_mode')) {
 
     /**
      *Display all errors when APPLICATION_ENV is development.
@@ -34,7 +34,7 @@ if (!function_exists('is_production_mode')) {
     }
 }
 
-if (!function_exists('getRequestExecutionTime')) {
+if (! function_exists('getRequestExecutionTime')) {
 
     /**
      * @param $startMicroTime
@@ -59,7 +59,7 @@ if (!function_exists('getRequestExecutionTime')) {
     }
 }
 
-if (!function_exists('convertMarkdownToHtml')) {
+if (! function_exists('convertMarkdownToHtml')) {
     /**
      * Convert Markdown text into html
      * @param $markdownContent
@@ -75,33 +75,34 @@ if (!function_exists('convertMarkdownToHtml')) {
         return $converter->convertToHtml($markdownContent);
     }
 }
-if (!function_exists('myIpAddress')) {
+if (! function_exists('myIpAddress')) {
     function myIpAddress(): string
     {
         $ipaddress = '127.0.0.1';
-        if (isset($_SERVER['HTTP_CLIENT_IP']))
+        if (isset($_SERVER['HTTP_CLIENT_IP'])) {
             $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
-        else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+        } else if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
             $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        else if(isset($_SERVER['HTTP_X_FORWARDED']))
+        } else if (isset($_SERVER['HTTP_X_FORWARDED'])) {
             $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
-        else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+        } else if (isset($_SERVER['HTTP_FORWARDED_FOR'])) {
             $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
-        else if(isset($_SERVER['HTTP_FORWARDED']))
+        } else if (isset($_SERVER['HTTP_FORWARDED'])) {
             $ipaddress = $_SERVER['HTTP_FORWARDED'];
-        else if(isset($_SERVER['REMOTE_ADDR']))
+        } else if (isset($_SERVER['REMOTE_ADDR'])) {
             $ipaddress = $_SERVER['REMOTE_ADDR'];
-        else
+        } else {
             $ipaddress = '127.0.0.1';
+        }
         return $ipaddress;
     }
 }
 
-if (!function_exists('getMyInfo')) {
+if (! function_exists('getMyInfo')) {
     function getMyInfo($ipAddress = null): array
     {
 // set IP address and API access key
-        $ip = !empty($ipAddress) ? $ipAddress : myIpAddress();
+        $ip = ! empty($ipAddress) ? $ipAddress : myIpAddress();
         $access_key = env('IPSTACK_API_KEY');
 
 // Initialize CURL:
@@ -114,7 +115,7 @@ if (!function_exists('getMyInfo')) {
 
 // Decode JSON response:
         $api_result = json_decode($json, true);
-        return !empty($api_result) ? $api_result : [];
+        return ! empty($api_result) ? $api_result : [];
 
 //         Output the "capital" object inside "location"
 //        echo $api_result['location']['capital'];
