@@ -1,4 +1,20 @@
 <div class="container ">
 
     <h2>Search result...</h2>
+
+  <table>
+      <?php foreach($info as $key => $value): ?>
+      <tr>
+        <td><?=$key?></td>
+
+        <?php if (!is_array($value)) : ?>
+        <td><?=$value?></td>
+        <?php else: ?>
+          <td><pre>
+              <?=print_r($value)?>
+            </pre></td>
+        <?php endif;?>
+      </tr>
+      <?php endforeach;?>
+  </table>
 </div>

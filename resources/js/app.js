@@ -24,6 +24,7 @@ Vue.component('home-component', require('./components/HomeComponent.vue').defaul
 Vue.component('about-component', require('./components/AboutComponent.vue').default);
 Vue.component('nav-component', require('./components/NavComponent.vue').default);
 Vue.component('footer-component', require('./components/FooterComponent.vue').default);
+Vue.component('whoami-component', require('./components/WhoamiComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

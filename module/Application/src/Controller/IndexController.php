@@ -55,6 +55,12 @@ class IndexController extends AbstractActionController
      */
     public function searchAction()
     {
-        return new ViewModel();
+        $searchInfo = $this->getRequest()->getQuery('name');
+        $info = getMyInfo($searchInfo);
+        return new ViewModel(
+            [
+                'info' => $info
+            ]
+        );
     }
 }

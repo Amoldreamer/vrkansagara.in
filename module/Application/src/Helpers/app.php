@@ -3,14 +3,14 @@
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\ConverterInterface;
 
-if (! function_exists('env')) {
+if (!function_exists('env')) {
     function env($key, $default = null)
     {
         return ($_SERVER[$key]) ? $_SERVER[$key] : $default;
     }
 }
 
-if (! function_exists('is_production_mode')) {
+if (!function_exists('is_production_mode')) {
 
     /**
      *Display all errors when APPLICATION_ENV is development.
@@ -34,7 +34,7 @@ if (! function_exists('is_production_mode')) {
     }
 }
 
-if (! function_exists('getRequestExecutionTime')) {
+if (!function_exists('getRequestExecutionTime')) {
 
     /**
      * @param $startMicroTime
@@ -59,7 +59,7 @@ if (! function_exists('getRequestExecutionTime')) {
     }
 }
 
-if (! function_exists('convertMarkdownToHtml')) {
+if (!function_exists('convertMarkdownToHtml')) {
     /**
      * Convert Markdown text into html
      * @param $markdownContent
@@ -73,5 +73,35 @@ if (! function_exists('convertMarkdownToHtml')) {
             'allow_unsafe_links' => isset($options['allow_unsafe_links']) ? $options['allow_unsafe_links'] : false,
         ]);
         return $converter->convertToHtml($markdownContent);
+    }
+}
+if (!function_exists('myIpAddress')) {
+    function myIpAddress(): string
+    {
+        return '103.240.169.239';
+    }
+}
+
+if (!function_exists('getMyInfo')) {
+    function getMyInfo($ipAddress = null): array
+    {
+// set IP address and API access key
+        $ip = isset($ipAddress) ? $ipAddress : myIpAddress();
+        $access_key = 'd0b4bf830049714624619b750d3099d2';
+
+// Initialize CURL:
+        $ch = curl_init('http://api.ipstack.com/' . $ip . '?access_key=' . $access_key . '');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+// Store the data:
+        $json = curl_exec($ch);
+        curl_close($ch);
+
+// Decode JSON response:
+        $api_result = json_decode($json, true);
+        return !empty($api_result) ? $api_result : [];
+
+//         Output the "capital" object inside "location"
+//        echo $api_result['location']['capital'];
     }
 }
