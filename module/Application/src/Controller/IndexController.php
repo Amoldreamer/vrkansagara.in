@@ -56,7 +56,11 @@ class IndexController extends AbstractActionController
     public function searchAction()
     {
         $searchInfo = $this->getRequest()->getQuery('name');
-        $info = getMyInfo($searchInfo);
+        if (filter_var($searchInfo, FILTER_VALIDATE_IP)) {
+            $info = getMyInfo($searchInfo);
+        } else {
+            $info = [];
+        }
         return new ViewModel(
             [
                 'info' => $info
