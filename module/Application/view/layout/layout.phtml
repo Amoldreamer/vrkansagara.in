@@ -18,8 +18,6 @@
     <!-- Le styles -->
     <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath('/assets/images/favicon.ico') ])
         ->prependStylesheet($this->basePath('/dist/css/app.css'))
-//        ->prependStylesheet($this->basePath('assets/css/app.css'))
-//        ->prependStylesheet($this->basePath('assets/css/bootstrap.min.css'))
     ?>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
     <!-- Scripts -->
@@ -103,16 +101,14 @@
                 </div>
                 <div class="col-md-2 pull-right">Execution time:</div>
             </div>
-
-
     </div>
 </footer>
 
 <?php
-echo $this->inlineScript()
-    ->prependFile($this->basePath('/dist/js/vendor.js'),'text/javascript',['defer'=>true])
-    ->prependFile($this->basePath('/dist/js/manifest.js'),'text/javascript',['defer'=>true])
-    ->prependFile($this->basePath('/dist/js/app.js'),'text/javascript',['defer'=>true])
+//echo $this->inlineScript()
+//    ->prependFile($this->basePath('/dist/js/vendor.js'),'text/javascript',['defer'=>true])
+//    ->prependFile($this->basePath('/dist/js/manifest.js'),'text/javascript',['defer'=>true])
+//    ->prependFile($this->basePath('/dist/js/app.js'),'text/javascript',['defer'=>true])
 ?>
 </body>
 </html>
