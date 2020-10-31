@@ -9,10 +9,8 @@
     <projectFiles>
         <directory name="module/Application/src"/>
         <directory name="module/Crawler/src"/>
-        <directory name="module/vendor/ZF-Commons/ZfcUser/src"/>
-        <directory name="module/vendor/phly/PhlyContact/src"/>
-        <directory name="module/vendor/phly/PhlySimplePage/src"/>
         <ignoreFiles>
+            <directory name="module/vendor/"/>
             <directory name="vendor"/>
         </ignoreFiles>
     </projectFiles>
