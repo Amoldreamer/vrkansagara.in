@@ -11,14 +11,14 @@ declare(strict_types=1);
 namespace Application;
 
 use Laminas\Config\Config;
+use Laminas\Console\Console;
+use Laminas\Http\Response as HttpResponse;
 use Laminas\ModuleManager\Feature\ConfigProviderInterface;
 use Laminas\ModuleManager\Feature\ServiceProviderInterface;
-use Laminas\ModuleManager\Feature\ViewHelperProviderInterface;
 use Laminas\Mvc\MvcEvent;
 use Laminas\View\Helper as ViewHelper;
-use Laminas\View\Model\ViewModel;
 use Laminas\View\HelperPluginManager;
-use Laminas\Console\Console;
+use Laminas\View\Model\ViewModel;
 
 class Module implements
     ConfigProviderInterface,
@@ -48,6 +48,7 @@ class Module implements
     {
         $application = $event->getApplication();
         $eventManager = $application->getEventManager();
+        $services = $application->getServiceManager();
 
         $eventManager->attach(MvcEvent::EVENT_FINISH, function ($e) {
             $timeF = getRequestExecutionTime(microtime(true), REQUEST_MICROTIME);
@@ -62,8 +63,29 @@ class Module implements
                 $content
             ));
         }, 100000);
+
+        $eventManager->attach(MvcEvent::EVENT_DISPATCH, [$this, 'rotateXPoweredByHeader']);
+//        $eventManager->attach(
+//            MvcEvent::EVENT_ROUTE,
+//            $services->get('Application\RedirectListener'),
+//            -1
+//        );
     }
 
+    public function getViewHelperConfig()
+    {
+        return ['factories' => [
+            'disqus' => function ($services) {
+                $sm = $services->getServiceLocator();
+                $config = $sm->get('config');
+                if ($config instanceof Config) {
+                    $config = $config->toArray();
+                }
+                $config = $config['disqus'];
+                return new View\Helper\Disqus($config);
+            },
+        ]];
+    }
 
     // Event listener method.
     public function onDispatch(MvcEvent $event)
@@ -297,15 +319,41 @@ class Module implements
         }, 100);
     }
 
-    public static function handleTagCloud($cloud, $view, $config)
+    public static function handleTagCloud($cloud, $config, $container)
     {
-        if (! self::$layout) {
+        if (!self::$layout) {
             return;
         }
 
-        self::$layout->setVariable('footer', sprintf(
+        self::$layout->setVariable('tag_cloud', sprintf(
             "<h4>Tag Cloud</h4>\n<div class=\"cloud\">\n%s</div>\n",
             $cloud->render()
         ));
+    }
+
+    public function rotateXPoweredByHeader(MvcEvent $e)
+    {
+        $response = $e->getResponse();
+        if (!$response instanceof HttpResponse) {
+            return;
+        }
+
+        static $xPoweredByHeaders = [
+            'ASP.NET',
+            'Django',
+            'MVC.NET',
+            'Play Framework',
+            'Rails',
+            'Spring',
+            'Supreme Allied Commander',
+            'Symfony2',
+            'Zend Framework 2',
+            'Laminas Framework',
+        ];
+
+        $value = $xPoweredByHeaders[rand(0, count($xPoweredByHeaders) - 1)];
+
+        $response->getHeaders()
+            ->addHeaderLine('X-Powered-By', $value);
     }
 }

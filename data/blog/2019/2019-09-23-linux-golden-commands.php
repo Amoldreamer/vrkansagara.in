@@ -3,13 +3,13 @@
 use PhlyBlog\AuthorEntity;
 use PhlyBlog\EntryEntity;
 
-$entry  = new EntryEntity();
+$entry = new EntryEntity();
 $author = new AuthorEntity();
 $author->fromArray([
-    'id'    => 'vrkansagara',
-    'name'  => 'Vallabh Kansagara',
+    'id' => 'vrkansagara',
+    'name' => 'Vallabh Kansagara',
     'email' => 'vrkansagara@gmail.com',
-    'url'   => 'https://vrkansagara.in',
+    'url' => 'https://vrkansagara.in',
 ]);
 
 $entry->setId(pathinfo(__FILE__, PATHINFO_FILENAME));
@@ -20,7 +20,9 @@ $entry->setPublic(true);
 $entry->setCreated(new DateTime('2019:09:23 16:33:48'));
 $entry->setUpdated(new DateTime('2019:09:23 16:35:03'));
 $entry->setTimezone('Asia/Kolkata');
-$entry->setTags(['linux']);
+$entry->setTags([
+    'linux'
+]);
 
 $body = <<<'EOT'
 # Kill any process using port

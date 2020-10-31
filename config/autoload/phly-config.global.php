@@ -7,7 +7,7 @@ use Laminas\Router\Http\Literal;
 
 return [
     'disqus' => [
-        'key'         => 'vrkansagara',
+        'key' => 'vrkansagara',
         'development' => 0,
     ],
     'blog' => [
@@ -78,7 +78,8 @@ return [
                         'minFontSize' => 80,
                         'maxFontSize' => 300,
                     ],
-                ]],
+                ]
+            ],
         ],
         // This is the location where you are keeping your post files (the PHP
         // files returning `PhlyBlog\EntryEntity` objects).
@@ -100,7 +101,7 @@ return [
                     'route' => '/blog',
                 ],
                 'may_terminate' => true,
-                'child_routes'  => [
+                'child_routes' => [
                     'index' => [
                         'type' => Literal::class,
                         'options' => [

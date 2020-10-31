@@ -15,6 +15,10 @@ Things to work upon.
 
 -[] Add blog post generater module for easy file edit/add for PhlyBlog
 
+
+Code Quality Tool
+
+-[] Implement [psalm](!https://github.com/vimeo/psalm) 
  
 
 
