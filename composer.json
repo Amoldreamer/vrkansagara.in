@@ -41,8 +41,7 @@
             "PhlySimplePage\\": "module/vendor/phly/PhlySimplePage/src",
             "PhlyContact\\": "module/vendor/phly/PhlyContact/src/",
             "Crawler\\": "module/Crawler/src",
-            "ZfcUser\\": "module/vendor/ZF-Commons/ZfcUser/src",
-            "FileEditor\\": "module/FileEditor/src"
+            "ZfcUser\\": "module/vendor/ZF-Commons/ZfcUser/src"
         },
         "files": [
             "module/Application/src/Helpers/app.php"
@@ -100,6 +99,7 @@
         "laminas/laminas-code": "^3.4",
         "laminas/laminas-cli": "^0.1.4",
         "roave/security-advisories": "dev-latest",
-        "phly/keep-a-changelog": "^2.10"
+        "phly/keep-a-changelog": "^2.10",
+        "vimeo/psalm": "^4.1"
     }
 }

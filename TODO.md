@@ -18,7 +18,7 @@ Things to work upon.
 
 Code Quality Tool
 
--[] Implement [psalm](!https://github.com/vimeo/psalm) 
+-[x] Implement [psalm](!https://github.com/vimeo/psalm) 
  
 
 
