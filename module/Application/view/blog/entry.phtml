@@ -33,6 +33,10 @@
     ?>
   <article>
     <h2><?php echo $title ?></h2>
+    <p><b>Tags</b></p>
+    <p>
+        <?php echo implode(',',$entry->getTags()) ?>
+    </p>
       <?php
       echo $entry->getBody();
       echo $entry->getExtended();

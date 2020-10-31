@@ -22,9 +22,11 @@ $title = $this->escapeHtml($entry->getTitle());
   <li>
     Last updated<?php echo $ds($entry->getUpdated()) ?>
   </li>
+  <li>
+    Tags :  <?php echo implode(',',$entry->getTags()) ?>
+  </li>
 </ul>
 </p>
-
 <div class="container">
   <article>
       <?php echo $entry->getBody() ?>

@@ -16,6 +16,7 @@ use Laminas\Http\Response as HttpResponse;
 use Laminas\ModuleManager\Feature\ConfigProviderInterface;
 use Laminas\ModuleManager\Feature\ServiceProviderInterface;
 use Laminas\Mvc\MvcEvent;
+use Laminas\Mvc\View\Http\ViewManager;
 use Laminas\View\Helper as ViewHelper;
 use Laminas\View\HelperPluginManager;
 use Laminas\View\Model\ViewModel;
@@ -321,14 +322,14 @@ class Module implements
 
     public static function handleTagCloud($cloud, $config, $container)
     {
-        if (!self::$layout) {
-            return;
-        }
 
-        self::$layout->setVariable('tag_cloud', sprintf(
+        $layout = new ViewModel();
+        $layout->setTemplate('layout');
+        $layout->setVariable('tag_cloud', sprintf(
             "<h4>Tag Cloud</h4>\n<div class=\"cloud\">\n%s</div>\n",
             $cloud->render()
         ));
+        return  $layout;
     }
 
     public function rotateXPoweredByHeader(MvcEvent $e)

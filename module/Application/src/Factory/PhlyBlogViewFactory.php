@@ -45,6 +45,13 @@ class PhlyBlogViewFactory
         // Render content within the layout
         $view->addResponseStrategy(function (ViewEvent $event) use ($renderer, $layout) {
             $layout->setVariable('content', $event->getResult());
+
+            $layout->setVariable('tagCloud', sprintf(
+                "<h4>Tag Cloud</h4>\n<div class=\"cloud\">\n%s</div>\n",
+                'TEST'
+            ));
+
+
             $event->setResult($renderer->render($layout));
         }, 100);
 
