@@ -40,8 +40,8 @@ class IndexController extends AbstractActionController
 
         $inspire = [
             [
-             'text' => "Don't repeat yourself",
-             'author' => null
+                'text' => "Don't repeat yourself",
+                'author' => null
             ]
         ];
         $count = count($inspire) - 1;
@@ -56,8 +56,11 @@ class IndexController extends AbstractActionController
     public function searchAction()
     {
         $searchInfo = $this->getRequest()->getQuery('name');
+
         if (filter_var($searchInfo, FILTER_VALIDATE_IP)) {
             $info = getMyInfo($searchInfo);
+        } elseif ($searchInfo == 'tag:php') {
+            return $this->redirect()->toRoute('blog/tag', ['name' => 'php']);
         } else {
             $info = [];
         }
