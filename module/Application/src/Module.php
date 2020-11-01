@@ -15,11 +15,16 @@ use Laminas\Console\Console;
 use Laminas\Http\Response as HttpResponse;
 use Laminas\ModuleManager\Feature\ConfigProviderInterface;
 use Laminas\ModuleManager\Feature\ServiceProviderInterface;
+use Laminas\Mvc\Application;
 use Laminas\Mvc\MvcEvent;
+use Laminas\Mvc\Service\ViewHelperManagerFactory;
 use Laminas\Mvc\View\Http\ViewManager;
 use Laminas\View\Helper as ViewHelper;
 use Laminas\View\HelperPluginManager;
 use Laminas\View\Model\ViewModel;
+use Laminas\View\Renderer\RendererInterface;
+use Laminas\View\View;
+use Laminas\View\ViewEvent;
 
 class Module implements
     ConfigProviderInterface,
@@ -254,10 +259,10 @@ class Module implements
         return [
             'initializers' => [
                 function ($instance, $services) {
-                    if (! Console::isConsole()) {
+                    if (!Console::isConsole()) {
                         return;
                     }
-                    if (! $instance instanceof HelperPluginManager) {
+                    if (!$instance instanceof HelperPluginManager) {
                         return;
                     }
                     $instance->setFactory('basePath', function ($sm) use ($services) {
@@ -323,13 +328,11 @@ class Module implements
     public static function handleTagCloud($cloud, $config, $container)
     {
 
-        $layout = new ViewModel();
-        $layout->setTemplate('layout');
-        $layout->setVariable('tag_cloud', sprintf(
-            "<h4>Tag Cloud</h4>\n<div class=\"cloud\">\n%s</div>\n",
-            $cloud->render()
-        ));
-        return  $layout;
+//        $model->setVariable('tagCloud', sprintf(
+//            "<h4>Tag Cloud</h4>\n<div class=\"mt-5 ml-5\">\n%s</div>\n",
+//            $cloud->render()
+//        ));
+
     }
 
     public function rotateXPoweredByHeader(MvcEvent $e)

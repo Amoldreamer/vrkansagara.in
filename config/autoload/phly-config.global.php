@@ -4,6 +4,7 @@ use Laminas\Cache\Storage\Adapter\Filesystem;
 use Laminas\Captcha\Dumb;
 use Laminas\Mail\Transport\File;
 use Laminas\Router\Http\Literal;
+use Laminas\Router\Http\Segment;
 
 return [
     'disqus' => [
@@ -118,6 +119,15 @@ return [
                         'type' => Literal::class,
                         'options' => [
                             'route' => '/index-rss.xml',
+                        ],
+                    ],
+                    'tag' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/tag[/:name].html',
+                            'constraints' => [
+                                'name' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ]
                         ],
                     ],
                 ],

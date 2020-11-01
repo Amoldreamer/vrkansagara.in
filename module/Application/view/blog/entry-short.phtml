@@ -12,28 +12,26 @@ $entryUrl = $url('phly-blog/entry', array('id' => $entry->getId()));
 $title = $this->escapeHtml($entry->getTitle());
 ?>
 
-<h2 class="blog-post-title"><a href="<?php echo $entryUrl ?>"><?php echo $title ?></a></h2>
-<p class="blog-post-meta">
+<div class="row">
+  <div class="col-md-2">
+    <p>Written on <?php echo $ds($entry->getCreated()) ?> </p>
+    <p>Last updated <?php echo $ds($entry->getUpdated()) ?></p>
     <ul>
-  <li>
-    Written on <?php echo $ds($entry->getCreated()) ?>
-
-  </li>
-  <li>
-    Last updated<?php echo $ds($entry->getUpdated()) ?>
-  </li>
-  <li>
-    Tags :  <?php echo implode(',',$entry->getTags()) ?>
-  </li>
-</ul>
-</p>
-<div class="container">
-  <article>
-      <?php echo $entry->getBody() ?>
-    <footer>
-      <p class="text-right">
-        <a href="<?php echo $entryUrl ?>">Continue reading...</a>
-      </p>
-    </footer>
-  </article>
+        <?php foreach ($entry->getTags() as $k => $tag) : ?>
+          <li class="text-decoration-none"><a href="<?php echo $this->url('blog/tag', ['name' => $tag]) ?>" class="ml-1"><?php echo ucfirst($tag) ?> </a></li>
+        <?php endforeach; ?>
+    </ul>
+  </div>
+  <div class="col-md-10">
+    <h2 class="blog-post-title"><a href="<?php echo $entryUrl ?>"><?php echo ucfirst($title) ?></a></h2>
+    <article>
+        <?php echo $entry->getBody() ?>
+      <footer>
+        <p class="text-right">
+          <a href="<?php echo $entryUrl ?>">Continue reading...</a>
+        </p>
+      </footer>
+    </article>
+  </div>
 </div>
+
