@@ -3,7 +3,7 @@
 
 Things to work upon.
 
--[] Make disqus comments workable using PhlyBlog
+-[x] Make disqus comments workable using PhlyBlog
 
 -[] Make search workable.
 
