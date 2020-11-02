@@ -6,8 +6,8 @@ namespace Application\View\Helper;
 
 use DomainException;
 use InvalidArgumentException;
-use Traversable;
 use Laminas\View\Helper\AbstractHelper;
+use Traversable;
 
 class Disqus extends AbstractHelper
 {
@@ -56,7 +56,7 @@ class Disqus extends AbstractHelper
         if (! preg_match('#^https?://#', $url)) {
             // Ensure Disqus uses appropriate hostname!
             $serverUrl = $this->getView()->plugin('serverUrl');
-            $serverUrl->setHost('framework.zend.com');
+            $serverUrl->setHost('vrkansagara.in');
             $url = $serverUrl($url);
         }
 
@@ -72,12 +72,12 @@ class Disqus extends AbstractHelper
         /* * * DON'T EDIT BELOW THIS LINE * * */
         (function() {
             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+    <a href="https://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
 EOH;
         return $html;
     }
