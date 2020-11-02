@@ -2,8 +2,11 @@
 
 namespace Application\Factory;
 
+use Application\View\Helper\Disqus;
+use Laminas\Config\Config;
 use Laminas\Mvc\Application;
 use Laminas\Mvc\Service\ViewHelperManagerFactory;
+use Laminas\View\HelperPluginManager;
 use Laminas\View\Model\ViewModel;
 use Laminas\View\Renderer\RendererInterface;
 use Laminas\View\View;
@@ -30,9 +33,17 @@ class PhlyBlogViewFactory
         // Reset the helper plugin manager on each iteration
         $view->addRenderingStrategy(function () use ($container, $renderer) {
             if (method_exists($renderer, 'setHelperPluginManager')) {
-                $renderer->setHelperPluginManager(
-                    (new ViewHelperManagerFactory())($container, 'ViewHelperManager')
-                );
+                /** @param HelperPluginManager $helper */
+                $helper = (new ViewHelperManagerFactory())($container, 'ViewHelperManager');
+                $helper->setFactory('disqus', function ($serviceManager) {
+                    $config = $serviceManager->get('config');
+                    if ($config instanceof Config) {
+                        $config = $config->toArray();
+                    }
+                    $config = $config['disqus'];
+                    return new Disqus($config);
+                });
+                $renderer->setHelperPluginManager($helper);
             }
             return $renderer;
         }, 100);
