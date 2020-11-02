@@ -18,7 +18,8 @@ $title = $this->escapeHtml($entry->getTitle());
     <p>Last updated <?php echo $ds($entry->getUpdated()) ?></p>
     <ul>
         <?php foreach ($entry->getTags() as $k => $tag) : ?>
-          <li class="text-decoration-none"><a href="<?php echo $this->url('blog/tag', ['name' => $tag]) ?>" class="ml-1"><?php echo ucfirst($tag) ?> </a></li>
+          <li><a href="<?php echo $this->url('blog/tag', ['name' => $tag]) ?>"
+                 class="ml-1"><?php echo ucfirst($tag) ?> </a></li>
         <?php endforeach; ?>
     </ul>
   </div>
@@ -27,7 +28,7 @@ $title = $this->escapeHtml($entry->getTitle());
     <article>
         <?php echo $entry->getBody() ?>
       <footer>
-        <p class="text-right text-decoration-none">
+        <p class="text-right">
           <a href="<?php echo $entryUrl ?>">Continue reading...</a>
         </p>
       </footer>
