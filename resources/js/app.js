@@ -1,3 +1,24 @@
+import * as Sentry from "@sentry/browser";
+import {Vue as VueIntegration} from "@sentry/integrations";
+import {Integrations} from "@sentry/tracing";
+
+Sentry.init({
+    dsn: MIX_SENTRY_DSN,
+    integrations: [
+        new VueIntegration({
+            Vue,
+            tracing: true,
+        }),
+
+        new Integrations.BrowserTracing(),
+    ],
+
+    // We recommend adjusting this value in production, or using tracesSampler
+    // for finer control
+    tracesSampleRate: 1.0,
+});
+
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -25,6 +46,23 @@ Vue.component('about-component', require('./components/AboutComponent.vue').defa
 Vue.component('nav-component', require('./components/NavComponent.vue').default);
 Vue.component('footer-component', require('./components/FooterComponent.vue').default);
 Vue.component('whoami-component', require('./components/WhoamiComponent.vue').default);
+
+
+Sentry.init({
+    dsn: MIX_SENTRY_DSN,
+    integrations: [
+        new Sentry.Integrations.Vue({
+            Vue,
+            tracing: true,
+        }),
+        new Sentry.Integrations.BrowserTracing(),
+    ],
+
+    // We recommend adjusting this value in production, or using tracesSampler
+    // for finer control
+    tracesSampleRate: 1.0,
+});
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

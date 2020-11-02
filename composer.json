@@ -39,9 +39,7 @@
         "psr-4": {
             "Application\\": "module/Application/src/",
             "PhlySimplePage\\": "module/vendor/phly/PhlySimplePage/src",
-            "PhlyContact\\": "module/vendor/phly/PhlyContact/src/",
-            "Crawler\\": "module/Crawler/src",
-            "ZfcUser\\": "module/vendor/ZF-Commons/ZfcUser/src"
+            "PhlyContact\\": "module/vendor/phly/PhlyContact/src/"
         },
         "files": [
             "module/Application/src/Helpers/app.php"
@@ -49,10 +47,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "ApplicationTest\\": "module/Application/test/",
-            "PhlySimplePageTest\\": "module/vendor/phly/PhlySimplePage/test/",
-            "PhlyContactTest\\": "module/vendor/phly/PhlyContact/test/",
-            "ZfcUser\\": "module/vendor/ZF-Commons/ZfcUser/tests"
+            "ApplicationTest\\": "module/Application/test/"
         }
     },
     "scripts": {

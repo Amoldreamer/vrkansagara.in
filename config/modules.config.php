@@ -30,7 +30,7 @@ return [
 
 //    'FileEditor',
     'PhlyBlog',
-    'Crawler',
+//    'Crawler',
     'PhlyContact',
     'PhlySimplePage',
     'Application',
