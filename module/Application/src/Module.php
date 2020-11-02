@@ -74,17 +74,18 @@ class Module implements
 
     public function getViewHelperConfig()
     {
-        return ['factories' => [
-            'disqus' => function ($services) {
-                $sm = $services->getServiceLocator();
-                $config = $sm->get('config');
-                if ($config instanceof Config) {
-                    $config = $config->toArray();
-                }
-                $config = $config['disqus'];
-                return new View\Helper\Disqus($config);
-            },
-        ]];
+        return [
+            'factories' => [
+                'disqus' => function ($serviceManager) {
+                    $config = $serviceManager->get('config');
+                    if ($config instanceof Config) {
+                        $config = $config->toArray();
+                    }
+                    $config = $config['disqus'];
+                    return new View\Helper\Disqus($config);
+                },
+            ]
+        ];
     }
 
     // Event listener method.
@@ -324,7 +325,6 @@ class Module implements
 //            "<h4>Tag Cloud</h4>\n<div class=\"mt-5 ml-5\">\n%s</div>\n",
 //            $cloud->render()
 //        ));
-
     }
 
     public function rotateXPoweredByHeader(MvcEvent $e)
