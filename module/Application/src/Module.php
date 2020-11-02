@@ -15,16 +15,10 @@ use Laminas\Console\Console;
 use Laminas\Http\Response as HttpResponse;
 use Laminas\ModuleManager\Feature\ConfigProviderInterface;
 use Laminas\ModuleManager\Feature\ServiceProviderInterface;
-use Laminas\Mvc\Application;
 use Laminas\Mvc\MvcEvent;
-use Laminas\Mvc\Service\ViewHelperManagerFactory;
-use Laminas\Mvc\View\Http\ViewManager;
 use Laminas\View\Helper as ViewHelper;
 use Laminas\View\HelperPluginManager;
 use Laminas\View\Model\ViewModel;
-use Laminas\View\Renderer\RendererInterface;
-use Laminas\View\View;
-use Laminas\View\ViewEvent;
 
 class Module implements
     ConfigProviderInterface,
@@ -150,11 +144,9 @@ class Module implements
     /**
      * This method will no longer support.
      *
-     * @note Code will be healed even after marked as @deprecated for further reference.
      * @param $buffer
      *
      * @return null|string|string[] Compressed output
-     * @deprecated
      *
      */
     public static function compress($buffer)
