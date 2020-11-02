@@ -1,9 +1,21 @@
-<?php // twitter ?>
-<div class="social-media">
+<div class="container">
+    <?php // twitter ?>
+  <div class="social-media">
     <a href="https://twitter.com/share" class="twitter-share-button" data-via="vrkansagara">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-</div>
-<?php // reddit ?>
-<div class="social-media">
-    <a href="http://www.reddit.com/submit" onclick="window.location = 'http://www.reddit.com/submit?url=' + encodeURIComponent(window.location); return false"> <img src="http://www.reddit.com/static/spreddit1.gif" alt="submit to reddit" border="0" /> </a>
+    <script>!function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (!d.getElementById(id)) {
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//platform.twitter.com/widgets.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }
+        }(document, "script", "twitter-wjs");</script>
+  </div>
+    <?php // reddit ?>
+  <div class="social-media">
+    <a href="http://www.reddit.com/submit"
+       onclick="window.location = 'http://www.reddit.com/submit?url=' + encodeURIComponent(window.location); return false">
+      <img src="http://www.reddit.com/static/spreddit1.gif" alt="submit to reddit" border="0"/> </a>
+  </div>
 </div>
