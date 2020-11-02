@@ -2,23 +2,6 @@ import * as Sentry from "@sentry/browser";
 import {Vue as VueIntegration} from "@sentry/integrations";
 import {Integrations} from "@sentry/tracing";
 
-Sentry.init({
-    dsn: MIX_SENTRY_DSN,
-    integrations: [
-        new VueIntegration({
-            Vue,
-            tracing: true,
-        }),
-
-        new Integrations.BrowserTracing(),
-    ],
-
-    // We recommend adjusting this value in production, or using tracesSampler
-    // for finer control
-    tracesSampleRate: 1.0,
-});
-
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -49,15 +32,18 @@ Vue.component('whoami-component', require('./components/WhoamiComponent.vue').de
 
 
 Sentry.init({
-    dsn: MIX_SENTRY_DSN,
+    dsn: process.env.MIX_SENTRY_DSN,
     integrations: [
-        new Sentry.Integrations.Vue({
+        new Integrations.BrowserTracing(),
+        new VueIntegration({
             Vue,
             tracing: true,
-        }),
-        new Sentry.Integrations.BrowserTracing(),
+            tracingOptions: {
+                trackComponents: true,
+            },
+            attachProps: true
+        })
     ],
-
     // We recommend adjusting this value in production, or using tracesSampler
     // for finer control
     tracesSampleRate: 1.0,
