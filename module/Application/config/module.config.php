@@ -87,6 +87,7 @@ return [
         'factories' => [
             'PhlySimplePage\PageCache' => PageCacheFactory::class,
             'PhlyBlog\Console\View' => PhlyBlogViewFactory::class,
+//            'PhlyBlog\Console\CompileCommand' => CompileCommandFactory::class,
         ],
     ],
     'view_manager' => [
