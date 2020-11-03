@@ -45,7 +45,7 @@ class Module implements
 //        $sharedEventManager = $eventManager->getSharedManager();
 //        $sharedEventManager->attach(__NAMESPACE__, 'dispatch', [$this, 'onDispatch'], 100);
 
-        $this->sampleEvents($eventManager);
+//        $this->sampleEvents($eventManager);
     }
 
     public function onBootstrap(MvcEvent $event)
@@ -370,8 +370,5 @@ class Module implements
         });
         $params = ['foo' => 'bar', 'baz' => 'bat'];
         $eventManager->trigger('do', null, $params);
-
-
-//        exit(0);
     }
 }
