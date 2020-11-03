@@ -2,6 +2,10 @@
 This is the code behind vrkansagara.in
 
 
+#### Performance Statistics.
+[As on 2020-11-03] (!/data/git-images/2020-11-03 09-21-35.png)
+
+
 ## Built using
 - Laminas MVC Framework (Formaly known as Zend Framework)
 - Bootstrap5
