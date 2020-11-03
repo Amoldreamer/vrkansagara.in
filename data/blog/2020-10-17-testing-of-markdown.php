@@ -11,29 +11,37 @@ $author->fromArray([
     'email' => 'vrkansagara@gmail.com',
     'url'   => 'https://vrkansagara.in',
 ]);
+
 $entry->setId(pathinfo(__FILE__, PATHINFO_FILENAME));
-$entry->setTitle('Sample Post');
+$entry->setTitle(str_replace('-', ' ', ucfirst(substr($entry->getId(), 11))));
 $entry->setAuthor($author);
 $entry->setDraft(true);
-$entry->setPublic(false);
-$entry->setCreated(new DateTime('2028:01:01 23:27:27'));
-$entry->setUpdated(new DateTime('2028:01:01 23:27:27'));
+$entry->setPublic(true);
+$entry->setCreated(new DateTime('2020:10:17 09:05:00'));
+$entry->setUpdated(new DateTime('2020:10:17 09:05:00'));
 $entry->setTimezone('Asia/Kolkata');
-$entry->setTags(['hello', 'world', 'php']);
+$entry->setTags(['test', 'markdown']);
 
 $body = <<<'EOT'
-Hello World.
+### Try _CommonMark_
+
+You can try CommonMark here.  This dingus is powered by
+[commonmark.js](https://github.com/jgm/commonmark.js), the
+**JavaScript reference implementation.**
+
+~~~bash
+    1. item one
+    2. item two
+       - sublist
+       - sublist
+~~~
 EOT;
 $entry->setBody(convertMarkdownToHtml($body));
 
 $extended = <<<'EOT'
-This is my fist blog post entry.
-
-* Item 1
-* Item 2
-  * Item 2a
-  * Item 2b
+#### ------
 EOT;
+
 
 $entry->setExtended(convertMarkdownToHtml($extended));
 

@@ -12,12 +12,12 @@ $author->fromArray([
     'url'   => 'https://vrkansagara.in',
 ]);
 $entry->setId(pathinfo(__FILE__, PATHINFO_FILENAME));
-$entry->setTitle('hello world');
+$entry->setTitle(str_replace('-', ' ', ucfirst(substr($entry->getId(), 11))));
 $entry->setAuthor($author);
-$entry->setDraft(false);
-$entry->setPublic(true);
-$entry->setCreated(new DateTime('2015:01:01 23:27:27'));
-$entry->setUpdated(new DateTime('2015:01:01 23:27:27'));
+$entry->setDraft(true);
+$entry->setPublic(false);
+$entry->setCreated(new DateTime('2028:01:01 23:27:27'));
+$entry->setUpdated(new DateTime('2028:01:01 23:27:27'));
 $entry->setTimezone('Asia/Kolkata');
 $entry->setTags(['hello', 'world', 'php']);
 

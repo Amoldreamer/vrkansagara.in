@@ -13,8 +13,7 @@ $author->fromArray([
 ]);
 
 $entry->setId(pathinfo(__FILE__, PATHINFO_FILENAME));
-$entry->setTitle('Expected response code 250 but got code “535”, with message "535-5.7.8 Username and Password
- not accepted');
+$entry->setTitle(str_replace('-', ' ', ucfirst(substr($entry->getId(), 11))));
 $entry->setAuthor($author);
 $entry->setDraft(false);
 $entry->setPublic(true);

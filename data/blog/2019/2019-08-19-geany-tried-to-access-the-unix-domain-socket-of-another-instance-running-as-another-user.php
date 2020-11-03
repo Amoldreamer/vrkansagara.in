@@ -13,7 +13,7 @@ $author->fromArray([
 ]);
 
 $entry->setId(pathinfo(__FILE__, PATHINFO_FILENAME));
-$entry->setTitle('Geany tried to access the unix domain socket of another instance running as another user');
+$entry->setTitle(str_replace('-', ' ', ucfirst(substr($entry->getId(), 11))));
 $entry->setAuthor($author);
 $entry->setDraft(false);
 $entry->setPublic(true);

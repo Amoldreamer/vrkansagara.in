@@ -12,9 +12,12 @@ namespace Application;
 
 use Laminas\Config\Config;
 use Laminas\Console\Console;
+use Laminas\EventManager\Event;
+use Laminas\EventManager\EventManager;
 use Laminas\Http\Response as HttpResponse;
 use Laminas\ModuleManager\Feature\ConfigProviderInterface;
 use Laminas\ModuleManager\Feature\ServiceProviderInterface;
+use Laminas\ModuleManager\ModuleManager;
 use Laminas\Mvc\MvcEvent;
 use Laminas\View\Helper as ViewHelper;
 use Laminas\View\HelperPluginManager;
@@ -35,14 +38,15 @@ class Module implements
 
     // The "init" method is called on application start-up and
     // allows to register an event listener.
-//    public function init(ModuleManager $manager)
-//    {
-//        // Get event manager.
-////        $eventManager = $manager->getEventManager();
-//
-////        $sharedEventManager = $eventManager->getSharedManager();
-////        $sharedEventManager->attach(__NAMESPACE__, 'dispatch', [$this, 'onDispatch'], 100);
-//    }
+    public function init(ModuleManager $manager)
+    {
+//         Get event manager.
+        $eventManager = $manager->getEventManager();
+//        $sharedEventManager = $eventManager->getSharedManager();
+//        $sharedEventManager->attach(__NAMESPACE__, 'dispatch', [$this, 'onDispatch'], 100);
+
+        $this->sampleEvents($eventManager);
+    }
 
     public function onBootstrap(MvcEvent $event)
     {
@@ -122,11 +126,7 @@ class Module implements
             $whiteSpaceRules
         );
         $buffer = $this->compressJscript($buffer);
-        $buffer = preg_replace(
-            array_keys($allRules),
-            array_values($allRules),
-            $buffer
-        );
+        $buffer = preg_replace(array_keys($allRules), array_values($allRules), $buffer);
 
         // Get controller to which the HTTP request was dispatched.
 //        $controller = $event->getTarget();
@@ -351,5 +351,27 @@ class Module implements
 
         $response->getHeaders()
             ->addHeaderLine('X-Powered-By', $value);
+    }
+
+    public function sampleEvents(EventManager $eventManager)
+    {
+        $eventManager->attach('do', function (Event $event) {
+            $eventName = $event->getName();
+            $params = $event->getParams();
+            $target = $event->getTarget();
+            $isPropaagation = $event->propagationIsStopped();
+            printf(
+                'Handled event "%s", with parameters %s, And Targets is %s, propagation status %s',
+                $eventName,
+                json_encode($params),
+                $target,
+                $isPropaagation
+            );
+        });
+        $params = ['foo' => 'bar', 'baz' => 'bat'];
+        $eventManager->trigger('do', null, $params);
+
+
+//        exit(0);
     }
 }

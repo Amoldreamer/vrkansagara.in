@@ -11,32 +11,30 @@ $author->fromArray([
     'email' => 'vrkansagara@gmail.com',
     'url'   => 'https://vrkansagara.in',
 ]);
-
 $entry->setId(pathinfo(__FILE__, PATHINFO_FILENAME));
-$entry->setTitle('how to resolve npm permission issue ?');
+$entry->setTitle(str_replace('-', ' ', ucfirst(substr($entry->getId(), 11))));
 $entry->setAuthor($author);
 $entry->setDraft(false);
 $entry->setPublic(true);
-$entry->setCreated(new DateTime('2020:11:01 23:59:00'));
-$entry->setUpdated(new DateTime('2020:11:01 23:59:00'));
+$entry->setCreated(new DateTime('2015:01:01 23:27:27'));
+$entry->setUpdated(new DateTime('2015:01:01 23:27:27'));
 $entry->setTimezone('Asia/Kolkata');
-$entry->setTags(['npm', 'linux']);
+$entry->setTags(['hello', 'world', 'php']);
 
 $body = <<<'EOT'
-This is general solutions for all kind of `npm ` permission issue.
-
-~~~bash
-sudo chown -R $USER ~/.npm
-sudo chown -R  $USER /usr/bin/npm
-sudo chown -R  $USER /usr/lib/node_modules/
-chmod -R a+x node_modules
-~~~
-
+Hello World.
 EOT;
 $entry->setBody(convertMarkdownToHtml($body));
 
-//$extended = <<<'EOT'
-//EOT;
-//$entry->setExtended(convertMarkdownToHtml($extended));
+$extended = <<<'EOT'
+This is my fist blog post entry.
+
+* Item 1
+* Item 2
+  * Item 2a
+  * Item 2b
+EOT;
+
+$entry->setExtended(convertMarkdownToHtml($extended));
 
 return $entry;

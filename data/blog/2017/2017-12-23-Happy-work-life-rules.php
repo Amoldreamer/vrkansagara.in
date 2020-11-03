@@ -12,7 +12,7 @@ $author->fromArray([
     'url'   => 'https://vrkansagara.in',
 ]);
 $entry->setId(pathinfo(__FILE__, PATHINFO_FILENAME));
-$entry->setTitle('Happy work life rules');
+$entry->setTitle(str_replace('-', ' ', ucfirst(substr($entry->getId(), 11))));
 $entry->setAuthor($author);
 $entry->setDraft(false);
 $entry->setPublic(true);

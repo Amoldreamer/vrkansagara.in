@@ -15,6 +15,10 @@ Things to work upon.
 
 -[] Add blog post generater module for easy file edit/add for PhlyBlog
 
+-[] Fix canonical url for static blog pages.
+    
+        <link rel="canonical" href="/">
+-[] Compress html content for Static blog pages.
 
 Code Quality Tool
 

@@ -17,27 +17,26 @@ $entry->setTitle(str_replace('-', ' ', ucfirst(substr($entry->getId(), 11))));
 $entry->setAuthor($author);
 $entry->setDraft(false);
 $entry->setPublic(true);
-$entry->setCreated(new DateTime('2020:12:17 23:59:00'));
-$entry->setUpdated(new DateTime('2020:12:17 23:59:00'));
+$entry->setCreated(new DateTime('2020:11:01 23:59:00'));
+$entry->setUpdated(new DateTime('2020:11:01 23:59:00'));
 $entry->setTimezone('Asia/Kolkata');
-$entry->setTags(['network', 'linux', 'shell']);
+$entry->setTags(['npm', 'linux']);
 
 $body = <<<'EOT'
-Look up which ip is used by which host
+This is general solutions for all kind of `npm ` permission issue.
 
 ~~~bash
-nmap -sn 192.168.1.0/24
+sudo chown -R $USER ~/.npm
+sudo chown -R  $USER /usr/bin/npm
+sudo chown -R  $USER /usr/lib/node_modules/
+chmod -R a+x node_modules
 ~~~
+
 EOT;
 $entry->setBody(convertMarkdownToHtml($body));
 
-$extended = <<<'EOT'
-
-
-
-EOT;
-
-
-$entry->setExtended(convertMarkdownToHtml($extended));
+//$extended = <<<'EOT'
+//EOT;
+//$entry->setExtended(convertMarkdownToHtml($extended));
 
 return $entry;

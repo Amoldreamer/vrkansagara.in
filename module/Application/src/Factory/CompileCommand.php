@@ -64,8 +64,7 @@ class CompileCommand extends Command
         array $config,
         ContainerInterface $container,
         View $view
-    )
-    {
+    ) {
         $this->config = $config;
         $this->container = $container;
         $this->view = $view;
@@ -139,7 +138,7 @@ class CompileCommand extends Command
 
         foreach (self::COMMAND_FLAGS as $flag) {
             $flags[$flag] = $input->getOption($flag);
-            $all = $all && !$flags[$flag];
+            $all = $all && ! $flags[$flag];
         }
 
         $flags['all'] = $all;
@@ -216,8 +215,8 @@ class CompileCommand extends Command
     private function generateTagCloud(SymfonyStyle $io, Tags $tags): void
     {
         if (
-            !isset($this->config['cloud_callback'])
-            || !is_callable($this->config['cloud_callback'])
+            ! isset($this->config['cloud_callback'])
+            || ! is_callable($this->config['cloud_callback'])
         ) {
             return;
         }
