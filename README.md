@@ -3,7 +3,8 @@ This is the code behind vrkansagara.in
 
 
 #### Performance Statistics.
-![screenshots](screenshots/2020-11-03 09-21-35.png)
+![image](https://github.com/vrkansagara/vrkansagara.in/blob/master/screenshots/2020-11-03%2009-21-35.png)
+
 
 
 ## Built using
