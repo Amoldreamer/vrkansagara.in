@@ -16,6 +16,17 @@ use Laminas\View\Model\ViewModel;
 class IndexController extends AbstractActionController
 {
 
+    private $config;
+
+    public function __construct($applicationConfig)
+    {
+        $this->config = $applicationConfig;
+    }
+
+
+
+
+
     /**
      * We override the parent class' onDispatch() method to
      * set an alternative layout for all actions in this controller.

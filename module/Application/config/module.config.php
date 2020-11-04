@@ -11,6 +11,10 @@ declare(strict_types=1);
 namespace Application;
 
 use Application\Controller\Factory\IndexControllerFactory;
+use Application\Controller\IndexController;
+use Application\Delegators\IndexControllerDelegatorFactory;
+use Application\Delegators\PhlyCompilerDelegatorFactory;
+use Application\Factory\CompileCommandFactory;
 use Application\Factory\PhlyBlogViewFactory;
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
@@ -36,7 +40,7 @@ return [
                         'action' => 'index',
 //                        'controller' => PageController::class,
 //                        'template' => 'application/index/index',
-                        'do_not_cache' => ! is_production_mode(),
+                        'do_not_cache' => !is_production_mode(),
 //                        'middleware' => XClacksOverheadMiddleware::class,
                     ],
                 ],
@@ -53,12 +57,12 @@ return [
                 'may_terminate' => true,
                 'child_routes' => [
                     'default' => [
-                        'type'    => Segment::class,
+                        'type' => Segment::class,
                         'options' => [
-                            'route'    => '/[:controller[/:action]]',
+                            'route' => '/[:controller[/:action]]',
                             'constraints' => [
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                             ],
                             'defaults' => [
                             ],
@@ -80,14 +84,23 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class => IndexControllerFactory::class,
+            IndexController::class => IndexControllerFactory::class,
+        ],
+        'delegators' => [
+            IndexController::class => [
+                IndexControllerDelegatorFactory::class,
+            ],
         ],
     ],
     'service_manager' => [
         'factories' => [
             'PhlySimplePage\PageCache' => PageCacheFactory::class,
             'PhlyBlog\Console\View' => PhlyBlogViewFactory::class,
-//            'PhlyBlog\Console\CompileCommand' => CompileCommandFactory::class,
+            'PhlyBlog\Console\CompileCommand' => CompileCommandFactory::class,
+
+        ],
+        'delegators' => [
+            'PhlyBlog\Console\CompileCommand' => [PhlyCompilerDelegatorFactory::class],
         ],
     ],
     'view_manager' => [
@@ -105,6 +118,7 @@ return [
             'error/index' => __DIR__ . '/../view/error/index.phtml',
             'phly-contact/contact/index' => __DIR__ . '/../view/phly-contact/contact/index.phtml',
             'phly-contact/contact/thank-you' => __DIR__ . '/../view/phly-contact/contact/thank-you.phtml',
+            'application/delegators/index-controller-delegator/index' => __DIR__ . '/../view/application/index/index.phtml',
         ],
         'template_path_stack' => [
             __DIR__ . '/../view',
