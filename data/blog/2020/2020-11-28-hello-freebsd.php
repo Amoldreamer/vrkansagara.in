@@ -16,7 +16,7 @@ $entry->setId(pathinfo(__FILE__, PATHINFO_FILENAME));
 $entry->setTitle(str_replace('-', ' ', ucfirst(substr($entry->getId(), 11))));
 $entry->setAuthor($author);
 $entry->setDraft(false);
-$entry->setPublic(true);
+$entry->setPublic(false);
 $entry->setCreated(new DateTime('2020:11:28 07:46:00'));
 $entry->setUpdated(new DateTime('2020:11:28 07:46:00'));
 $entry->setTimezone('Asia/Kolkata');

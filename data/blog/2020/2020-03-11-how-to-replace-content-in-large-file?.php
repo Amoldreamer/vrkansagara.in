@@ -18,9 +18,9 @@ $entry->setAuthor($author);
 $entry->setDraft(false);
 $entry->setPublic(true);
 $entry->setCreated(new DateTime('2020:03:01 23:59:00'));
-$entry->setUpdated(new DateTime('2020:03:01 23:59:00'));
+$entry->setUpdated(new DateTime('2020:11:06 09:16:00'));
 $entry->setTimezone('Asia/Kolkata');
-$entry->setTags(['mysql', 'files','large','vim']);
+$entry->setTags(['mysql', 'file', 'vim', 'linux']);
 
 $body = <<<'EOT'
 Many time developer just need to replace a bit of text inside the large file like  `*.sql` or `*.sqlite`  
