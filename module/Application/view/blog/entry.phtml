@@ -60,20 +60,10 @@ $this->headLink(array(
 
         </footer>
       </article>
+      <div class="mt-5">
+          <?php echo $this->disqus($entry->getId(), $url, $title) ?>
+      </div>
     </div>
   </div>
 </div>
 <?php // echo $this->render('blog/social-media') ?>
-
-
-<div class="container">
-    <?php echo $this->disqus($entry->getId(), $url, $title) ?>
-</div>
-
-
-
-
-
-
-
-
