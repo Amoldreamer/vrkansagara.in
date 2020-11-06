@@ -18,15 +18,14 @@ $entry->setAuthor($author);
 $entry->setDraft(false);
 $entry->setPublic(true);
 $entry->setCreated(new DateTime('2019:09:23 16:33:48'));
-$entry->setUpdated(new DateTime('2019:09:23 16:35:03'));
+$entry->setUpdated(new DateTime('2019:11:06 09:11:00'));
 $entry->setTimezone('Asia/Kolkata');
 $entry->setTags([
     'linux'
 ]);
 
 $body = <<<'EOT'
-# Kill any process using port
-
+## Kill any process using port
 
 ### `USE THIS COMMAND ON YOUR OWN RISK !`
 
@@ -44,12 +43,16 @@ Above command will check that process is running than kill by process id.
 EOT;
 $entry->setBody(convertMarkdownToHtml($body));
 $extended = <<<'EOT'
-### sh: 1: cross-env: Permission denied
-###  npm ERR! code ELIFECYCLE
+
+### Kill any process by it's process name
+her I am killing htop process using bellow command.
+~~~bash
+sudo pkill htop 
+~~~~
+
+### sh: 1: cross-env: Permission denied npm ERR! code ELIFECYCLE
 
 ~~~bash
-
-
 sudo chown -R $USER /usr/local
 
 chmod -R a+x node_modules
