@@ -13,6 +13,11 @@ grumphp:
       no_check_publish: false
       with_dependencies: false
       strict: false
+    git_blacklist:
+      keywords:
+        - "<<<<<<< HEAD"
+        - ">>>>>>> origin"
+        - "======="
     phpcs:
       standard: ./phpcs.xml
       ignore_patterns: []
