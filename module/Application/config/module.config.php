@@ -13,9 +13,6 @@ namespace Application;
 use Application\Controller\Factory\IndexControllerFactory;
 use Application\Controller\IndexController;
 use Application\Delegators\IndexControllerDelegatorFactory;
-use Application\Delegators\PhlyCompilerDelegatorFactory;
-use Application\Factory\CompileCommandFactory;
-use Application\Factory\PhlyBlogViewFactory;
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
 use Laminas\ServiceManager\Factory\InvokableFactory;
@@ -95,12 +92,6 @@ return [
     'service_manager' => [
         'factories' => [
             'PhlySimplePage\PageCache' => PageCacheFactory::class,
-            'PhlyBlog\Console\View' => PhlyBlogViewFactory::class,
-            'PhlyBlog\Console\CompileCommand' => CompileCommandFactory::class,
-
-        ],
-        'delegators' => [
-            'PhlyBlog\Console\CompileCommand' => [PhlyCompilerDelegatorFactory::class],
         ],
     ],
     'view_manager' => [

@@ -1,10 +1,11 @@
 <?php
 
-namespace Application\Factory;
+namespace Blog\Factory;
 
 use Laminas\View\View;
-use Psr\Container\ContainerInterface;
+use PhlyBlog\Compiler;
 use PhlyBlog\Console\CompileCommand;
+use Psr\Container\ContainerInterface;
 
 class CompileCommandFactory
 {
@@ -20,7 +21,8 @@ class CompileCommandFactory
         return new CompileCommand(
             $config,
             $container,
-            $container->get(View::class)
+            $container->get(View::class),
+            $container->get(Compiler::class)
         );
     }
 }

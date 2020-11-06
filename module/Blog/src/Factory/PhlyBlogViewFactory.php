@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Factory;
+namespace Blog\Factory;
 
 use Application\View\Helper\Disqus;
 use Laminas\Config\Config;

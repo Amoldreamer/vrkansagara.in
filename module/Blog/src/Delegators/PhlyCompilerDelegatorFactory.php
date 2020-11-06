@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Application\Delegators;
+namespace Blog\Delegators;
 
 use Interop\Container\ContainerInterface;
-use Laminas\EventManager\Event;
 use Laminas\ServiceManager\Factory\DelegatorFactoryInterface;
 
 class PhlyCompilerDelegatorFactory implements DelegatorFactoryInterface
@@ -16,7 +15,7 @@ class PhlyCompilerDelegatorFactory implements DelegatorFactoryInterface
         $compiler = $factory();
         $eventManager = $compiler->getEventManager();
         $eventManager->attach('PhlyBlog\Compiler', function () {
-            echo '<pre>'; var_dump('Here......'); echo __FILE__; echo __LINE__; exit(0);
+            echo 'Here......';
         });
         return $compiler;
     }

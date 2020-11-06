@@ -33,5 +33,6 @@ return [
 //    'Crawler',
     'PhlyContact',
     'PhlySimplePage',
+    'Blog',
     'Application',
 ];

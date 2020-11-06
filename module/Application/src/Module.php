@@ -11,7 +11,6 @@ declare(strict_types=1);
 namespace Application;
 
 use Laminas\Config\Config;
-use Laminas\Console\Console;
 use Laminas\EventManager\Event;
 use Laminas\EventManager\EventManager;
 use Laminas\Http\Response as HttpResponse;
@@ -19,9 +18,6 @@ use Laminas\ModuleManager\Feature\ConfigProviderInterface;
 use Laminas\ModuleManager\Feature\ServiceProviderInterface;
 use Laminas\ModuleManager\ModuleManager;
 use Laminas\Mvc\MvcEvent;
-use Laminas\View\Helper as ViewHelper;
-use Laminas\View\HelperPluginManager;
-use Laminas\View\Model\ViewModel;
 
 class Module implements
     ConfigProviderInterface,
@@ -251,81 +247,9 @@ class Module implements
     {
         return [
             'initializers' => [
-                function ($instance, $services) {
-                    if (!Console::isConsole()) {
-                        return;
-                    }
-                    if (!$instance instanceof HelperPluginManager) {
-                        return;
-                    }
-                    $instance->setFactory('basePath', function ($sm) use ($services) {
-                        $config = $services->get('Config');
-                        $config = $config['view_manager'];
-                        $basePathHelper = new ViewHelper\BasePath();
-                        $basePath = '/';
-                        if (isset($config['base_path'])) {
-                            $basePath = $config['base_path'];
-                        }
-                        $basePathHelper->setBasePath($basePath);
-                        return $basePathHelper;
-                    });
-                },
             ]];
     }
 
-    public static function prepareCompilerView($view, $config, $services)
-    {
-        $renderer = $services->get('BlogRenderer');
-        $view->addRenderingStrategy(function ($e) use ($renderer) {
-            return $renderer;
-        }, 100);
-
-        $layout = new ViewModel();
-        $layout->setTemplate('layout');
-        $view->addResponseStrategy(function ($e) use ($layout, $renderer) {
-            $result = $e->getResult();
-            $layout->setVariable('content', $result);
-            $page = $renderer->render($layout);
-            $e->setResult($page);
-
-            // Cleanup
-            $layout->setVariable('single', false);
-
-            $headTitle = $renderer->plugin('headtitle');
-            $headTitle->getContainer()->exchangeArray([]);
-            $headTitle->append('VRKANSAGARA');
-            $headTitle->setSeparator(' - ');
-            $headTitle->setAutoEscape(false);
-
-            $headLink = $renderer->plugin('headLink');
-            $headLink->getContainer()->exchangeArray([]);
-            $headLink([
-                'rel' => 'shortcut icon',
-                'type' => 'image/vnd.microsoft.icon',
-                'href' => '/images/Application/favicon.ico',
-            ]);
-
-            $headScript = $renderer->plugin('headScript');
-            $headScript->getContainer()->exchangeArray([]);
-
-            $headMeta = $renderer->plugin('headMeta');
-            $headMeta->getContainer()->exchangeArray([]);
-
-            foreach (['sidebar', 'scripts'] as $name) {
-                $placeholder = $renderer->placeholder($name);
-                $placeholder->exchangeArray([]);
-            }
-        }, 100);
-    }
-
-    public static function handleTagCloud($cloud, $config, $container)
-    {
-
-//        $model->setVariable('tagCloud', sprintf(
-//            "<h4>Tag Cloud</h4>\n<div class=\"mt-5 ml-5\">\n%s</div>\n",
-//            $cloud->render()
-//        ));
-    }
 
     public function rotateXPoweredByHeader(MvcEvent $e)
     {

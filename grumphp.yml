@@ -13,22 +13,6 @@ grumphp:
       no_check_publish: false
       with_dependencies: false
       strict: false
-    git_blacklist:
-      keywords:
-        - "<<<<<<< HEAD"
-        - ">>>>>>> origin/"
-        - "======="
-        - "dd()"
-        - "exit;"
-        - "die("
-        - "var_dump("
-        - "print_r("
-        - "exit;"
-        - "console.log"
-        - "dd($"
-        - "exit("
-        - "exit();"
-        - "debugger"
     phpcs:
       standard: ./phpcs.xml
       ignore_patterns: []

@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Factory;
+namespace Blog\Factory;
 
 use Laminas\View\View;
 use PhlyBlog\Compiler;

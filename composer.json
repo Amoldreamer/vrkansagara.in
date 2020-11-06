@@ -39,7 +39,8 @@
         "psr-4": {
             "Application\\": "module/Application/src/",
             "PhlySimplePage\\": "module/vendor/phly/PhlySimplePage/src",
-            "PhlyContact\\": "module/vendor/phly/PhlyContact/src/"
+            "PhlyContact\\": "module/vendor/phly/PhlyContact/src/",
+            "Blog\\": "module/Blog/src/"
         },
         "files": [
             "module/Application/src/Helpers/app.php"
