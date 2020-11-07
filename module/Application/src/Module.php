@@ -254,7 +254,7 @@ class Module implements
     public function rotateXPoweredByHeader(MvcEvent $e)
     {
         $response = $e->getResponse();
-        if (!$response instanceof HttpResponse) {
+        if (! $response instanceof HttpResponse) {
             return;
         }
 

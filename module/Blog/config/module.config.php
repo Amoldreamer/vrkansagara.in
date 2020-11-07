@@ -9,7 +9,7 @@ use Blog\Factory\PhlyBlogViewFactory;
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
 
-$test = array();
+$test = [];
 return [
     'service_manager' => [
         'factories' => [

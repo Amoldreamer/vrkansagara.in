@@ -7,22 +7,30 @@
          convertNoticesToExceptions  = "true"
          convertWarningsToExceptions = "true"
          processIsolation            = "false"
-         stopOnFailure               = "true">
+         stopOnFailure               = "true"
+         testdox                     ="true"
+         stopOnError                 ="true"
+>
     <php>
         <ini name="date.timezone" value="UTC"/>
     </php>
     <testsuites>
         <testsuite name="Laminas MVC Skeleton Test Suite">
-            <directory>./module/*/test</directory>
+<!--            <directory>./module/Application/test</directory>-->
+            <directory>./module/Blog/test</directory>
+<!--            <directory>./module/vendor/phly/PhlyBlog/test</directory>-->
+<!--            <directory>./module/vendor/phly/PhlySimplePage/test</directory>-->
+<!--            <directory>./module/vendor/ZF-Commons/ZfcBase/test</directory>-->
+<!--            <directory>./module/vendor/ZF-Commons/ZfcUser/tests</directory>-->
         </testsuite>
     </testsuites>
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./module/*/src</directory>
+<!--            <directory suffix=".php">./module/*/src</directory>-->
         </whitelist>
     </filter>
     <logging>
         <log type="coverage-text" target="php://stdout"/>
-<!--        <log type="coverage-clover" target="../build/logs/clover.xml"/>-->
+        <log type="coverage-clover" target="../build/logs/clover.xml"/>
     </logging>
 </phpunit>

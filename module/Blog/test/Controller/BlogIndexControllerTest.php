@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-namespace ApplicationTest\Controller;
+namespace Blog\Controller;
 
 use Application\Controller\IndexController;
 use Application\Delegators\IndexControllerDelegator;
@@ -16,7 +16,7 @@ use Laminas\Stdlib\ArrayUtils;
 use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 use Symfony\Component\Dotenv\Dotenv;
 
-class IndexControllerTest extends AbstractHttpControllerTestCase
+class BlogIndexControllerTest extends AbstractHttpControllerTestCase
 {
     public function setUp(): void
     {
@@ -33,26 +33,9 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
         parent::setUp();
     }
 
-    public function testIndexActionCanBeAccessed()
-    {
-        $this->dispatch('/', 'GET');
-        $this->assertResponseStatusCode(200);
-        $this->assertModuleName('application');
-        $this->assertControllerName('Application\Controller\IndexController'); // as specified in router's controller name alias
-        $this->assertControllerClass('IndexControllerDelegator');
-        $this->assertMatchedRouteName('home');
-    }
 
-    public function testIndexActionViewModelTemplateRenderedWithinLayout()
+    public function testDependentModuleMustBeLoadedFirst()
     {
-        $this->dispatch('/', 'GET');
-        $this->assertQuery('/html/body/header/nav/div/a');
-        $this->assertResponseStatusCode(200);
-    }
-
-    public function testInvalidRouteDoesNotCrash()
-    {
-        $this->dispatch('/invalid/route', 'GET');
-        $this->assertResponseStatusCode(404);
+        $this->assertModulesLoaded(['PhlyBlog']);
     }
 }
