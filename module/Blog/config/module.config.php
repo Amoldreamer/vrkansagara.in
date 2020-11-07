@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Album;
 
+use Blog\Delegators\PhlyCompilerDelegatorFactory;
 use Blog\Factory\PhlyBlogViewFactory;
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
@@ -16,7 +17,7 @@ return [
 
         ],
         'delegators' => [
-//            'PhlyBlog\Compiler' => [PhlyCompilerDelegatorFactory::class],
+            'PhlyBlog\Compiler' => [PhlyCompilerDelegatorFactory::class],
         ],
     ],
     'disqus' => [
