@@ -1,7 +1,12 @@
 # Project level GrumPHP configuration for Lamina Project
 grumphp:
-  hide_circumvention_tip: true
+  hide_circumvention_tip: false
   process_timeout: 60
+  stop_on_failure: true
+  ignore_unstaged_changes: false
+  ascii:
+    failed: grumphp-grumpy.txt
+    succeeded: grumphp-happy.txt
   parallel:
     enabled: true
     max_workers: 32
@@ -12,7 +17,7 @@ grumphp:
       no_check_lock: false
       no_check_publish: false
       with_dependencies: false
-      strict: false
+      strict: true
     git_blacklist:
       keywords:
         - "<<<<<<< HEAD"
