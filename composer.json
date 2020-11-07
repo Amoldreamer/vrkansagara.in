@@ -48,7 +48,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "ApplicationTest\\": "module/Application/test/"
+            "ApplicationTest\\": "module/Application/test/",
+            "Blog\\": "module/Blog/test/"
         }
     },
     "scripts": {
@@ -78,7 +79,7 @@
             "sudo chmod -R ug+rwx data",
             "php -S 0.0.0.0:8080 -t public"
         ],
-        "test": "phpunit"
+        "test": " ./vendor/bin/phpunit -c phpunit.xml"
     },
     "scripts-descriptions": {
         "cs-check": "Run coding standards checks.",
@@ -96,6 +97,7 @@
         "laminas/laminas-cli": "^0.1.4",
         "roave/security-advisories": "dev-latest",
         "phly/keep-a-changelog": "^2.10",
-        "vimeo/psalm": "^4.1"
+        "vimeo/psalm": "^4.1",
+        "phpunit/phpunit": "^9"
     }
 }

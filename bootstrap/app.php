@@ -4,6 +4,10 @@ use Laminas\Mvc\Application;
 
 define('REQUEST_MICROTIME', microtime(true));
 
+// Composer autoloading
+include __DIR__ . '/../vendor/autoload.php';
+
+
 
 if (! class_exists(Application::class)) {
     throw new RuntimeException(
@@ -32,14 +36,12 @@ if (php_sapi_name() === 'cli-server') {
 
 
 $dotenv = new Symfony\Component\Dotenv\Dotenv();
-$dotenv->load(__DIR__.'/../.env');
+$dotenv->load(__DIR__ . '/../.env');
 
-if (is_production_mode()){
+if (is_production_mode()) {
     Sentry\init([
         'dsn' => env('SENTRY_API_KEY'),
         'traces_sample_rate' => 1.0 # be sure to lower this in production to prevent quota issues
     ]);
 }
 date_default_timezone_set(env('APP_TIMEZONE'));
-
-

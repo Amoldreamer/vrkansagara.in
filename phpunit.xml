@@ -1,33 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap = "bootstrap/app.php"
-         backupGlobals               = "false"
-         backupStaticAttributes      = "false"
-         colors                      = "true"
-         convertErrorsToExceptions   = "true"
-         convertNoticesToExceptions  = "true"
-         convertWarningsToExceptions = "true"
-         processIsolation            = "false"
-         stopOnFailure               = "true">
-    <php>
-        <ini name="date.timezone" value="UTC"/>
-    </php>
-    <testsuites>
-        <testsuite name="Laminas MVC Skeleton Test Suite">
-            <directory>./module/Application/test</directory>
-<!--            <directory>./module/vendor/phly/PhlyBlog/test</directory>-->
-<!--            <directory>./module/vendor/phly/PhlySimplePage/test</directory>-->
-<!--            <directory>./module/vendor/ZF-Commons/ZfcBase/test</directory>-->
-<!--            <directory>./module/vendor/ZF-Commons/ZfcUser/tests</directory>-->
-        </testsuite>
-    </testsuites>
-    <filter>
-        <whitelist addUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./module/*/src</directory>
-<!--            <directory suffix=".php">./module/vendor/*/src</directory>-->
-        </whitelist>
-    </filter>
-    <logging>
-        <log type="coverage-text" target="php://stdout"/>
-        <log type="coverage-clover" target="../build/logs/clover.xml"/>
-    </logging>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         bootstrap="bootstrap/app.php"
+         backupGlobals="false"
+         backupStaticAttributes="false"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="true"
+         testdox="false"
+         stopOnError="true"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage includeUncoveredFiles="true">
+    <include/>
+    <report>
+      <clover outputFile="../build/logs/clover.xml"/>
+      <text outputFile="php://stdout"/>
+    </report>
+  </coverage>
+  <php>
+    <ini name="date.timezone" value="UTC"/>
+  </php>
+  <testsuites>
+    <testsuite name="Laminas MVC Skeleton Test Suite">
+      <directory>./module/Application/test</directory>
+      <directory>./module/Blog/test</directory>
+    </testsuite>
+  </testsuites>
 </phpunit>

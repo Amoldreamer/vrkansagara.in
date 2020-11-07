@@ -62,6 +62,9 @@
     <file>module</file>
     <file>data/blog</file>
     <file>public/index.php</file>
+
+    <!-- Folder exclude from cs-check and cs-fix -->
     <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/data/blog/*</exclude-pattern>
 
 </ruleset>

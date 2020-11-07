@@ -1,18 +1,19 @@
 <?php
-if (!isset($_SERVER['REQUEST_URI'])) {
+
+if (! isset($_SERVER['REQUEST_URI'])) {
     return;
 }
 
-$rewriteTable = array(
-    '/vrkansagara'         => '/',
-    '/me'         => '/',
-    '/vk'         => '/',
-    '/cms'         => '/',
-    '/admin'         => '/',
-    '/backend'         => '/',
-);
+$rewriteTable = [
+    '/vrkansagara' => '/',
+    '/me' => '/',
+    '/vk' => '/',
+    '/cms' => '/',
+    '/admin' => '/',
+    '/backend' => '/',
+];
 
-$rewriteRegexes = array(
+$rewriteRegexes = [
 //    '#^/zf2/blog/entry/(?P<id>[^/]+)#' => '/blog/%id%.html',
 //    '#^/manual/(?P<version>1\.1\d)/(?P<lang>[a-z]{2}(_[a-zA-Z]+)?)/index\.html$#' => function ($uri, array $matches) {
 //        return sprintf('/manual/%s/%s/manual.html', $matches['version'], $matches['lang']);
@@ -39,7 +40,7 @@ $rewriteRegexes = array(
 //    },
 //    '#^/community*#' => '/participate',
 //    '#^/releases/(?P<path>[^?]+\.(?:zip|tar.gz|tgz))#' => 'http://packages.zendframework.com/releases/%path%',
-);
+];
 
 $rewrite = function ($uri) {
     header(sprintf('Location: %s', $uri), true, 301);
@@ -51,7 +52,7 @@ $test = function () use ($rewriteTable, $rewriteRegexes, $rewrite) {
     $uri = parse_url($uri, PHP_URL_PATH);
     $uri = rtrim($uri, '/');
 
-    if (!$uri) {
+    if (! $uri) {
         return;
     }
 
@@ -65,8 +66,8 @@ $test = function () use ($rewriteTable, $rewriteRegexes, $rewrite) {
     }
 
     foreach ($rewriteRegexes as $regex => $rewriteUri) {
-        $matches = array();
-        if (!preg_match($regex, $uri, $matches)) {
+        $matches = [];
+        if (! preg_match($regex, $uri, $matches)) {
             continue;
         }
 
