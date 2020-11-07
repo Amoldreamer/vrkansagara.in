@@ -23,7 +23,6 @@ return [
     'laminas-cli' => [
         'commands' => [
             'cache:clear' => ClearCacheCommand::class,
-//            'blog:compile ' => CompileCommand\::class,
         ],
     ],
     'router' => [
