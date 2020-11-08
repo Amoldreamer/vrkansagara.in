@@ -1,32 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         bootstrap="bootstrap/app.php"
-         backupGlobals="false"
-         backupStaticAttributes="false"
-         colors="true"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
-         processIsolation="false"
-         stopOnFailure="true"
-         testdox="false"
-         stopOnError="true"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
-  <coverage includeUncoveredFiles="true">
-    <include/>
-    <report>
-      <clover outputFile="../build/logs/clover.xml"/>
-      <text outputFile="php://stdout"/>
-    </report>
-  </coverage>
-  <php>
-    <ini name="date.timezone" value="UTC"/>
-  </php>
-  <testsuites>
-    <testsuite name="Laminas MVC Skeleton Test Suite">
-      <directory>./module/Application/test</directory>
-      <directory>./module/Blog/test</directory>
-      <directory>./module/Page/test</directory>
-    </testsuite>
-  </testsuites>
+<phpunit
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="phpunit.xsd"
+        bootstrap="bootstrap/app.php"
+        colors="true"
+        verbose="true"
+        cacheResultFile=".phpunit.cache/test-results"
+        failOnRisky="true"
+        failOnWarning="true"
+        backupGlobals="false"
+        backupStaticAttributes="false"
+        convertErrorsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+        processIsolation="false"
+        stopOnFailure="true"
+        testdox="false"
+        stopOnError="true">
+    <coverage cacheDirectory=".phpunit.cache/code-coverage"
+              processUncoveredFiles="true"
+              ignoreDeprecatedCodeUnits="true">
+        <include>
+            <directory suffix=".php">./module/*/src</directory>
+        </include>
+
+        <exclude>
+            <file>src/Util/PHP/eval-stdin.php</file>
+        </exclude>
+    </coverage>
+    <php>
+        <ini name="date.timezone" value="UTC"/>
+    </php>
+    <testsuites>
+        <testsuite name="Laminas MVC Skeleton Test Suite">
+            <directory>./module/Application/test</directory>
+            <directory>./module/Blog/test</directory>
+            <directory>./module/Page/test</directory>
+        </testsuite>
+    </testsuites>
 </phpunit>
