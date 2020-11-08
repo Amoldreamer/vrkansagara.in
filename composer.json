@@ -44,9 +44,10 @@
     "autoload": {
         "psr-4": {
             "Application\\": "module/Application/src/",
+            "Blog\\": "module/Blog/src/",
+            "Page\\": "module/Page/src/",
             "PhlySimplePage\\": "module/vendor/phly/PhlySimplePage/src",
-            "PhlyContact\\": "module/vendor/phly/PhlyContact/src/",
-            "Blog\\": "module/Blog/src/"
+            "PhlyContact\\": "module/vendor/phly/PhlyContact/src/"
         },
         "files": [
             "module/Application/src/Helpers/app.php"
@@ -55,7 +56,8 @@
     "autoload-dev": {
         "psr-4": {
             "ApplicationTest\\": "module/Application/test/",
-            "Blog\\": "module/Blog/test/"
+            "Blog\\": "module/Blog/test/",
+            "Page\\": "module/Page/test/"
         }
     },
     "scripts": {

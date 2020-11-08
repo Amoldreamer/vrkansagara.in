@@ -37,7 +37,7 @@ class Module implements
     public function init(ModuleManager $manager)
     {
 //         Get event manager.
-        $eventManager = $manager->getEventManager();
+//        $eventManager = $manager->getEventManager();
 //        $sharedEventManager = $eventManager->getSharedManager();
 //        $sharedEventManager->attach(__NAMESPACE__, 'dispatch', [$this, 'onDispatch'], 100);
 
@@ -194,7 +194,7 @@ class Module implements
         return round(pow(1024, $base - floor($base)), 2) . $suffix[$f_base];
     }
 
-    public function compressJscript($buffer)
+    public static function compressJscript($buffer): string
     {
         // JavaScript compressor by John Elliot <jj5@jj5.net>
         $replace = [

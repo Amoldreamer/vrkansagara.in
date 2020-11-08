@@ -29,8 +29,9 @@ return [
     'Laminas\DeveloperTools',
 //    'FileEditor',
     'PhlyBlog',
-//    'Crawler',
+    'PhlySimplePage',
 //    'PhlyContact',
     'Blog',
+    'Page',
     'Application',
 ];
