@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
+namespace Page;
+
 use Laminas\Router\Http\Literal;
-use Laminas\Router\Http\Segment;
 use PhlySimplePage\PageController;
 
 return [
@@ -88,5 +91,10 @@ return [
                 ]
             ],
         ]
-    ]
+    ],
+    'view_manager' => [
+        'template_path_stack' => [
+            __DIR__ . '/../view',
+        ],
+    ],
 ];
