@@ -109,6 +109,7 @@ return [
             'phly-contact/contact/index' => __DIR__ . '/../view/phly-contact/contact/index.phtml',
             'phly-contact/contact/thank-you' => __DIR__ . '/../view/phly-contact/contact/thank-you.phtml',
             'application/delegators/index-controller-delegator/index' => __DIR__ . '/../view/application/index/index.phtml',
+            'application/delegators/index-controller-delegator/search' => __DIR__ . '/../view/application/index/search.phtml',
         ],
         'template_path_stack' => [
             __DIR__ . '/../view',
