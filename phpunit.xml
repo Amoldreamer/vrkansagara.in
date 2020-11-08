@@ -17,7 +17,8 @@
         stopOnFailure="true"
         testdox="false"
         stopOnError="true">
-    <coverage cacheDirectory=".phpunit.cache/code-coverage"
+
+<coverage cacheDirectory=".phpunit.cache/code-coverage"
               processUncoveredFiles="true"
               ignoreDeprecatedCodeUnits="true">
         <include>
