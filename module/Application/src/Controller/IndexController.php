@@ -56,8 +56,9 @@ class IndexController extends AbstractActionController
             ]
         ];
         $count = count($inspire) - 1;
+
         return new ViewModel([
-            'inspire' => $inspire[rand(0, $count)]
+            'inspire' => $inspire[rand(0, $count)],
         ]);
     }
 
