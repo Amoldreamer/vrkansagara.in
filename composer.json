@@ -35,6 +35,12 @@
         "phly/phly-blog": "^2.0",
         "league/commonmark": "^1.5"
     },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/phly/PhlyBlog.git"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Application\\": "module/Application/src/",
