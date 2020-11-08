@@ -35,8 +35,12 @@ if (php_sapi_name() === 'cli-server') {
 }
 
 
-$dotenv = new Symfony\Component\Dotenv\Dotenv();
-$dotenv->load(__DIR__ . '/../.env');
+$configFile = __DIR__ . '/../.env';
+if (file_exists($configFile) || $configFile = __DIR__ . '/../.env.dist') {
+    $dotenv = new Symfony\Component\Dotenv\Dotenv();
+    $dotenv->load($configFile);
+}
+
 
 if (is_production_mode()) {
     Sentry\init([
